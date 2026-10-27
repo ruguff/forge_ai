@@ -1,0 +1,53 @@
+3.1 Database Tables
+Table 3.1 ProjectForge snapshots
+
+Table 3.2 ProjectForge history
+
+Table 3.3 ProjectForge events
+
+
+3.1 Database Tables Continued
+Table 3.4 Generated NoteKeeper notes
+
+Table 3.5 ProjectForge indexes
+
+Table 3.6 Logical project relationships
+
+Table 3.7 Database scope
+
+
+Column | Data type | Key / constraint | Description
+project_id | TEXT | Primary key | Unique project identifier supplied by the application.
+payload | TEXT | NOT NULL | Latest project state, context and build specification serialized as JSON.
+
+Column | Data type | Key / constraint | Description
+id | INTEGER | Primary key; automatically assigned | Identifier of a saved project-state change.
+project_id | TEXT | Nullable; no foreign-key constraint | Identifier of the associated project.
+payload | TEXT | NOT NULL | Project snapshot serialized as JSON at the time of saving.
+
+Column | Data type | Key / constraint | Description
+id | INTEGER | Primary key; AUTOINCREMENT | Global event sequence number used for ordered replay.
+project_id | TEXT | NOT NULL; no foreign-key constraint | Identifier of the project associated with the event.
+payload | TEXT | NOT NULL | Execution-event details serialized as JSON.
+
+Column | Data type | Key / constraint | Description
+id | INTEGER | Primary key; NOT NULL; automatically assigned | Unique note identifier.
+title | TEXT | NOT NULL; default empty string | Note title.
+body | TEXT | NOT NULL; default empty string | Note content.
+
+Index | Table | Columns | Purpose
+sqlite_autoindex_
+snapshots_1 | snapshots | project_id | Automatically enforces primary-key uniqueness.
+events_project | events | project_id, id | Supports retrieval of a project’s events in sequence.
+
+Parent | Related column | Cardinality | Enforcement
+snapshots.
+project_id | history.project_id | One to many | Application-maintained relationship; no declared foreign key.
+snapshots.
+project_id | events.project_id | One to many | Application-maintained relationship; no declared foreign key.
+
+Item | Implemented scope
+ProjectForge storage | SQLite file: backend/data/projects.sqlite3; application tables: snapshots, history and events.
+Generated application storage | Separate SQLite file: generated NoteKeeper backend/notes.db; application table: notes.
+Internal SQLite table | sqlite_sequence maintains AUTOINCREMENT counters; it is not an application entity.
+Constraint interpretation | NOT NULL rejects NULL but does not reject empty strings. Logical project relationships are not database-enforced foreign keys.

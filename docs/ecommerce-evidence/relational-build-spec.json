@@ -1,0 +1,413 @@
+{
+  "project_id": "RELATIONAL-CHECK",
+  "project_name": "Related catalogue foundation",
+  "project_type": "FULLSTACK_WEB",
+  "status": "COMPILED",
+  "version": 1,
+  "generation_mode": "MODEL",
+  "source_generation_strategy": "RELATIONAL_CRUD",
+  "acceptance_checks": [
+    {
+      "method": "POST",
+      "path": "/api/categories",
+      "json": {
+        "name": "Books"
+      },
+      "status": 201,
+      "body_contains": {
+        "name": "Books"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/categories",
+      "json": {
+        "name": "Books"
+      },
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/api/products",
+      "json": {
+        "name": "Novel",
+        "category_id": 1
+      },
+      "status": 201,
+      "body_contains": {
+        "name": "Novel",
+        "category_id": 1
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/categories/1",
+      "status": 409
+    }
+  ],
+  "browser_checks": [
+    {
+      "name": "Related entity creation",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "[data-testid=\"categories-field-name\"]",
+          "value": "Books"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=\"categories-create\"]"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"categories-row\"]",
+          "value": "Books"
+        },
+        {
+          "action": "click",
+          "selector": "nav button:has-text(\"Product\")"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid=\"products-field-name\"]",
+          "value": "Novel"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid=\"products-field-category_id\"]",
+          "value": "1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=\"products-create\"]"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"products-row\"]",
+          "value": "Novel"
+        }
+      ]
+    }
+  ],
+  "ui_contract": null,
+  "commerce_contract": null,
+  "relational_contract": {
+    "version": 1,
+    "relationships": [
+      {
+        "source_table": "products",
+        "source_column": "category_id",
+        "target_table": "categories",
+        "target_column": "id",
+        "on_delete": "RESTRICT"
+      }
+    ],
+    "migration_revision": "0001"
+  },
+  "requirements": [],
+  "constraints": [],
+  "assumptions": [],
+  "tech_stack": {
+    "frontend_framework": "React",
+    "frontend_language": "TypeScript",
+    "frontend_styling": "CSS",
+    "backend_framework": "FastAPI",
+    "backend_language": "Python 3.11",
+    "primary_database": "PostgreSQL",
+    "cache_broker": null,
+    "auth_provider": "None"
+  },
+  "database_entities": [
+    {
+      "entity_name": "Category",
+      "table_name": "categories",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "integer",
+          "is_primary_key": true,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "name",
+          "data_type": "text",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": true,
+          "default_value": null
+        }
+      ],
+      "relationships": []
+    },
+    {
+      "entity_name": "Product",
+      "table_name": "products",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "integer",
+          "is_primary_key": true,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "name",
+          "data_type": "text",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "category_id",
+          "data_type": "integer",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        }
+      ],
+      "relationships": []
+    }
+  ],
+  "api_endpoints": [
+    {
+      "endpoint_id": "GETcategories",
+      "method": "GET",
+      "path": "/api/categories",
+      "description": "GET",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "POSTcategories",
+      "method": "POST",
+      "path": "/api/categories",
+      "description": "POST",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "PUTcategories",
+      "method": "PUT",
+      "path": "/api/categories/{record_id}",
+      "description": "PUT",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "DELETEcategories",
+      "method": "DELETE",
+      "path": "/api/categories/{record_id}",
+      "description": "DELETE",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "GETproducts",
+      "method": "GET",
+      "path": "/api/products",
+      "description": "GET",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "POSTproducts",
+      "method": "POST",
+      "path": "/api/products",
+      "description": "POST",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "PUTproducts",
+      "method": "PUT",
+      "path": "/api/products/{record_id}",
+      "description": "PUT",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    },
+    {
+      "endpoint_id": "DELETEproducts",
+      "method": "DELETE",
+      "path": "/api/products/{record_id}",
+      "description": "DELETE",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": []
+    }
+  ],
+  "ui_components": [],
+  "environment_variables": {},
+  "dependencies": [],
+  "files_to_create": [
+    {
+      "file_path": "backend/app/__init__.py",
+      "description": "Reviewed relational module: backend/app/__init__.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/package.json",
+      "description": "Reviewed relational module: frontend/package.json",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/tsconfig.json",
+      "description": "Reviewed relational module: frontend/tsconfig.json",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/vite.config.ts",
+      "description": "Reviewed relational module: frontend/vite.config.ts",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/src/main.tsx",
+      "description": "Reviewed relational module: frontend/src/main.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/index.html",
+      "description": "Reviewed relational module: frontend/index.html",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/app/relational_runtime.py",
+      "description": "Reviewed relational module: backend/app/relational_runtime.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/app/schema.json",
+      "description": "Reviewed relational module: backend/app/schema.json",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/app/main.py",
+      "description": "Reviewed relational module: backend/app/main.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/requirements.txt",
+      "description": "Reviewed relational module: backend/requirements.txt",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/tests/test_schema.py",
+      "description": "Reviewed relational module: backend/tests/test_schema.py",
+      "target_module": "backend",
+      "is_test_file": true,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/migrations/0001.json",
+      "description": "Reviewed relational module: backend/migrations/0001.json",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/compose.yaml",
+      "description": "Reviewed relational module: backend/compose.yaml",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "backend/migrate.py",
+      "description": "Reviewed relational module: backend/migrate.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/src/Entity0.tsx",
+      "description": "Reviewed relational module: frontend/src/Entity0.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/src/Entity1.tsx",
+      "description": "Reviewed relational module: frontend/src/Entity1.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "frontend/src/App.tsx",
+      "description": "Reviewed relational module: frontend/src/App.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    },
+    {
+      "file_path": "README.md",
+      "description": "Reviewed relational module: README.md",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": []
+    }
+  ],
+  "test_requirements": [],
+  "security_requirements": [],
+  "deployment_requirements": [],
+  "decisions": [],
+  "overall_confidence": 0.95,
+  "blocked_reasons": null
+}

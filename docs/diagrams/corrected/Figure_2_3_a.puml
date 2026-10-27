@@ -1,0 +1,71 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.3(a)  Project data and specification classes
+hide empty members
+class "ProjectPersistence" as persist {
+  + path: Path
+  --
+  + save(project_id, state, context, spec=None)
+  + load_all(): list
+  + append_event(project_id, payload)
+}
+class "BaseModel" as base {
+  Pydantic framework superclass
+}
+class "BuildSpecCompiler" as compiler {
+  + compile_model(context, state, llm_client): BuildSpec
+  + compile(context=None, state=None, override_project_type=None)
+}
+class "ProjectState" as state {
+  + project_id: str
+  + revision: int
+  + status: ProjectStatus
+  + raw_idea: str
+}
+class "ProjectContext" as context {
+  + project_id: str
+  + version: int
+  + execution_state: str
+  + build_spec: Optional[dict]
+  + requirements: List
+  --
+  + model_post_init(__context): None
+}
+class "BuildSpec" as spec {
+  + project_id: str
+  + version: int
+  + status: BuildSpecStatus
+  + files_to_create: List[TargetFileDef]
+  + requirements: List
+}
+class "ExtractedRequirementItem" as req {
+  + id: str
+  + description: str
+  + source: RequirementSource
+}
+class "BuildRequirementItem" as buildreq {
+  + id: str
+  + description: str
+  + source: RequirementSourceType
+}
+class "TargetFileDef" as file {
+  + file_path: str
+  + dependencies: List[str]
+}
+state --|> base
+context --|> base
+spec --|> base
+persist ..> state
+persist ..> context
+persist ..> spec
+compiler ..> spec : «create»
+context --> "0..*" req
+spec --> "0..*" buildreq
+spec --> "0..*" file
+note "build_spec is an optional serialized dict, not a stored BuildSpec instance. No object association is asserted." as note0
+note "Persistence serializes state/context/spec. Nested lists use associations; exclusive lifecycle ownership is not enforced." as note1
+@enduml

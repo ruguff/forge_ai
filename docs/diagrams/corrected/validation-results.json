@@ -1,0 +1,2810 @@
+[
+  {
+    "check": "2.3a: implemented class ProjectPersistence",
+    "passed": true
+  },
+  {
+    "check": "ProjectPersistence: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "ProjectPersistence.save exists",
+    "passed": true
+  },
+  {
+    "check": "ProjectPersistence.load_all exists",
+    "passed": true
+  },
+  {
+    "check": "ProjectPersistence.append_event exists",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class BaseModel",
+    "passed": true
+  },
+  {
+    "check": "BaseModel: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class BuildSpecCompiler",
+    "passed": true
+  },
+  {
+    "check": "BuildSpecCompiler: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "BuildSpecCompiler.compile_model exists",
+    "passed": true
+  },
+  {
+    "check": "BuildSpecCompiler.compile exists",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class ProjectState",
+    "passed": true
+  },
+  {
+    "check": "ProjectState: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class ProjectContext",
+    "passed": true
+  },
+  {
+    "check": "ProjectContext: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "ProjectContext.model_post_init exists",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class BuildSpec",
+    "passed": true
+  },
+  {
+    "check": "BuildSpec: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class ExtractedRequirementItem",
+    "passed": true
+  },
+  {
+    "check": "ExtractedRequirementItem: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class BuildRequirementItem",
+    "passed": true
+  },
+  {
+    "check": "BuildRequirementItem: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: implemented class TargetFileDef",
+    "passed": true
+  },
+  {
+    "check": "TargetFileDef: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints state->base",
+    "passed": true
+  },
+  {
+    "check": "state: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "base: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector state->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints context->base",
+    "passed": true
+  },
+  {
+    "check": "context: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "base: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector context->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints spec->base",
+    "passed": true
+  },
+  {
+    "check": "spec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "base: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->base avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints persist->state",
+    "passed": true
+  },
+  {
+    "check": "persist: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "state: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->state avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints persist->context",
+    "passed": true
+  },
+  {
+    "check": "persist: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "context: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->context avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints persist->spec",
+    "passed": true
+  },
+  {
+    "check": "persist: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "spec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector persist->spec avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints compiler->spec",
+    "passed": true
+  },
+  {
+    "check": "compiler: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "spec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector compiler->spec avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints context->req",
+    "passed": true
+  },
+  {
+    "check": "context: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "req: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated spec",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "Connector context->req avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints spec->buildreq",
+    "passed": true
+  },
+  {
+    "check": "spec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "buildreq: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->buildreq avoids unrelated file",
+    "passed": true
+  },
+  {
+    "check": "2.3a: connector endpoints spec->file",
+    "passed": true
+  },
+  {
+    "check": "spec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "file: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated persist",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated base",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated compiler",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated state",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated context",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated req",
+    "passed": true
+  },
+  {
+    "check": "Connector spec->file avoids unrelated buildreq",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class ProductAgent",
+    "passed": true
+  },
+  {
+    "check": "ProductAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "ProductAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class AIMLAgent",
+    "passed": true
+  },
+  {
+    "check": "AIMLAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "AIMLAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class EngineeringAgent",
+    "passed": true
+  },
+  {
+    "check": "EngineeringAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "EngineeringAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class UXAgent",
+    "passed": true
+  },
+  {
+    "check": "UXAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "UXAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class SecurityAgent",
+    "passed": true
+  },
+  {
+    "check": "SecurityAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "SecurityAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class QAAgent",
+    "passed": true
+  },
+  {
+    "check": "QAAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "QAAgent.analyze exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class Settings",
+    "passed": true
+  },
+  {
+    "check": "Settings: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class AgentExecutionHarness",
+    "passed": true
+  },
+  {
+    "check": "AgentExecutionHarness: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "AgentExecutionHarness.execute exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class LocalModelClient",
+    "passed": true
+  },
+  {
+    "check": "LocalModelClient: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "LocalModelClient.generate exists",
+    "passed": true
+  },
+  {
+    "check": "LocalModelClient.generate_sync exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: implemented class GeminiModelClient",
+    "passed": true
+  },
+  {
+    "check": "GeminiModelClient: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "GeminiModelClient.__new__ exists",
+    "passed": true
+  },
+  {
+    "check": "GeminiModelClient.generate exists",
+    "passed": true
+  },
+  {
+    "check": "GeminiModelClient.generate_sync exists",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints product->harness",
+    "passed": true
+  },
+  {
+    "check": "product: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector product->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints aiml->harness",
+    "passed": true
+  },
+  {
+    "check": "aiml: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector aiml->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints eng->harness",
+    "passed": true
+  },
+  {
+    "check": "eng: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector eng->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints ux->harness",
+    "passed": true
+  },
+  {
+    "check": "ux: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector ux->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints sec->harness",
+    "passed": true
+  },
+  {
+    "check": "sec: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector sec->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints qa->harness",
+    "passed": true
+  },
+  {
+    "check": "qa: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector qa->harness avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints harness->local",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "local: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->local avoids unrelated gemini",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints harness->gemini",
+    "passed": true
+  },
+  {
+    "check": "harness: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "gemini: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector harness->gemini avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints gemini->local",
+    "passed": true
+  },
+  {
+    "check": "gemini: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "local: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated settings",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->local avoids unrelated harness",
+    "passed": true
+  },
+  {
+    "check": "2.3b: connector endpoints gemini->settings",
+    "passed": true
+  },
+  {
+    "check": "gemini: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "settings: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated harness",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated harness",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated harness",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated product",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated aiml",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated eng",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated ux",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated sec",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated qa",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated harness",
+    "passed": true
+  },
+  {
+    "check": "Connector gemini->settings avoids unrelated local",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class TaskGraph",
+    "passed": true
+  },
+  {
+    "check": "TaskGraph: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "TaskGraph.build_from_spec exists",
+    "passed": true
+  },
+  {
+    "check": "TaskGraph.validate_dag exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class CodingOrchestrator",
+    "passed": true
+  },
+  {
+    "check": "CodingOrchestrator: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "CodingOrchestrator.execute_build exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class CodingAgent",
+    "passed": true
+  },
+  {
+    "check": "CodingAgent: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "CodingAgent.execute_task exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class TaskScheduler",
+    "passed": true
+  },
+  {
+    "check": "TaskScheduler: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "TaskScheduler.get_ready_tasks exists",
+    "passed": true
+  },
+  {
+    "check": "TaskScheduler.mark_completed exists",
+    "passed": true
+  },
+  {
+    "check": "TaskScheduler.mark_failed exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class TestRunner",
+    "passed": true
+  },
+  {
+    "check": "TestRunner: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "TestRunner.run_backend_tests exists",
+    "passed": true
+  },
+  {
+    "check": "TestRunner.run_frontend_build exists",
+    "passed": true
+  },
+  {
+    "check": "TestRunner.run_acceptance exists",
+    "passed": true
+  },
+  {
+    "check": "TestRunner.run_browser_checks exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class AgentToolContext",
+    "passed": true
+  },
+  {
+    "check": "AgentToolContext: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "AgentToolContext.read_file exists",
+    "passed": true
+  },
+  {
+    "check": "AgentToolContext.write_file exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class ImplementationTask",
+    "passed": true
+  },
+  {
+    "check": "ImplementationTask: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class SafeCommandExecutor",
+    "passed": true
+  },
+  {
+    "check": "SafeCommandExecutor: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "SafeCommandExecutor.preflight exists",
+    "passed": true
+  },
+  {
+    "check": "SafeCommandExecutor.execute exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: implemented class RepositoryManager",
+    "passed": true
+  },
+  {
+    "check": "RepositoryManager: A4 class bounds",
+    "passed": true
+  },
+  {
+    "check": "RepositoryManager.write_task_file exists",
+    "passed": true
+  },
+  {
+    "check": "RepositoryManager.create_checkpoint exists",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints orch->graph",
+    "passed": true
+  },
+  {
+    "check": "orch: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "graph: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->graph avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints orch->scheduler",
+    "passed": true
+  },
+  {
+    "check": "orch: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "scheduler: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->scheduler avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints orch->coding",
+    "passed": true
+  },
+  {
+    "check": "orch: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "coding: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->coding avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints orch->runner",
+    "passed": true
+  },
+  {
+    "check": "orch: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "runner: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector orch->runner avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints scheduler->graph",
+    "passed": true
+  },
+  {
+    "check": "scheduler: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "graph: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector scheduler->graph avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints graph->task",
+    "passed": true
+  },
+  {
+    "check": "graph: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "task: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector graph->task avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints coding->tools",
+    "passed": true
+  },
+  {
+    "check": "coding: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "tools: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Connector coding->tools avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints runner->executor",
+    "passed": true
+  },
+  {
+    "check": "runner: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "executor: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated tools",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector runner->executor avoids unrelated repo",
+    "passed": true
+  },
+  {
+    "check": "2.3c: connector endpoints tools->repo",
+    "passed": true
+  },
+  {
+    "check": "tools: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "repo: connector anchored to class perimeter",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated graph",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated orch",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated coding",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated scheduler",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated runner",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated task",
+    "passed": true
+  },
+  {
+    "check": "Connector tools->repo avoids unrelated executor",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(a)  Creation understanding and clarification: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(b)  Background planning and failure outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Figure 2.4(c)  Awaited build worker and persisted outcomes: message participant references",
+    "passed": true
+  },
+  {
+    "check": "Exactly six PlantUML sources",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_3_a.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_3_b.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_3_c.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: else belongs to alt",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: balanced fragments",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_a.puml: balanced activation totals",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: else belongs to alt",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: balanced fragments",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_b.puml: balanced activation totals",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: UML delimiters",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: else belongs to alt",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: fragment end matches",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: activation has a start",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: balanced fragments",
+    "passed": true
+  },
+  {
+    "check": "Figure_2_4_c.puml: balanced activation totals",
+    "passed": true
+  },
+  {
+    "check": "Exactly two PDF deliverables",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf: exactly three pages",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 1: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 1: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 2: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 2: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 3: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.pdf page 3: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf: exactly three pages",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 1: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 1: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 2: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 2: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 3: A4 landscape",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.pdf page 3: native vector content, no rasterized diagram",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.drawio: three editable pages",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.drawio: resolved XML references",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.drawio: resolved XML references",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Class_Diagram_A4.drawio: resolved XML references",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.drawio: three editable pages",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.drawio: resolved XML references",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.drawio: resolved XML references",
+    "passed": true
+  },
+  {
+    "check": "ProjectForge_UML_Sequence_Diagrams_A4.drawio: resolved XML references",
+    "passed": true
+  }
+]

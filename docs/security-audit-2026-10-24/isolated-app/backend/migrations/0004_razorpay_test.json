@@ -1,0 +1,23 @@
+{
+  "revision": "0004_razorpay_test",
+  "parent": "0003",
+  "module": "razorpay-test-v1",
+  "tables": [
+    "razorpay_bindings",
+    "razorpay_refunds",
+    "razorpay_events"
+  ],
+  "order_states": [
+    "awaiting_payment",
+    "cancelled",
+    "expired",
+    "razorpay_test_paid",
+    "razorpay_test_refunded"
+  ],
+  "rules": {
+    "version": 1,
+    "mode": "razorpay_test",
+    "currency": "INR",
+    "refunds": "admin_full_only"
+  }
+}

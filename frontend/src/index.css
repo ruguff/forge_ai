@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.forge-workspace{display:flex;height:100%;gap:22px;padding:24px 24px 64px;background:#111c25;color:#f1f4f5;min-height:0}
+header{flex-shrink:0}header>div:first-child{min-width:0}header>div:first-child>div:first-child{min-width:0}header>div:first-child>div:first-child>div:last-child{min-width:0}header>div:first-child>div:first-child>div:last-child>div:last-child{max-width:240px;white-space:nowrap;overflow:hidden}header>div:first-child>div:first-child>div:last-child>div:last-child>span:first-child{overflow:hidden;text-overflow:ellipsis;min-width:0}header>div:last-child{flex-shrink:0}
+@media(max-width:900px){header>div:first-child>div:nth-child(2){display:none}header>div:first-child>div:first-child>div:last-child>div:last-child{max-width:150px}header>div:first-child>div:first-child>div:last-child>div:last-child>span:not(:first-child){display:none}}
+.forge-office-column{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+.forge-office-caption{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.forge-eyebrow{font-size:10px;letter-spacing:2px;color:#8fb8aa;font-weight:700}
+.forge-office-caption h1{font-size:25px;font-weight:650;letter-spacing:-.7px;margin:3px 0}
+.forge-office-caption p,.forge-overview>p{font-size:12px;color:#93a4ad}
+.forge-state{background:#253c3b;border:1px solid #36554c;border-radius:20px;padding:7px 12px;font-size:11px;color:#a8d7c1;white-space:nowrap}
+.forge-state-error{background:#512e32;color:#f2b0ae;border-color:#794449}
+.forge-scene{position:relative;flex:1;min-height:230px;overflow:hidden;border-radius:20px;background:radial-gradient(ellipse at center,#34423e,#233039);border:1px solid #3b494b;box-shadow:0 16px 40px #0002}
+.forge-world{position:absolute;transform-origin:0 0;touch-action:none;cursor:grab}
+.forge-world:active{cursor:grabbing}
+.office-room-title{font:600 15px system-ui;fill:#304b4d}
+.office-room-sub{font:11px system-ui;fill:#738782}
+.forge-camera{position:absolute;bottom:14px;left:14px;display:flex;align-items:center;gap:7px;background:#15242eee;border:1px solid #4c615e;border-radius:12px;padding:5px;font-size:11px}
+.forge-camera button{display:flex;align-items:center;gap:7px;padding:7px;border-radius:7px}.forge-camera button:hover{background:#34514c}
+.forge-scene-hint{position:absolute;right:18px;bottom:23px;font-size:10px;color:#c0cdc5}
+.forge-overview{width:245px;flex-shrink:0;border:1px solid #33424d;background:#1a2833;border-radius:18px;padding:20px;overflow:auto}
+.forge-overview h2{font-size:21px;font-weight:600;margin:8px 0 3px}.forge-team-list{display:flex;flex-direction:column;gap:7px;margin:20px 0}
+.forge-team-list button{display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:12px;background:#13212b;text-align:left}.forge-team-list button:hover{background:#2a3e48}.forge-team-list button>span:nth-child(2){flex:1}.forge-team-list strong{font-size:11px;font-weight:550;display:block}.forge-team-list small{font-size:10px;color:#96aaa9;text-transform:capitalize}
+.forge-agent-dot{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;color:#fff;font-size:13px;font-weight:600}
+.forge-output h3{font-size:12px;font-weight:600;margin-bottom:9px}.forge-output>div,.forge-output>button{display:flex;width:100%;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #30404a;font-size:11px}.forge-output span{color:#9db2aa;font-size:10px}
+.forge-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;font-size:9px;color:#98aaa5}.forge-legend span:nth-child(2){color:#89b4d2}.forge-legend span:nth-child(3){color:#97c6a1}.forge-legend span:nth-child(4){color:#dfa59d}
+.forge-error{border:1px solid #70494d;background:#412b32;border-radius:12px;padding:10px 14px;font-size:11px;display:flex;flex-direction:column;gap:3px;max-height:90px;overflow:auto}.forge-error span{color:#dfb9b9;user-select:text}
+@keyframes office-breathe{50%{transform:translateY(-1.5px)}}
+@keyframes office-type{50%{transform:translateY(-2px) rotate(1deg)}}
+@keyframes office-step{25%{transform:translateY(-3px) rotate(-3deg)}75%{transform:translateY(-3px) rotate(3deg)}}
+@keyframes office-glow{50%{opacity:.65}}
+@keyframes office-transfer{to{stroke-dashoffset:-42}}
+.office-handoff{animation:office-transfer .8s linear infinite}
+.office-idle{animation:office-breathe 4s ease-in-out infinite}.office-work{animation:office-breathe 2s ease-in-out infinite}.office-arms{animation:office-type .45s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.office-walk{animation:office-step .5s linear infinite;transform-box:fill-box;transform-origin:center}.office-monitor-active{animation:office-glow 2s ease-in-out infinite}
+.forge-motion-paused *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.office-idle,.office-work,.office-arms,.office-walk,.office-monitor-active,.office-handoff{animation:none!important}}
+@media(max-width:1100px){.forge-overview{width:210px;padding:14px}.forge-workspace{padding:18px 16px 60px;gap:14px}}
+@media(max-width:800px){.forge-overview{display:none}.forge-office-caption h1{font-size:21px}.forge-scene-hint{display:none}.forge-workspace{padding:14px 10px 60px}.forge-office-caption p{font-size:11px}}
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 24, 36, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(42, 54, 79, 0.8);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.5);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px -3px rgba(0, 242, 254, 0.35);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px -3px rgba(127, 83, 172, 0.45);
+}
+
+.glow-amber {
+  box-shadow: 0 0 20px -3px rgba(245, 158, 11, 0.45);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.35);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px -3px rgba(239, 68, 68, 0.45);
+}
+
+/* Grid pattern background for office canvas */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Pixel Art Utilities */
+.font-pixel {
+  font-family: 'Silkscreen', 'Press Start 2P', monospace;
+}
+
+.font-arcade {
+  font-family: 'Press Start 2P', monospace;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Authentic Wooden Floorboards Pattern */
+.pixel-wood-floor {
+  background-color: #dfa86a;
+  background-image: 
+    linear-gradient(0deg, rgba(166, 114, 57, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166, 114, 57, 0.3) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, #dfa86a, #dfa86a 32px, #d79e5d 32px, #d79e5d 64px);
+  background-size: 100% 32px, 128px 100%, 100% 64px;
+}
+
+/* Pixel Speech Bubble with retro border */
+.pixel-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #1a1a1a;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.pixel-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #1a1a1a;
+}
+
+/* Wooden Signpost */
+.pixel-signpost {
+  background: #684126;
+  border: 2px solid #3c2415;
+  box-shadow: inset -2px -2px 0px #4d2e1a, inset 2px 2px 0px #8b5a35, 2px 3px 0px rgba(0,0,0,0.3);
+}
+
+/* Pixel Rug */
+.pixel-rug {
+  background: #b48560;
+  border: 4px dashed #6f4728;
+  box-shadow: inset 0 0 0 3px #8b5a35, 3px 4px 0px rgba(0,0,0,0.25);
+}

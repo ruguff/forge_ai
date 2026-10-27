@@ -1,0 +1,76 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.3(b)  Specialist harnesses and provider selection
+hide empty members
+class "ProductAgent" as product {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "AIMLAgent" as aiml {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "EngineeringAgent" as eng {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "UXAgent" as ux {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "SecurityAgent" as sec {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "QAAgent" as qa {
+  - _harness: AgentExecutionHarness
+  --
+  + analyze(project_state): HarnessResult
+}
+class "Settings" as settings {
+  + LLM_PROVIDER: str
+}
+class "AgentExecutionHarness<T>" as harness {
+  + target_schema: Type[T]
+  + llm_client: Callable
+  + lint_rules: List[LintRule]
+  --
+  + execute(context_data, max_retries=2): HarnessResult
+}
+class "LocalModelClient" as local {
+  + settings: Settings
+  + calls: int
+  --
+  + generate(prompt, *, output_tokens=None): str
+  + generate_sync(prompt, *, output_tokens=None): str
+}
+class "GeminiModelClient" as gemini {
+  + settings: Settings
+  + client: genai.Client
+  --
+  + __new__(cls)
+  + generate(prompt: str): str
+  + generate_sync(prompt: str): str
+}
+product *-- "1" harness
+aiml *-- "1" harness
+eng *-- "1" harness
+ux *-- "1" harness
+sec *-- "1" harness
+qa *-- "1" harness
+harness ..> local
+harness ..> gemini
+gemini ..> local : «create»
+gemini ..> settings
+note "__new__(): lmstudio -> LocalModelClient(); gemini -> Gemini instance; other providers raise ModelUnavailableError." as note0
+note "Each agent creates its own harness. Harness callbacks bind the selected provider generate(); there is no provider inheritance." as note1
+@enduml

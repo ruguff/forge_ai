@@ -1,0 +1,37 @@
+=== PAGE 1 ===
+Project Title: : PROJECTFORGE AI Autonomous Multi-Agent Software
+Engineering Platform.
+Project Group No.: : 63
+Number of Scholar(s) : 1.
+Supervisor Name: : DR. Maitri Patel
+Abstract:
+PROJECTFORGE AI is an autonomous multi-agent software engineering platform
+designed to transform a high-level software idea into a structured, executable
+software project. Traditional software development requires users to manually perform
+activities such as requirement analysis, system design, architectural planning, coding,
+testing, and debugging. PROJECTFORGE AI aims to automate these stages by
+coordinating multiple specialized AI agents within a unified development workflow.
+The architecture initiates processing by accepting raw natural-language software
+specifications and evaluating them across multiple architectural dimensions. An
+embedded requirement engine iteratively detects ambiguities and queries the user for
+clarification only when essential. Once grounded, the specification is analyzed in
+parallel by domain-specific agents focused on product management, AI/ML pipeline
+design, core engineering, UX/UI layout, security posture, and quality assurance.
+Potential architectural contradictions across agent outputs are processed through a
+central arbitration engine, after which a Final Architect agent compiles the validated
+constraints into a master system blueprint and build topology.
+The proposed system further extends this workflow toward autonomous
+implementation by decomposing the build specification into a task dependency graph,
+generating source code, creating the project repository, executing tests in a controlled
+environment, classifying failures, and performing bounded self-healing. After
+successful verification, the generated project can be launched directly in Visual Studio
+Code. The platform also provides a virtual office interface that allows users to observe
+the activities of the AI agents and the progress of the software-development workflow.
+PROJECTFORGE AI is implemented using technologies including Python, FastAPI,
+Pydantic, React, TypeScript, Vite, Tailwind CSS, and Framer Motion. The system is
+designed to provide a structured bridge between a user's software idea and an
+executable development workspace, integrating planning, multi-agent reasoning, code
+generation, testing, and development-environment integration into a single workflow.
+Scholar(s) Details
+Name of the Scholar: Panchal Het Vipul Kumar IAR Reg. No: 15582
+Signature of the Supervisor

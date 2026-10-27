@@ -1,0 +1,12 @@
+{
+  "command": "pytest",
+  "exit_code": 0,
+  "passed_count": 3,
+  "failed_count": 0,
+  "error_count": 0,
+  "total_count": 3,
+  "duration_ms": 17151.39,
+  "failures": [],
+  "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 3 items\n\n../../source/.projectforge/test_security_audit.py::test_reset_shared_bucket_denies_a_different_victim CONFIRMED: eight invalid resets from another loopback IP block a valid victim reset, HTTP 429\nPASSED\n../../source/.projectforge/test_security_audit.py::test_webhook_ack_waits_for_slow_provider CONFIRMED: synthetic slow provider delays webhook acknowledgment 5.22 seconds\nPASSED\n../../source/.projectforge/test_security_audit.py::test_basic_access_and_csrf_controls PROTECTION: order ownership, admin restriction, CSRF and invalid webhook signature rejected\nPASSED\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 3 passed, 1 warning in 11.25s =========================\n",
+  "raw_stderr": ""
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "path": "backend/app/execution/agent/identity_runtime.py",
+    "sha256": "bc3dd61c56bb39b5459d15450d85c09610aec576565a1a1ff5ce4dcad9a4216f"
+  },
+  {
+    "path": "backend/app/execution/agent/declarative.py",
+    "sha256": "5c3a7f58df746d6bbc94ab9389b48e60c508aa873e7fbf0d385240e0be13d47b"
+  },
+  {
+    "path": "backend/app/execution/agent/coding_agent.py",
+    "sha256": "00749533cb62345b879fe83ae9db423898116d775b3e21415de3d4b315afd4cd"
+  },
+  {
+    "path": "backend/tests/test_identity_runtime.py",
+    "sha256": "7165a025a03540bba6df2e110f72fea49930e22a5f8c7fcf7c55cbfeba02434c"
+  },
+  {
+    "path": "backend/sandbox/Dockerfile",
+    "sha256": "1311198bb508e81d4afd3a193a421d64424bf48c9eb107c92077a59561b78c85"
+  },
+  {
+    "path": "backend/sandbox/Dockerfile.frontend-refresh",
+    "sha256": "4110e0e574398bc4e628e8ca7a7761bbcc559981c1ec563928ba58a196e255e9"
+  },
+  {
+    "path": "docs/ecommerce-evidence/payments-app/backend/app/identity_runtime.py",
+    "sha256": "bc3dd61c56bb39b5459d15450d85c09610aec576565a1a1ff5ce4dcad9a4216f"
+  },
+  {
+    "path": "docs/ecommerce-evidence/payments-app/frontend/package.json",
+    "sha256": "39b195afb863538bae9b57a77dd113bb98ff17fa57b0c18f22260547997151a8"
+  },
+  {
+    "path": "docs/ecommerce-evidence/payments-app/frontend/package-lock.json",
+    "sha256": "bc2948f477d96bd67869fbc871ba0850fb0bfd2231aeb87d4c71cc1ab005afa3"
+  },
+  {
+    "path": "docs/ecommerce-evidence/razorpay-app/backend/app/identity_runtime.py",
+    "sha256": "bc3dd61c56bb39b5459d15450d85c09610aec576565a1a1ff5ce4dcad9a4216f"
+  },
+  {
+    "path": "docs/ecommerce-evidence/razorpay-app/frontend/package.json",
+    "sha256": "39b195afb863538bae9b57a77dd113bb98ff17fa57b0c18f22260547997151a8"
+  },
+  {
+    "path": "docs/ecommerce-evidence/razorpay-app/frontend/package-lock.json",
+    "sha256": "ee8fe82684f922b280581635ae8a00a85291735a3e73d5e2897d3e0e6264d1b0"
+  }
+]

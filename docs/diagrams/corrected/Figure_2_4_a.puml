@@ -1,0 +1,58 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.4(a)  Creation understanding and clarification
+hide footbox
+actor "User" as P0
+participant "Frontend" as P1
+participant "Projects API" as P2
+participant "Understanding" as P3
+participant "Local model" as P4
+participant "RequirementEngine" as P5
+participant "Persistence" as P6
+activate P1
+P0 -> P1 : Submit idea
+activate P2
+P1 -> P2 : POST /api/projects
+activate P6
+P2 -> P6 : emit_event: append event + save snapshot
+deactivate P6
+P2 -->> P1 : Persisted project_id + version
+P1 -> P2 : POST /{id}/understand
+activate P3
+P2 -> P3 : execute_understanding(raw_idea)
+P3 -> P4 : generate(prompt)
+alt [valid extraction]
+P4 -->> P3 : Valid model extraction
+else [invalid / unavailable]
+P4 -->> P3 : Invalid result / exception
+P3 -> P3 : generate_heuristic_understanding()
+end
+P3 -->> P2 : Structured output + evidence label
+deactivate P3
+activate P5
+P2 -> P5 : evaluate_requirements(output)
+P5 -->> P2 : Questions + readiness
+deactivate P5
+activate P6
+P2 -> P6 : emit_event: save context and events
+deactivate P6
+P2 -->> P1 : Context + next clarification
+loop [while clarification remains]
+P0 -> P1 : Answer question
+P1 -> P2 : POST /{id}/clarify
+P2 -> P2 : Update requirement/version; find next PENDING
+activate P6
+P2 -> P6 : emit_event: save updated context
+deactivate P6
+P2 -->> P1 : Next question or REQUIREMENTS_VALIDATED
+end
+deactivate P1
+deactivate P2
+note over P0,P6
+Clarify updates the pending-question list; it does not re-run RequirementEngine. emit_event persists before responses.
+end note
+@enduml

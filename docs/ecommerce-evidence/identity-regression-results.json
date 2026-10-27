@@ -1,0 +1,16 @@
+{
+  "suite": "backend/tests",
+  "passed": 251,
+  "failed": 0,
+  "duration_seconds": 95.17,
+  "warnings": [
+    "Existing Starlette/httpx deprecation warning"
+  ],
+  "checkpoint_followup": {
+    "suite": "tests/test_build_checkpoint.py",
+    "passed": 5,
+    "duration_seconds": 0.39
+  },
+  "generated_source_digest": "ada8766f61b75e51e30cbc0a7d929944b7196feea434d1c9fc1ed8e0081ba014",
+  "live_model_run": false
+}

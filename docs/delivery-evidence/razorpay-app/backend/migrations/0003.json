@@ -1,0 +1,25 @@
+{
+  "revision": "0003",
+  "parent": "0002",
+  "module": "orders-v1",
+  "tables": [
+    "carts",
+    "cart_items",
+    "orders",
+    "order_items"
+  ],
+  "states": [
+    "awaiting_payment",
+    "cancelled",
+    "expired"
+  ],
+  "stock": "available units; subtract on reservation, restore once on release",
+  "rules": {
+    "version": 1,
+    "tax_basis_points": 500,
+    "shipping_minor": 500,
+    "discount_basis_points": 0,
+    "reservation_seconds": 900,
+    "policy_label": "Synthetic verification rules"
+  }
+}

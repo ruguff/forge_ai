@@ -1,0 +1,10 @@
+# Refresh only trusted frontend tooling in an existing offline runtime.
+# The full Dockerfile carries the same versions for clean installations.
+ARG BASE_IMAGE=projectforge-runtime:local
+FROM ${BASE_IMAGE}
+USER root
+RUN cd /opt/frontend && npm install --ignore-scripts --save-exact vite@6.4.5 @vitejs/plugin-react@4.7.0
+# Vite 6 writes bundled configuration here; keep dependencies read-only and
+# redirect only its temporary config files into the sandbox's existing tmpfs.
+RUN test -L /opt/frontend/node_modules/.vite-temp || ln -s /tmp /opt/frontend/node_modules/.vite-temp
+USER 65534:65534

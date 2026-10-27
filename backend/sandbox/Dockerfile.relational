@@ -1,0 +1,13 @@
+FROM projectforge-runtime:local
+USER root
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    && sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources \
+    && apt-get -o Acquire::ForceIPv4=true -o Acquire::https::Timeout=30 -o Acquire::Retries=2 update \
+    && apt-get -o Acquire::ForceIPv4=true -o Acquire::https::Timeout=30 -o Acquire::Retries=2 install -y --no-install-recommends postgresql-15
+RUN /opt/python/bin/pip install 'psycopg[binary]>=3.2,<4'
+COPY relational-entrypoint.sh /opt/relational-entrypoint.sh
+RUN chmod 755 /opt/relational-entrypoint.sh
+USER 65534:65534
+ENTRYPOINT ["/opt/relational-entrypoint.sh"]

@@ -1,0 +1,44 @@
+{
+  "controls": {
+    "command": "pytest",
+    "exit_code": 1,
+    "passed_count": 21,
+    "failed_count": 1,
+    "error_count": 0,
+    "total_count": 22,
+    "duration_ms": 64298.88,
+    "failures": [
+      {
+        "test_name": "test_customer_shipment_refund_hold_and_refunded_state",
+        "file_path": "/source/.projectforge/test_payment_gate.py",
+        "line_number": 490,
+        "error_type": "AssertionError",
+        "message": "/source/.projectforge/test_payment_gate.py:44: AssertionError",
+        "traceback": "def test_customer_shipment_refund_hold_and_refunded_state():\n>       c,o,p=paid_order();a=operator();url=f\"/api/orders/{o['id']}/shipment\"\n              ^^^^^^^^^^^^\n\n/source/.projectforge/test_payment_gate.py:490: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/source/.projectforge/test_payment_gate.py:221: in paid_order\n    c,aid=buyer();o=order(c,aid);p=start(c,o)\n                    ^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nc = <starlette.testclient.TestClient object at 0x70f91cace910>, aid = 29\n\n    def order(c,aid):\n>       assert add(c,'PACK-OLIVE-18').status_code==200\nE       AssertionError: assert 409 == 200\nE        +  where 409 = <Response [409 Conflict]>.status_code\nE        +    where <Response [409 Conflict]> = add(<starlette.testclient.TestClient object at 0x70f91cace910>, 'PACK-OLIVE-18')\n\n/source/.projectforge/test_payment_gate.py:44: AssertionError\n=============================== w"
+      }
+    ],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 22 items\n\n../../source/.projectforge/test_payment_gate.py::test_pending_success_amount_authority_duplicate_and_late_outcome PASSED [  4%]\n../../source/.projectforge/test_payment_gate.py::test_failure_cancel_and_expiry_release_once[failed] PASSED [  9%]\n../../source/.projectforge/test_payment_gate.py::test_failure_cancel_and_expiry_release_once[cancelled] PASSED [ 13%]\n../../source/.projectforge/test_payment_gate.py::test_failure_cancel_and_expiry_release_once[expired] PASSED [ 18%]\n../../source/.projectforge/test_payment_gate.py::test_failure_cancel_and_expiry_release_once[order_cancel] PASSED [ 22%]\n../../source/.projectforge/test_payment_gate.py::test_ownership_and_admin_refund_failed_retry_success_release_once PASSED [ 27%]\n../../source/.projectforge/test_payment_gate.py::test_concurrent_opposite_outcomes_only_one_wins PASSED [ 31%]\n../../source/.projectforge/test_payment_gate.py::test_payment_state_and_event_replay_survive_process_restart PASSED [ 36%]\n../../source/.projectforge/test_payment_gate.py::test_simulator_rate_limit_is_persistent_and_has_no_duplicate_effects PASSED [ 40%]\n../../source/.projectforge/test_payment_gate.py::test_upgrade_preserves_phase5_orders_and_rejects_downgrade PASSED [ 45%]\n../../source/.projectforge/test_payment_gate.py::test_delivery_authority_transitions_replay_and_stock PASSED [ 50%]\n../../source/.projectforge/test_payment_gate.py::test_delivery_blocks_unpaid_cancelled_and_pending_refund PASSED [ 54%]\n../../source/.projectforge/test_payment_gate.py::test_delivery_concurrent_repeat_has_one_audit_event PASSED [ 59%]\n../../source/.projectforge/test_payment_gate.py::test_tracking_authorization_validation_and_no_side_effects PASSED [ 63%]\n../../source/.projectforge/test_payment_gate.py::test_tracking_save_edit_replay_conflict_customer_and_restart PASSED [ 68%]\n../../source/.projectforge/test_payment_gate.py::test_tracking_competing_edits_do_not_overwrite PASSED [ 72%]\n../../source/.projectforge/test_payment_gate.py::test_tracking_state_rules_and_delivery_do_not_require_a_courier PASSED [ 77%]\n../../source/.projectforge/test_payment_gate.py::test_tracking_migration_preserves_existing_delivery_fixture PASSED [ 81%]\n../../source/.projectforge/test_payment_gate.py::test_customer_shipment_ownership_projection_history_and_restart PASSED [ 86%]\n../../source/.projectforge/test_payment_gate.py::test_customer_shipment_unpaid_cancelled_and_expired PASSED [ 90%]\n../../source/.projectforge/test_payment_gate.py::test_customer_shipment_legacy_missing_milestones_are_not_invented PASSED [ 95%]\n../../source/.projectforge/test_payment_gate.py::test_customer_shipment_refund_hold_and_refunded_state FAILED [100%]\n\n=================================== FAILURES ===================================\n____________ test_customer_shipment_refund_hold_and_refunded_state _____________\n\n    def test_customer_shipment_refund_hold_and_refunded_state():\n>       c,o,p=paid_order();a=operator();url=f\"/api/orders/{o['id']}/shipment\"\n              ^^^^^^^^^^^^\n\n/source/.projectforge/test_payment_gate.py:490: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/source/.projectforge/test_payment_gate.py:221: in paid_order\n    c,aid=buyer();o=order(c,aid);p=start(c,o)\n                    ^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nc = <starlette.testclient.TestClient object at 0x70f91cace910>, aid = 29\n\n    def order(c,aid):\n>       assert add(c,'PACK-OLIVE-18').status_code==200\nE       AssertionError: assert 409 == 200\nE        +  where 409 = <Response [409 Conflict]>.status_code\nE        +    where <Response [409 Conflict]> = add(<starlette.testclient.TestClient object at 0x70f91cace910>, 'PACK-OLIVE-18')\n\n/source/.projectforge/test_payment_gate.py:44: AssertionError\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../../source/.projectforge/test_payment_gate.py::test_customer_shipment_refund_hold_and_refunded_state\n=================== 1 failed, 21 passed, 1 warning in 43.84s ===================\n",
+    "raw_stderr": ""
+  },
+  "frontend_build": {
+    "command": "npm --prefix frontend run build",
+    "exit_code": 0,
+    "stdout": "waiting for server to start.... done\nserver started\n\n> generated-local-crud@1.0.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.5 building for production...\ntransforming...\n\u2713 33 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.37 kB \u2502 gzip:  0.27 kB\ndist/assets/index-BRCZ0Wdg.css   24.27 kB \u2502 gzip:  6.04 kB\ndist/assets/index-DckeuszD.js   195.91 kB \u2502 gzip: 60.29 kB\n\u2713 built in 1.65s\n",
+    "stderr": "",
+    "duration_ms": 8867.99,
+    "timed_out": false,
+    "safety_level": "ALLOWED"
+  },
+  "browser": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 2,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 2,
+    "duration_ms": 27891.67,
+    "failures": [],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 2 items\n\n../../source/.projectforge/test_shipment_browser.py::test_admin_tracking_browser [Screenshot saved]\n[Screenshot saved]\n[Screenshot saved]\n[Screenshot saved]\n[Screenshot saved]\nPASSED\n../../source/.projectforge/test_shipment_browser.py::test_customer_shipment_browser [Screenshot saved]\n[Screenshot saved]\nPASSED\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 2 passed, 1 warning in 25.49s =========================\n",
+    "raw_stderr": ""
+  }
+}

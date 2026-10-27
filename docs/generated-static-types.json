@@ -1,0 +1,6 @@
+{
+  "check": "static_types_only",
+  "files": 3,
+  "passed": true,
+  "diagnostics": []
+}

@@ -1,0 +1,64 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.4(b)  Background planning and failure outcomes
+hide footbox
+participant "Frontend" as P0
+participant "Projects API" as P1
+participant "Background" as P2
+participant "Specialist" as P3
+participant "Harness" as P4
+participant "Local model" as P5
+participant "Compiler" as P6
+participant "Persistence" as P7
+activate P1
+P0 -> P1 : POST /{id}/analyze
+P1 -> P7 : save_project(ANALYZING)
+activate P2
+P1 ->> P2 : create_task(background)
+P1 -->> P0 : status: started
+deactivate P1
+loop [next specialist while preceding output valid]
+activate P3
+P2 -> P3 : analyze(state)
+activate P4
+P3 -> P4 : execute(context)
+activate P5
+P4 -> P5 : generate(prompt)
+P5 -->> P4 : JSON / model error
+deactivate P5
+P4 -> P4 : Schema + lint + bounded retries
+P4 -->> P3 : HarnessResult / exception
+deactivate P4
+P3 -->> P2 : Validated output / failure
+deactivate P3
+P2 -> P7 : [success] save + emit_event
+end
+activate P1
+P1 -> P7 : events_after(project, sequence)
+P7 -->> P1 : Stored event rows
+P1 ->> P0 : SSE: agent progress
+deactivate P1
+P2 -> P2 : ConflictResolver; FinalArchitect if no conflicts
+alt [no exception]
+activate P6
+P2 -> P6 : [no conflicts] compile_model(...)
+activate P5
+P6 -> P5 : Generate + validate sections
+P5 -->> P6 : Section JSON / error
+deactivate P5
+P6 -->> P2 : Validated BuildSpec
+deactivate P6
+P2 -> P7 : Save; BUILD_SPEC_COMPILED + PIPELINE_COMPLETED
+else [failure / conflicts]
+P2 -> P7 : Persist stop status + failure event
+end
+deactivate P2
+P1 ->> P0 : SSE: completion / stop events
+note over P0,P7
+API /stream reads events_after() and emits SSE; emit_event appends events, signals waiters and saves snapshots.
+end note
+@enduml

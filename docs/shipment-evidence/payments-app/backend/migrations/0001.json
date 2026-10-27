@@ -1,0 +1,260 @@
+{
+  "module": "catalogue-v1",
+  "database": "postgresql",
+  "config": {
+    "version": 1,
+    "store_name": "fieldwork",
+    "tagline": "A thoughtful collection of useful things, for the everyday and the outside.",
+    "currency": "INR",
+    "theme": "sand-olive",
+    "categories": [
+      {
+        "slug": "carry",
+        "name": "Carry",
+        "active": true
+      },
+      {
+        "slug": "drinkware",
+        "name": "Drinkware",
+        "active": true
+      },
+      {
+        "slug": "camp",
+        "name": "Camp",
+        "active": true
+      },
+      {
+        "slug": "home",
+        "name": "Home",
+        "active": true
+      }
+    ],
+    "products": [
+      {
+        "slug": "trail-pack",
+        "category_slug": "carry",
+        "name": "The trail pack",
+        "description": "A compact canvas pack with a roomy front pocket and adjustable straps. An illustrated sample product for everyday carrying.",
+        "material": "Waxed canvas \u00b7 18 L",
+        "active": true,
+        "variants": [
+          {
+            "sku": "PACK-OLIVE-18",
+            "label": "Olive \u00b7 18 L",
+            "options": {
+              "Colour": "Olive",
+              "Capacity": "18 L"
+            },
+            "price_minor": 249900,
+            "stock_quantity": 12,
+            "active": true
+          },
+          {
+            "sku": "PACK-SAND-18",
+            "label": "Sand \u00b7 18 L",
+            "options": {
+              "Colour": "Sand",
+              "Capacity": "18 L"
+            },
+            "price_minor": 259900,
+            "stock_quantity": 0,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "pack",
+            "alt": "Olive canvas backpack illustration"
+          },
+          {
+            "asset": "pack-detail",
+            "alt": "Close-up illustration of the backpack pocket and straps"
+          }
+        ]
+      },
+      {
+        "slug": "everyday-bottle",
+        "category_slug": "drinkware",
+        "name": "The everyday bottle",
+        "description": "A simple reusable bottle with a carry loop and a powder-coated finish. An illustrated sample for everyday outings.",
+        "material": "Stainless steel \u00b7 750 ml",
+        "active": true,
+        "variants": [
+          {
+            "sku": "BOTTLE-CLAY-750",
+            "label": "Clay \u00b7 750 ml",
+            "options": {
+              "Colour": "Clay",
+              "Capacity": "750 ml"
+            },
+            "price_minor": 129900,
+            "stock_quantity": 20,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "bottle",
+            "alt": "Terracotta reusable bottle illustration"
+          }
+        ]
+      },
+      {
+        "slug": "weekend-lantern",
+        "category_slug": "camp",
+        "name": "The weekend lantern",
+        "description": "A portable lantern with a carrying handle and a warm diffused glow. An illustrated example for a slower evening outdoors.",
+        "material": "Metal frame \u00b7 Warm light",
+        "active": true,
+        "variants": [
+          {
+            "sku": "LANTERN-OLIVE",
+            "label": "Olive",
+            "options": {
+              "Colour": "Olive"
+            },
+            "price_minor": 189900,
+            "stock_quantity": 0,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "lamp",
+            "alt": "Olive framed lantern with warm light illustration"
+          }
+        ]
+      },
+      {
+        "slug": "folding-stool",
+        "category_slug": "camp",
+        "name": "The folding stool",
+        "description": "A compact folding seat with a canvas sling and crossed timber legs. An illustrated sample for taking a break.",
+        "material": "Canvas seat \u00b7 Timber frame",
+        "active": true,
+        "variants": [
+          {
+            "sku": "STOOL-FERN",
+            "label": "Fern",
+            "options": {
+              "Colour": "Fern"
+            },
+            "price_minor": 219900,
+            "stock_quantity": 8,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "stool",
+            "alt": "Canvas folding stool on a timber frame illustration"
+          }
+        ]
+      },
+      {
+        "slug": "market-tote",
+        "category_slug": "carry",
+        "name": "The market tote",
+        "description": "An open-top canvas tote with long handles and space for everyday essentials. An illustrated sample of a practical carry bag.",
+        "material": "Cotton canvas \u00b7 Natural",
+        "active": true,
+        "variants": [
+          {
+            "sku": "TOTE-NATURAL",
+            "label": "Natural",
+            "options": {
+              "Colour": "Natural"
+            },
+            "price_minor": 89900,
+            "stock_quantity": 30,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "tote",
+            "alt": "Natural canvas tote bag illustration"
+          }
+        ]
+      },
+      {
+        "slug": "woven-throw",
+        "category_slug": "home",
+        "name": "The woven throw",
+        "description": "A striped throw with fringed edges for a quiet corner at home. An illustrated sample with warm earthy colours.",
+        "material": "Woven blend \u00b7 130 \u00d7 170 cm",
+        "active": true,
+        "variants": [
+          {
+            "sku": "THROW-TERRA",
+            "label": "Terra",
+            "options": {
+              "Colour": "Terra"
+            },
+            "price_minor": 279900,
+            "stock_quantity": 6,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "blanket",
+            "alt": "Terracotta striped throw with fringed edges illustration"
+          }
+        ]
+      },
+      {
+        "slug": "daily-pack",
+        "category_slug": "carry",
+        "name": "The daily pack",
+        "description": "A smaller canvas pack for light journeys. Illustrated example from the carry collection.",
+        "material": "Canvas \u00b7 12 L",
+        "active": true,
+        "variants": [
+          {
+            "sku": "PACK-DAILY-12",
+            "label": "Olive \u00b7 12 L",
+            "options": {
+              "Capacity": "12 L"
+            },
+            "price_minor": 199900,
+            "stock_quantity": 7,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "pack",
+            "alt": "Compact olive backpack illustration"
+          }
+        ]
+      },
+      {
+        "slug": "small-bottle",
+        "category_slug": "drinkware",
+        "name": "The small bottle",
+        "description": "A smaller reusable bottle for carrying light. Illustrated example from the drinkware collection.",
+        "material": "Stainless steel \u00b7 500 ml",
+        "active": true,
+        "variants": [
+          {
+            "sku": "BOTTLE-CLAY-500",
+            "label": "Clay \u00b7 500 ml",
+            "options": {
+              "Capacity": "500 ml"
+            },
+            "price_minor": 109900,
+            "stock_quantity": 10,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "bottle",
+            "alt": "Small terracotta reusable bottle illustration"
+          }
+        ]
+      }
+    ]
+  }
+}

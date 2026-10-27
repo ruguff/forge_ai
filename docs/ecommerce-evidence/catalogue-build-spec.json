@@ -1,0 +1,894 @@
+{
+  "project_id": "PROJ-CATALOGUE-DEMO",
+  "project_name": "Fieldwork catalogue",
+  "project_type": "FULLSTACK_WEB",
+  "status": "COMPILED",
+  "version": 1,
+  "generation_mode": "MODEL",
+  "source_generation_strategy": "CATALOGUE",
+  "acceptance_checks": [
+    {
+      "method": "GET",
+      "path": "/api/store",
+      "status": 200,
+      "body_contains": {
+        "name": "fieldwork",
+        "currency": "INR",
+        "capabilities": {
+          "checkout": false,
+          "payments": false
+        }
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200,
+      "body_contains": [
+        {
+          "slug": "carry",
+          "count": 3
+        },
+        {
+          "slug": "camp",
+          "count": 2
+        }
+      ],
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?limit=6",
+      "status": 200,
+      "body_contains": {
+        "total": 8,
+        "items": [
+          {
+            "slug": "trail-pack",
+            "price_minor": 249900,
+            "currency": "INR",
+            "available": true
+          }
+        ]
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?q=PACK-OLIVE-18",
+      "status": 200,
+      "body_contains": {
+        "total": 1,
+        "items": [
+          {
+            "slug": "trail-pack"
+          }
+        ]
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?category=carry",
+      "status": 200,
+      "body_contains": {
+        "total": 3
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?in_stock=true",
+      "status": 200,
+      "body_contains": {
+        "total": 7
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?min_price=250000&max_price=260000&in_stock=true",
+      "status": 200,
+      "body_contains": {
+        "total": 0
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?sort=price-asc&limit=1",
+      "status": 200,
+      "body_contains": {
+        "items": [
+          {
+            "slug": "market-tote",
+            "price_minor": 89900
+          }
+        ]
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?page=2&limit=6",
+      "status": 200,
+      "body_contains": {
+        "total": 8,
+        "items": [
+          {
+            "slug": "daily-pack"
+          },
+          {
+            "slug": "small-bottle"
+          }
+        ]
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?q=%25",
+      "status": 200,
+      "body_contains": {
+        "total": 0
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/trail-pack",
+      "status": 200,
+      "body_contains": {
+        "slug": "trail-pack",
+        "variants": [
+          {
+            "sku": "PACK-OLIVE-18",
+            "price_minor": 249900,
+            "available": true
+          },
+          {
+            "sku": "PACK-SAND-18",
+            "price_minor": 259900,
+            "available": false
+          }
+        ],
+        "images": [
+          {
+            "url": "/assets/pack-detail.svg"
+          }
+        ]
+      },
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/missing-product",
+      "status": 404,
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?min_price=3&max_price=1",
+      "status": 422,
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/products?limit=49",
+      "status": 422,
+      "requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/products",
+      "json": {
+        "name": "Injected"
+      },
+      "status": 405,
+      "requirements": [
+        "CAT-001"
+      ]
+    }
+  ],
+  "browser_checks": [
+    {
+      "name": "Catalogue and variant details",
+      "requirements": [
+        "CAT-001"
+      ],
+      "steps": [
+        {
+          "action": "text",
+          "selector": "[data-testid=\"catalogue-results\"]",
+          "value": "8 essentials"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=\"catalogue-product\"][data-product-slug=\"trail-pack\"] a"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"catalogue-sku\"]",
+          "value": "PACK-OLIVE-18"
+        },
+        {
+          "action": "select",
+          "selector": "[data-testid=\"catalogue-variant\"]",
+          "value": "PACK-SAND-18"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"catalogue-sku\"]",
+          "value": "PACK-SAND-18"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"catalogue-availability\"]",
+          "value": "Out of stock"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=\"catalogue-back\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid=\"catalogue-search\"]",
+          "value": "bottle"
+        },
+        {
+          "action": "press",
+          "selector": "[data-testid=\"catalogue-search\"]",
+          "value": "Enter"
+        },
+        {
+          "action": "text",
+          "selector": "[data-testid=\"catalogue-results\"]",
+          "value": "2 essentials"
+        }
+      ]
+    }
+  ],
+  "ui_contract": null,
+  "commerce_contract": null,
+  "relational_contract": null,
+  "catalogue_contract": {
+    "version": 1,
+    "store_name": "fieldwork",
+    "tagline": "A thoughtful collection of useful things, for the everyday and the outside.",
+    "currency": "INR",
+    "theme": "sand-olive",
+    "categories": [
+      {
+        "slug": "carry",
+        "name": "Carry",
+        "active": true
+      },
+      {
+        "slug": "drinkware",
+        "name": "Drinkware",
+        "active": true
+      },
+      {
+        "slug": "camp",
+        "name": "Camp",
+        "active": true
+      },
+      {
+        "slug": "home",
+        "name": "Home",
+        "active": true
+      }
+    ],
+    "products": [
+      {
+        "slug": "trail-pack",
+        "category_slug": "carry",
+        "name": "The trail pack",
+        "description": "A compact canvas pack with a roomy front pocket and adjustable straps. An illustrated sample product for everyday carrying.",
+        "material": "Waxed canvas · 18 L",
+        "active": true,
+        "variants": [
+          {
+            "sku": "PACK-OLIVE-18",
+            "label": "Olive · 18 L",
+            "options": {
+              "Colour": "Olive",
+              "Capacity": "18 L"
+            },
+            "price_minor": 249900,
+            "stock_quantity": 12,
+            "active": true
+          },
+          {
+            "sku": "PACK-SAND-18",
+            "label": "Sand · 18 L",
+            "options": {
+              "Colour": "Sand",
+              "Capacity": "18 L"
+            },
+            "price_minor": 259900,
+            "stock_quantity": 0,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "pack",
+            "alt": "Olive canvas backpack illustration"
+          },
+          {
+            "asset": "pack-detail",
+            "alt": "Close-up illustration of the backpack pocket and straps"
+          }
+        ]
+      },
+      {
+        "slug": "everyday-bottle",
+        "category_slug": "drinkware",
+        "name": "The everyday bottle",
+        "description": "A simple reusable bottle with a carry loop and a powder-coated finish. An illustrated sample for everyday outings.",
+        "material": "Stainless steel · 750 ml",
+        "active": true,
+        "variants": [
+          {
+            "sku": "BOTTLE-CLAY-750",
+            "label": "Clay · 750 ml",
+            "options": {
+              "Colour": "Clay",
+              "Capacity": "750 ml"
+            },
+            "price_minor": 129900,
+            "stock_quantity": 20,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "bottle",
+            "alt": "Terracotta reusable bottle illustration"
+          }
+        ]
+      },
+      {
+        "slug": "weekend-lantern",
+        "category_slug": "camp",
+        "name": "The weekend lantern",
+        "description": "A portable lantern with a carrying handle and a warm diffused glow. An illustrated example for a slower evening outdoors.",
+        "material": "Metal frame · Warm light",
+        "active": true,
+        "variants": [
+          {
+            "sku": "LANTERN-OLIVE",
+            "label": "Olive",
+            "options": {
+              "Colour": "Olive"
+            },
+            "price_minor": 189900,
+            "stock_quantity": 0,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "lamp",
+            "alt": "Olive framed lantern with warm light illustration"
+          }
+        ]
+      },
+      {
+        "slug": "folding-stool",
+        "category_slug": "camp",
+        "name": "The folding stool",
+        "description": "A compact folding seat with a canvas sling and crossed timber legs. An illustrated sample for taking a break.",
+        "material": "Canvas seat · Timber frame",
+        "active": true,
+        "variants": [
+          {
+            "sku": "STOOL-FERN",
+            "label": "Fern",
+            "options": {
+              "Colour": "Fern"
+            },
+            "price_minor": 219900,
+            "stock_quantity": 8,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "stool",
+            "alt": "Canvas folding stool on a timber frame illustration"
+          }
+        ]
+      },
+      {
+        "slug": "market-tote",
+        "category_slug": "carry",
+        "name": "The market tote",
+        "description": "An open-top canvas tote with long handles and space for everyday essentials. An illustrated sample of a practical carry bag.",
+        "material": "Cotton canvas · Natural",
+        "active": true,
+        "variants": [
+          {
+            "sku": "TOTE-NATURAL",
+            "label": "Natural",
+            "options": {
+              "Colour": "Natural"
+            },
+            "price_minor": 89900,
+            "stock_quantity": 30,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "tote",
+            "alt": "Natural canvas tote bag illustration"
+          }
+        ]
+      },
+      {
+        "slug": "woven-throw",
+        "category_slug": "home",
+        "name": "The woven throw",
+        "description": "A striped throw with fringed edges for a quiet corner at home. An illustrated sample with warm earthy colours.",
+        "material": "Woven blend · 130 × 170 cm",
+        "active": true,
+        "variants": [
+          {
+            "sku": "THROW-TERRA",
+            "label": "Terra",
+            "options": {
+              "Colour": "Terra"
+            },
+            "price_minor": 279900,
+            "stock_quantity": 6,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "blanket",
+            "alt": "Terracotta striped throw with fringed edges illustration"
+          }
+        ]
+      },
+      {
+        "slug": "daily-pack",
+        "category_slug": "carry",
+        "name": "The daily pack",
+        "description": "A smaller canvas pack for light journeys. Illustrated example from the carry collection.",
+        "material": "Canvas · 12 L",
+        "active": true,
+        "variants": [
+          {
+            "sku": "PACK-DAILY-12",
+            "label": "Olive · 12 L",
+            "options": {
+              "Capacity": "12 L"
+            },
+            "price_minor": 199900,
+            "stock_quantity": 7,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "pack",
+            "alt": "Compact olive backpack illustration"
+          }
+        ]
+      },
+      {
+        "slug": "small-bottle",
+        "category_slug": "drinkware",
+        "name": "The small bottle",
+        "description": "A smaller reusable bottle for carrying light. Illustrated example from the drinkware collection.",
+        "material": "Stainless steel · 500 ml",
+        "active": true,
+        "variants": [
+          {
+            "sku": "BOTTLE-CLAY-500",
+            "label": "Clay · 500 ml",
+            "options": {
+              "Capacity": "500 ml"
+            },
+            "price_minor": 109900,
+            "stock_quantity": 10,
+            "active": true
+          }
+        ],
+        "images": [
+          {
+            "asset": "bottle",
+            "alt": "Small terracotta reusable bottle illustration"
+          }
+        ]
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "CAT-001",
+      "title": "Public product catalogue",
+      "description": "Browse product details, categories, variants, SKU availability and images; search, filter and paginate catalogue results.",
+      "dimension": "functional",
+      "source": "USER",
+      "confidence": 1.0,
+      "traceability_path": []
+    }
+  ],
+  "constraints": [],
+  "assumptions": [],
+  "tech_stack": {
+    "frontend_framework": "React",
+    "frontend_language": "TypeScript",
+    "frontend_styling": "CSS",
+    "backend_framework": "FastAPI",
+    "backend_language": "Python 3.11",
+    "primary_database": "PostgreSQL",
+    "cache_broker": null,
+    "auth_provider": "None"
+  },
+  "database_entities": [],
+  "api_endpoints": [
+    {
+      "endpoint_id": "CATALOGUE-0",
+      "method": "GET",
+      "path": "/api/store",
+      "description": "Store configuration",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "endpoint_id": "CATALOGUE-1",
+      "method": "GET",
+      "path": "/api/categories",
+      "description": "Active categories",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "endpoint_id": "CATALOGUE-2",
+      "method": "GET",
+      "path": "/api/products",
+      "description": "Filtered and paginated catalogue",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "endpoint_id": "CATALOGUE-3",
+      "method": "GET",
+      "path": "/api/products/{slug}",
+      "description": "Product variants and images",
+      "request_body_schema": null,
+      "response_schema": null,
+      "auth_required": false,
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    }
+  ],
+  "ui_components": [],
+  "environment_variables": {},
+  "dependencies": [],
+  "files_to_create": [
+    {
+      "file_path": "backend/app/__init__.py",
+      "description": "Reviewed catalogue module: backend/app/__init__.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/package.json",
+      "description": "Reviewed catalogue module: frontend/package.json",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/tsconfig.json",
+      "description": "Reviewed catalogue module: frontend/tsconfig.json",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/src/main.tsx",
+      "description": "Reviewed catalogue module: frontend/src/main.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/index.html",
+      "description": "Reviewed catalogue module: frontend/index.html",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/requirements.txt",
+      "description": "Reviewed catalogue module: backend/requirements.txt",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/requirements-dev.txt",
+      "description": "Reviewed catalogue module: backend/requirements-dev.txt",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/app/catalogue_runtime.py",
+      "description": "Reviewed catalogue module: backend/app/catalogue_runtime.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/app/relational_runtime.py",
+      "description": "Reviewed catalogue module: backend/app/relational_runtime.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/app/catalogue.json",
+      "description": "Reviewed catalogue module: backend/app/catalogue.json",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/migrations/0001.json",
+      "description": "Reviewed catalogue module: backend/migrations/0001.json",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/app/main.py",
+      "description": "Reviewed catalogue module: backend/app/main.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/migrate.py",
+      "description": "Reviewed catalogue module: backend/migrate.py",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/tests/test_app.py",
+      "description": "Reviewed catalogue module: backend/tests/test_app.py",
+      "target_module": "backend",
+      "is_test_file": true,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/src/App.tsx",
+      "description": "Reviewed catalogue module: frontend/src/App.tsx",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/src/styles.css",
+      "description": "Reviewed catalogue module: frontend/src/styles.css",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/src/ui-contract.json",
+      "description": "Reviewed catalogue module: frontend/src/ui-contract.json",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/vite.config.ts",
+      "description": "Reviewed catalogue module: frontend/vite.config.ts",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/pack.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/pack.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/bottle.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/bottle.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/lamp.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/lamp.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/stool.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/stool.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/tote.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/tote.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/blanket.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/blanket.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "frontend/public/assets/pack-detail.svg",
+      "description": "Reviewed catalogue module: frontend/public/assets/pack-detail.svg",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "backend/compose.yaml",
+      "description": "Reviewed catalogue module: backend/compose.yaml",
+      "target_module": "backend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    },
+    {
+      "file_path": "README.md",
+      "description": "Reviewed catalogue module: README.md",
+      "target_module": "frontend",
+      "is_test_file": false,
+      "dependencies": [],
+      "traceable_requirements": [
+        "CAT-001"
+      ]
+    }
+  ],
+  "test_requirements": [],
+  "security_requirements": [],
+  "deployment_requirements": [],
+  "decisions": [],
+  "overall_confidence": 0.95,
+  "blocked_reasons": null
+}

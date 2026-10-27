@@ -1,0 +1,1808 @@
+{
+  "class_views": [
+    {
+      "title": "ProjectForge AI UML Class Diagram",
+      "subtitle": "Figure 2.3(a)  Project data and specification classes",
+      "nodes": {
+        "persist": {
+          "name": "ProjectPersistence",
+          "x": 40,
+          "y": 100,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ path: Path"
+          ],
+          "ops": [
+            "+ save(project_id, state, context,",
+            "    spec=None)",
+            "+ load_all(): list",
+            "+ append_event(project_id, payload)"
+          ]
+        },
+        "base": {
+          "name": "BaseModel",
+          "x": 410,
+          "y": 100,
+          "w": 300,
+          "h": 90,
+          "attrs": [],
+          "ops": [
+            "Pydantic framework superclass"
+          ]
+        },
+        "compiler": {
+          "name": "BuildSpecCompiler",
+          "x": 780,
+          "y": 100,
+          "w": 300,
+          "h": 190,
+          "attrs": [],
+          "ops": [
+            "+ compile_model(context, state,",
+            "    llm_client): BuildSpec",
+            "+ compile(context=None, state=None,",
+            "    override_project_type=None)"
+          ]
+        },
+        "state": {
+          "name": "ProjectState",
+          "x": 40,
+          "y": 350,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ project_id: str",
+            "+ revision: int",
+            "+ status: ProjectStatus",
+            "+ raw_idea: str"
+          ],
+          "ops": []
+        },
+        "context": {
+          "name": "ProjectContext",
+          "x": 410,
+          "y": 350,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ project_id: str",
+            "+ version: int",
+            "+ execution_state: str",
+            "+ build_spec: Optional[dict]",
+            "+ requirements: List"
+          ],
+          "ops": [
+            "+ model_post_init(__context): None"
+          ]
+        },
+        "spec": {
+          "name": "BuildSpec",
+          "x": 780,
+          "y": 350,
+          "w": 300,
+          "h": 185,
+          "attrs": [
+            "+ project_id: str",
+            "+ version: int",
+            "+ status: BuildSpecStatus",
+            "+ files_to_create: List[TargetFileDef]",
+            "+ requirements: List"
+          ],
+          "ops": []
+        },
+        "req": {
+          "name": "ExtractedRequirementItem",
+          "x": 40,
+          "y": 595,
+          "w": 300,
+          "h": 115,
+          "attrs": [
+            "+ id: str",
+            "+ description: str",
+            "+ source: RequirementSource"
+          ],
+          "ops": []
+        },
+        "buildreq": {
+          "name": "BuildRequirementItem",
+          "x": 410,
+          "y": 595,
+          "w": 300,
+          "h": 115,
+          "attrs": [
+            "+ id: str",
+            "+ description: str",
+            "+ source: RequirementSourceType"
+          ],
+          "ops": []
+        },
+        "file": {
+          "name": "TargetFileDef",
+          "x": 780,
+          "y": 595,
+          "w": 300,
+          "h": 115,
+          "attrs": [
+            "+ file_path: str",
+            "+ dependencies: List[str]"
+          ],
+          "ops": []
+        }
+      },
+      "edges": [
+        {
+          "a": "state",
+          "b": "base",
+          "kind": "generalization",
+          "pts": [
+            [
+              280,
+              350
+            ],
+            [
+              280,
+              315
+            ],
+            [
+              460,
+              315
+            ],
+            [
+              460,
+              190
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "context",
+          "b": "base",
+          "kind": "generalization",
+          "pts": [
+            [
+              560,
+              350
+            ],
+            [
+              560,
+              190
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "spec",
+          "b": "base",
+          "kind": "generalization",
+          "pts": [
+            [
+              850,
+              350
+            ],
+            [
+              850,
+              315
+            ],
+            [
+              660,
+              315
+            ],
+            [
+              660,
+              190
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "persist",
+          "b": "state",
+          "kind": "dependency",
+          "pts": [
+            [
+              110,
+              290
+            ],
+            [
+              110,
+              350
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "persist",
+          "b": "context",
+          "kind": "dependency",
+          "pts": [
+            [
+              340,
+              230
+            ],
+            [
+              375,
+              230
+            ],
+            [
+              375,
+              420
+            ],
+            [
+              410,
+              420
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "persist",
+          "b": "spec",
+          "kind": "dependency",
+          "pts": [
+            [
+              190,
+              100
+            ],
+            [
+              190,
+              89
+            ],
+            [
+              1095,
+              89
+            ],
+            [
+              1095,
+              430
+            ],
+            [
+              1080,
+              430
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "compiler",
+          "b": "spec",
+          "kind": "dependency",
+          "pts": [
+            [
+              980,
+              290
+            ],
+            [
+              980,
+              350
+            ]
+          ],
+          "label": "\u00abcreate\u00bb",
+          "mult": ""
+        },
+        {
+          "a": "context",
+          "b": "req",
+          "kind": "association",
+          "pts": [
+            [
+              410,
+              480
+            ],
+            [
+              365,
+              480
+            ],
+            [
+              365,
+              650
+            ],
+            [
+              340,
+              650
+            ]
+          ],
+          "label": "",
+          "mult": "0..*"
+        },
+        {
+          "a": "spec",
+          "b": "buildreq",
+          "kind": "association",
+          "pts": [
+            [
+              780,
+              490
+            ],
+            [
+              745,
+              490
+            ],
+            [
+              745,
+              650
+            ],
+            [
+              710,
+              650
+            ]
+          ],
+          "label": "",
+          "mult": "0..*"
+        },
+        {
+          "a": "spec",
+          "b": "file",
+          "kind": "association",
+          "pts": [
+            [
+              930,
+              535
+            ],
+            [
+              930,
+              595
+            ]
+          ],
+          "label": "",
+          "mult": "0..*"
+        }
+      ],
+      "notes": [
+        "build_spec is an optional serialized dict, not a stored BuildSpec instance. No object association is asserted.",
+        "Persistence serializes state/context/spec. Nested lists use associations; exclusive lifecycle ownership is not enforced."
+      ]
+    },
+    {
+      "title": "ProjectForge AI UML Class Diagram",
+      "subtitle": "Figure 2.3(b)  Specialist harnesses and provider selection",
+      "nodes": {
+        "product": {
+          "name": "ProductAgent",
+          "x": 40,
+          "y": 100,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "aiml": {
+          "name": "AIMLAgent",
+          "x": 40,
+          "y": 196,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "eng": {
+          "name": "EngineeringAgent",
+          "x": 40,
+          "y": 292,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "ux": {
+          "name": "UXAgent",
+          "x": 40,
+          "y": 388,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "sec": {
+          "name": "SecurityAgent",
+          "x": 40,
+          "y": 484,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "qa": {
+          "name": "QAAgent",
+          "x": 40,
+          "y": 580,
+          "w": 300,
+          "h": 86,
+          "attrs": [
+            "- _harness: AgentExecutionHarness"
+          ],
+          "ops": [
+            "+ analyze(project_state): HarnessResult"
+          ]
+        },
+        "settings": {
+          "name": "Settings",
+          "x": 410,
+          "y": 100,
+          "w": 300,
+          "h": 95,
+          "attrs": [
+            "+ LLM_PROVIDER: str"
+          ],
+          "ops": []
+        },
+        "harness": {
+          "name": "AgentExecutionHarness<T>",
+          "x": 410,
+          "y": 300,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ target_schema: Type[T]",
+            "+ llm_client: Callable",
+            "+ lint_rules: List[LintRule]"
+          ],
+          "ops": [
+            "+ execute(context_data,",
+            "    max_retries=2): HarnessResult"
+          ]
+        },
+        "local": {
+          "name": "LocalModelClient",
+          "x": 780,
+          "y": 140,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ settings: Settings",
+            "+ calls: int"
+          ],
+          "ops": [
+            "+ generate(prompt, *,",
+            "    output_tokens=None): str",
+            "+ generate_sync(prompt, *,",
+            "    output_tokens=None): str"
+          ]
+        },
+        "gemini": {
+          "name": "GeminiModelClient",
+          "x": 780,
+          "y": 465,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ settings: Settings",
+            "+ client: genai.Client"
+          ],
+          "ops": [
+            "+ __new__(cls)",
+            "+ generate(prompt: str): str",
+            "+ generate_sync(prompt: str): str"
+          ]
+        }
+      },
+      "edges": [
+        {
+          "a": "product",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              143
+            ],
+            [
+              410,
+              325
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "aiml",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              239
+            ],
+            [
+              410,
+              353
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "eng",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              335
+            ],
+            [
+              410,
+              381
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "ux",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              431
+            ],
+            [
+              410,
+              409
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "sec",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              527
+            ],
+            [
+              410,
+              437
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "qa",
+          "b": "harness",
+          "kind": "composition",
+          "pts": [
+            [
+              340,
+              623
+            ],
+            [
+              410,
+              465
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "harness",
+          "b": "local",
+          "kind": "dependency",
+          "pts": [
+            [
+              710,
+              345
+            ],
+            [
+              745,
+              345
+            ],
+            [
+              745,
+              235
+            ],
+            [
+              780,
+              235
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "harness",
+          "b": "gemini",
+          "kind": "dependency",
+          "pts": [
+            [
+              710,
+              445
+            ],
+            [
+              745,
+              445
+            ],
+            [
+              745,
+              550
+            ],
+            [
+              780,
+              550
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "gemini",
+          "b": "local",
+          "kind": "dependency",
+          "pts": [
+            [
+              930,
+              465
+            ],
+            [
+              930,
+              330
+            ]
+          ],
+          "label": "\u00abcreate\u00bb",
+          "mult": ""
+        },
+        {
+          "a": "gemini",
+          "b": "settings",
+          "kind": "dependency",
+          "pts": [
+            [
+              1080,
+              565
+            ],
+            [
+              1100,
+              565
+            ],
+            [
+              1100,
+              89
+            ],
+            [
+              560,
+              89
+            ],
+            [
+              560,
+              100
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        }
+      ],
+      "notes": [
+        "__new__(): lmstudio -> LocalModelClient(); gemini -> Gemini instance; other providers raise ModelUnavailableError.",
+        "Each agent creates its own harness. Harness callbacks bind the selected provider generate(); there is no provider inheritance."
+      ]
+    },
+    {
+      "title": "ProjectForge AI UML Class Diagram",
+      "subtitle": "Figure 2.3(c)  Build ownership and execution collaborators",
+      "nodes": {
+        "graph": {
+          "name": "TaskGraph",
+          "x": 40,
+          "y": 100,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ tasks: Dict",
+            "+ adj_list: Dict",
+            "+ in_degree: Dict"
+          ],
+          "ops": [
+            "+ build_from_spec(spec): None",
+            "+ validate_dag(): List[str]"
+          ]
+        },
+        "orch": {
+          "name": "CodingOrchestrator",
+          "x": 410,
+          "y": 100,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ workspace_root: Path",
+            "+ coding_agent: CodingAgent",
+            "+ test_runner: TestRunner",
+            "+ repo: RepositoryManager"
+          ],
+          "ops": [
+            "+ execute_build(spec):",
+            "    ExecutionPipelineReport"
+          ]
+        },
+        "coding": {
+          "name": "CodingAgent",
+          "x": 780,
+          "y": 100,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ agent_name: str",
+            "+ model_client: object"
+          ],
+          "ops": [
+            "+ execute_task(task, spec, tools,",
+            "    focused_context=None):",
+            "    TaskImplementationResult"
+          ]
+        },
+        "scheduler": {
+          "name": "TaskScheduler",
+          "x": 40,
+          "y": 350,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ graph: TaskGraph"
+          ],
+          "ops": [
+            "+ get_ready_tasks(): List",
+            "+ mark_completed(task_id,",
+            "    output_summary=None): List",
+            "+ mark_failed(task_id, error_message,",
+            "    retryable=True): None"
+          ]
+        },
+        "runner": {
+          "name": "TestRunner",
+          "x": 410,
+          "y": 350,
+          "w": 300,
+          "h": 190,
+          "attrs": [
+            "+ workspace_root: Path",
+            "+ executor: SafeCommandExecutor"
+          ],
+          "ops": [
+            "+ run_backend_tests(test_path)",
+            "+ run_frontend_build()",
+            "+ run_acceptance(checks)",
+            "+ run_browser_checks(journeys)"
+          ]
+        },
+        "tools": {
+          "name": "AgentToolContext",
+          "x": 780,
+          "y": 350,
+          "w": 300,
+          "h": 170,
+          "attrs": [
+            "+ repo: RepositoryManager",
+            "+ allowed_files: List[str]"
+          ],
+          "ops": [
+            "+ read_file(relative_path): str",
+            "+ write_file(relative_path, content): str"
+          ]
+        },
+        "task": {
+          "name": "ImplementationTask",
+          "x": 40,
+          "y": 600,
+          "w": 300,
+          "h": 110,
+          "attrs": [
+            "+ task_id: str",
+            "+ dependencies: List[str]",
+            "+ status: TaskStatus"
+          ],
+          "ops": []
+        },
+        "executor": {
+          "name": "SafeCommandExecutor",
+          "x": 410,
+          "y": 580,
+          "w": 300,
+          "h": 130,
+          "attrs": [
+            "+ image: str"
+          ],
+          "ops": [
+            "+ preflight(): tuple",
+            "+ execute(command_str, ...):",
+            "    ExecutionResult"
+          ]
+        },
+        "repo": {
+          "name": "RepositoryManager",
+          "x": 780,
+          "y": 590,
+          "w": 300,
+          "h": 120,
+          "attrs": [
+            "+ workspace_root: Path"
+          ],
+          "ops": [
+            "+ write_task_file(...): Path",
+            "+ create_checkpoint(...): bool"
+          ]
+        }
+      },
+      "edges": [
+        {
+          "a": "orch",
+          "b": "graph",
+          "kind": "dependency",
+          "pts": [
+            [
+              410,
+              185
+            ],
+            [
+              340,
+              185
+            ]
+          ],
+          "label": "\u00abcreate\u00bb",
+          "mult": ""
+        },
+        {
+          "a": "orch",
+          "b": "scheduler",
+          "kind": "dependency",
+          "pts": [
+            [
+              410,
+              245
+            ],
+            [
+              370,
+              245
+            ],
+            [
+              370,
+              435
+            ],
+            [
+              340,
+              435
+            ]
+          ],
+          "label": "\u00abcreate\u00bb",
+          "mult": ""
+        },
+        {
+          "a": "orch",
+          "b": "coding",
+          "kind": "composition",
+          "pts": [
+            [
+              710,
+              185
+            ],
+            [
+              780,
+              185
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "orch",
+          "b": "runner",
+          "kind": "composition",
+          "pts": [
+            [
+              560,
+              290
+            ],
+            [
+              560,
+              350
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "scheduler",
+          "b": "graph",
+          "kind": "association",
+          "pts": [
+            [
+              190,
+              350
+            ],
+            [
+              190,
+              270
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "graph",
+          "b": "task",
+          "kind": "association",
+          "pts": [
+            [
+              40,
+              220
+            ],
+            [
+              22,
+              220
+            ],
+            [
+              22,
+              655
+            ],
+            [
+              40,
+              655
+            ]
+          ],
+          "label": "",
+          "mult": "0..*"
+        },
+        {
+          "a": "coding",
+          "b": "tools",
+          "kind": "dependency",
+          "pts": [
+            [
+              930,
+              270
+            ],
+            [
+              930,
+              350
+            ]
+          ],
+          "label": "",
+          "mult": ""
+        },
+        {
+          "a": "runner",
+          "b": "executor",
+          "kind": "composition",
+          "pts": [
+            [
+              560,
+              540
+            ],
+            [
+              560,
+              580
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        },
+        {
+          "a": "tools",
+          "b": "repo",
+          "kind": "association",
+          "pts": [
+            [
+              930,
+              520
+            ],
+            [
+              930,
+              590
+            ]
+          ],
+          "label": "",
+          "mult": "1"
+        }
+      ],
+      "notes": [
+        "TaskGraph and TaskScheduler are local variables in execute_build(), not permanent CodingOrchestrator attributes.",
+        "Associations denote references, not whole-part ownership. Ellipses abbreviate selected method parameters."
+      ]
+    }
+  ],
+  "sequence_views": [
+    {
+      "title": "Figure 2.4(a)  Creation understanding and clarification",
+      "parts": [
+        [
+          "User",
+          "actor"
+        ],
+        [
+          "Frontend",
+          "boundary"
+        ],
+        [
+          "Projects API",
+          "control"
+        ],
+        [
+          "Understanding",
+          "control"
+        ],
+        [
+          "Local model",
+          "control"
+        ],
+        [
+          "RequirementEngine",
+          "control"
+        ],
+        [
+          "Persistence",
+          "entity"
+        ]
+      ],
+      "messages": [
+        {
+          "a": 0,
+          "b": 1,
+          "y": 176,
+          "label": "Submit idea",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "y": 198,
+          "label": "POST /api/projects",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 6,
+          "y": 220,
+          "label": "emit_event: append event + save snapshot",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "y": 242,
+          "label": "Persisted project_id + version",
+          "kind": "return"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "y": 264,
+          "label": "POST /{id}/understand",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "y": 286,
+          "label": "execute_understanding(raw_idea)",
+          "kind": "sync"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "y": 308,
+          "label": "generate(prompt)",
+          "kind": "sync"
+        },
+        {
+          "a": 4,
+          "b": 3,
+          "y": 352,
+          "label": "Valid model extraction",
+          "kind": "return"
+        },
+        {
+          "a": 4,
+          "b": 3,
+          "y": 410,
+          "label": "Invalid result / exception",
+          "kind": "return"
+        },
+        {
+          "a": 3,
+          "b": 3,
+          "y": 434,
+          "label": "generate_heuristic_understanding()",
+          "kind": "sync"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "y": 478,
+          "label": "Structured output + evidence label",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "y": 504,
+          "label": "evaluate_requirements(output)",
+          "kind": "sync"
+        },
+        {
+          "a": 5,
+          "b": 2,
+          "y": 528,
+          "label": "Questions + readiness",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 6,
+          "y": 552,
+          "label": "emit_event: save context and events",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "y": 576,
+          "label": "Context + next clarification",
+          "kind": "return"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "y": 620,
+          "label": "Answer question",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "y": 644,
+          "label": "POST /{id}/clarify",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 2,
+          "y": 668,
+          "label": "Update requirement/version; find next PENDING",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 6,
+          "y": 696,
+          "label": "emit_event: save updated context",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "y": 720,
+          "label": "Next question or REQUIREMENTS_VALIDATED",
+          "kind": "return"
+        }
+      ],
+      "frames": [
+        [
+          440,
+          316,
+          350,
+          140,
+          "alt [valid extraction]",
+          [
+            378,
+            "[invalid / unavailable]"
+          ]
+        ],
+        [
+          25,
+          590,
+          1050,
+          145,
+          "loop [while clarification remains]",
+          null
+        ]
+      ],
+      "activations": [
+        [
+          1,
+          176,
+          560
+        ],
+        [
+          2,
+          198,
+          538
+        ],
+        [
+          3,
+          286,
+          198
+        ],
+        [
+          5,
+          504,
+          30
+        ],
+        [
+          6,
+          220,
+          15
+        ],
+        [
+          6,
+          552,
+          15
+        ],
+        [
+          6,
+          696,
+          15
+        ]
+      ],
+      "note": "Clarify updates the pending-question list; it does not re-run RequirementEngine. emit_event persists before responses."
+    },
+    {
+      "title": "Figure 2.4(b)  Background planning and failure outcomes",
+      "parts": [
+        [
+          "Frontend",
+          "boundary"
+        ],
+        [
+          "Projects API",
+          "control"
+        ],
+        [
+          "Background",
+          "control"
+        ],
+        [
+          "Specialist",
+          "control"
+        ],
+        [
+          "Harness",
+          "control"
+        ],
+        [
+          "Local model",
+          "control"
+        ],
+        [
+          "Compiler",
+          "control"
+        ],
+        [
+          "Persistence",
+          "entity"
+        ]
+      ],
+      "messages": [
+        {
+          "a": 0,
+          "b": 1,
+          "y": 176,
+          "label": "POST /{id}/analyze",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 7,
+          "y": 198,
+          "label": "save_project(ANALYZING)",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "y": 222,
+          "label": "create_task(background)",
+          "kind": "async"
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "y": 246,
+          "label": "status: started",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "y": 290,
+          "label": "analyze(state)",
+          "kind": "sync"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "y": 314,
+          "label": "execute(context)",
+          "kind": "sync"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "y": 338,
+          "label": "generate(prompt)",
+          "kind": "sync"
+        },
+        {
+          "a": 5,
+          "b": 4,
+          "y": 362,
+          "label": "JSON / model error",
+          "kind": "return"
+        },
+        {
+          "a": 4,
+          "b": 4,
+          "y": 386,
+          "label": "Schema + lint + bounded retries",
+          "kind": "sync"
+        },
+        {
+          "a": 4,
+          "b": 3,
+          "y": 410,
+          "label": "HarnessResult / exception",
+          "kind": "return"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "y": 434,
+          "label": "Validated output / failure",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 7,
+          "y": 458,
+          "label": "[success] save + emit_event",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 7,
+          "y": 482,
+          "label": "events_after(project, sequence)",
+          "kind": "sync"
+        },
+        {
+          "a": 7,
+          "b": 1,
+          "y": 502,
+          "label": "Stored event rows",
+          "kind": "return"
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "y": 522,
+          "label": "SSE: agent progress",
+          "kind": "async"
+        },
+        {
+          "a": 2,
+          "b": 2,
+          "y": 538,
+          "label": "ConflictResolver; FinalArchitect if no conflicts",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 6,
+          "y": 578,
+          "label": "[no conflicts] compile_model(...)",
+          "kind": "sync"
+        },
+        {
+          "a": 6,
+          "b": 5,
+          "y": 600,
+          "label": "Generate + validate sections",
+          "kind": "sync"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "y": 622,
+          "label": "Section JSON / error",
+          "kind": "return"
+        },
+        {
+          "a": 6,
+          "b": 2,
+          "y": 644,
+          "label": "Validated BuildSpec",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 7,
+          "y": 666,
+          "label": "Save; BUILD_SPEC_COMPILED + PIPELINE_COMPLETED",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 7,
+          "y": 710,
+          "label": "Persist stop status + failure event",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "y": 730,
+          "label": "SSE: completion / stop events",
+          "kind": "async"
+        }
+      ],
+      "frames": [
+        [
+          285,
+          250,
+          810,
+          222,
+          "loop [next specialist while preceding output valid]",
+          null
+        ],
+        [
+          285,
+          554,
+          810,
+          168,
+          "alt [no exception]",
+          [
+            680,
+            "[failure / conflicts]"
+          ]
+        ]
+      ],
+      "activations": [
+        [
+          1,
+          176,
+          72
+        ],
+        [
+          2,
+          222,
+          506
+        ],
+        [
+          3,
+          290,
+          150
+        ],
+        [
+          4,
+          314,
+          102
+        ],
+        [
+          5,
+          338,
+          30
+        ],
+        [
+          6,
+          578,
+          72
+        ],
+        [
+          5,
+          600,
+          28
+        ],
+        [
+          1,
+          482,
+          44
+        ]
+      ],
+      "note": "API /stream reads events_after() and emits SSE; emit_event appends events, signals waiters and saves snapshots."
+    },
+    {
+      "title": "Figure 2.4(c)  Awaited build worker and persisted outcomes",
+      "parts": [
+        [
+          "Frontend",
+          "boundary"
+        ],
+        [
+          "Projects API",
+          "control"
+        ],
+        [
+          "Orchestrator",
+          "control"
+        ],
+        [
+          "Code / repo",
+          "control"
+        ],
+        [
+          "TestRunner",
+          "control"
+        ],
+        [
+          "Safe executor",
+          "control"
+        ],
+        [
+          "Docker",
+          "control"
+        ],
+        [
+          "Persistence",
+          "entity"
+        ]
+      ],
+      "messages": [
+        {
+          "a": 0,
+          "b": 1,
+          "y": 176,
+          "label": "POST /{id}/build",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "y": 198,
+          "label": "Check current spec + guided approval",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 7,
+          "y": 224,
+          "label": "save_project(BUILDING)",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "y": 246,
+          "label": "to_thread(execute_build)",
+          "kind": "async"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "y": 280,
+          "label": "initialize_project(); write memory metadata",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "y": 328,
+          "label": "execute_task(task, spec, tools)",
+          "kind": "sync"
+        },
+        {
+          "a": 3,
+          "b": 3,
+          "y": 354,
+          "label": "Scoped AgentToolContext -> repository write",
+          "kind": "sync"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "y": 382,
+          "label": "Task result / source failure",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "y": 430,
+          "label": "create_checkpoint(code_complete)",
+          "kind": "sync"
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "y": 450,
+          "label": "preflight()",
+          "kind": "sync"
+        },
+        {
+          "a": 5,
+          "b": 2,
+          "y": 470,
+          "label": "Runtime available / reason",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "y": 510,
+          "label": "Run backend, frontend, API and browser checks",
+          "kind": "sync"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "y": 530,
+          "label": "execute(command_str)",
+          "kind": "sync"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "y": 550,
+          "label": "docker run: read-only, network none",
+          "kind": "sync"
+        },
+        {
+          "a": 6,
+          "b": 5,
+          "y": 570,
+          "label": "Exit code + stdout/stderr",
+          "kind": "return"
+        },
+        {
+          "a": 5,
+          "b": 4,
+          "y": 590,
+          "label": "ExecutionResult",
+          "kind": "return"
+        },
+        {
+          "a": 4,
+          "b": 2,
+          "y": 610,
+          "label": "All declared check results",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "y": 644,
+          "label": "VERIFIED report",
+          "kind": "return"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "y": 684,
+          "label": "BLOCKED / FAILED / REQUIRES_HUMAN",
+          "kind": "return"
+        },
+        {
+          "a": 1,
+          "b": 7,
+          "y": 710,
+          "label": "save_project(final state + report)",
+          "kind": "sync"
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "y": 732,
+          "label": "HTTP response with build report",
+          "kind": "return"
+        }
+      ],
+      "frames": [
+        [
+          285,
+          288,
+          325,
+          102,
+          "loop [ready tasks; bounded file generation]",
+          null
+        ],
+        [
+          285,
+          392,
+          680,
+          225,
+          "opt [all source tasks complete]",
+          null
+        ],
+        [
+          300,
+          474,
+          665,
+          143,
+          "opt [runtime available]",
+          null
+        ],
+        [
+          25,
+          624,
+          410,
+          74,
+          "alt [all required checks pass]",
+          [
+            658,
+            "[else]"
+          ]
+        ]
+      ],
+      "activations": [
+        [
+          1,
+          176,
+          560
+        ],
+        [
+          2,
+          246,
+          460
+        ],
+        [
+          3,
+          280,
+          7
+        ],
+        [
+          3,
+          328,
+          60
+        ],
+        [
+          5,
+          450,
+          20
+        ],
+        [
+          4,
+          510,
+          106
+        ],
+        [
+          5,
+          530,
+          66
+        ],
+        [
+          6,
+          550,
+          26
+        ],
+        [
+          7,
+          224,
+          15
+        ],
+        [
+          7,
+          710,
+          15
+        ]
+      ],
+      "note": "API awaits shield(worker). Graph/scheduler are local. Orchestrator invokes SelfHealingLoop only after backend test failure."
+    }
+  ]
+}

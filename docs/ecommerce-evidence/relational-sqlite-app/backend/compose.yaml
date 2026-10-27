@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:15-bookworm
+    environment:
+      POSTGRES_USER: projectforge
+      POSTGRES_DB: generated_app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a local development database password}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U projectforge -d generated_app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  database:

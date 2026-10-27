@@ -1,0 +1,205 @@
+{
+  "project_id": "PROJ-7F5BD586F492",
+  "original_version": 2,
+  "recovery_version": 3,
+  "reason": "Correct the deletion postcondition; preserve all three CRUD journeys and add description assertions.",
+  "before": [
+    {
+      "name": "Task Creation Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002",
+        "REQ-F-001",
+        "REQ-F-003"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "#title-input",
+          "value": "Task Title"
+        },
+        {
+          "action": "fill",
+          "selector": "#description-input",
+          "value": "Task Description"
+        },
+        {
+          "action": "click",
+          "selector": ".create-task-btn"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Task Title']"
+        }
+      ]
+    },
+    {
+      "name": "Edit Task Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002",
+        "REQ-F-003"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "click",
+          "selector": ".edit-task-btn[aria-label='Edit Task 1']"
+        },
+        {
+          "action": "fill",
+          "selector": "#title-input",
+          "value": "Edited Title"
+        },
+        {
+          "action": "fill",
+          "selector": "#description-input",
+          "value": "Edited Description"
+        },
+        {
+          "action": "click",
+          "selector": ".save-task-btn"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Edited Title']"
+        }
+      ]
+    },
+    {
+      "name": "Delete Task Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "click",
+          "selector": ".delete-task-btn[aria-label='Delete Task 1']"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Task Title'][description='Hello World']"
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "name": "Task Creation Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002",
+        "REQ-F-001",
+        "REQ-F-003"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "#title-input",
+          "value": "Task Title"
+        },
+        {
+          "action": "fill",
+          "selector": "#description-input",
+          "value": "Task Description"
+        },
+        {
+          "action": "click",
+          "selector": ".create-task-btn"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Task Title']"
+        },
+        {
+          "action": "text",
+          "selector": ".task-item[title='Task Title'] .record-description",
+          "value": "Task Description"
+        }
+      ]
+    },
+    {
+      "name": "Edit Task Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002",
+        "REQ-F-003"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "click",
+          "selector": ".edit-task-btn[aria-label='Edit Task 1']"
+        },
+        {
+          "action": "fill",
+          "selector": "#title-input",
+          "value": "Edited Title"
+        },
+        {
+          "action": "fill",
+          "selector": "#description-input",
+          "value": "Edited Description"
+        },
+        {
+          "action": "click",
+          "selector": ".save-task-btn"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Edited Title']"
+        },
+        {
+          "action": "text",
+          "selector": ".task-item[title='Edited Title'] .record-description",
+          "value": "Edited Description"
+        }
+      ]
+    },
+    {
+      "name": "Delete Task Flow",
+      "requirements": [
+        "REQ-E-001",
+        "REQ-E-002"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "visible",
+          "selector": ".task-list .task-item[title='Edited Title']"
+        },
+        {
+          "action": "click",
+          "selector": ".delete-task-btn[aria-label='Delete Task 1']"
+        },
+        {
+          "action": "hidden",
+          "selector": ".task-list .task-item[title='Edited Title']"
+        }
+      ]
+    }
+  ],
+  "live_snapshot_modified": false
+}

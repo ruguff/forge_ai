@@ -1,0 +1,24 @@
+.venv/
+**/.env
+**/.env.*
+!**/.env.example
+**/__pycache__/
+**/.pytest_cache/
+**/node_modules/
+**/dist/
+backend/data/
+backend/generated_projects/
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Large binaries and downloads
+tools/downloads/
+*.exe
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

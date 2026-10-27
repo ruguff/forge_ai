@@ -1,0 +1,802 @@
+IMPLEMENTATION STATUS — 2026-10-02
+This document is a design reference, not evidence that every feature is complete.
+The current implementation and verification limitations are documented in
+docs/PROJECTFORGE_ARCHITECTURE.md and docs/IMPLEMENTATION_STATUS.md.
+Specialists execute real model calls when GEMINI_API_KEY is configured.
+Offline understanding uses explicitly labelled rules; it is not local AI inference.
+The coding adapter uses the configured Gemini model, not Qwen.
+Generated-code execution requires the provided Docker runtime; no host fallback exists.
+VERIFIED requires backend, acceptance, frontend and declared browser checks as applicable.
+Missing runtime, failures or exhausted repairs cannot transition to SHIP.
+API/browser acceptance cases are frozen before coding. Their coverage is not proof of
+security, load capacity, accessibility or universal correctness.
+
+================================================================================
+PROJECTFORGE AI — AGENT WORKFLOWS, DATA FLOW DIAGRAMS & USE CASE SPECIFICATIONS
+================================================================================
+Document Purpose:
+This document contains the complete technical specifications of all AI agents in 
+PROJECTFORGE AI, including their internal work processes, inputs, algorithms, 
+and outputs. It also includes complete Data Flow Diagrams (Level 0, Level 1, Level 2) 
+and Use Case Diagrams in structured format (Mermaid, PlantUML, and Text), ready to 
+be uploaded to Gemini AI, pasted into documentation, or rendered in diagram tools.
+================================================================================
+
+
+################################################################################
+PART 1: COMPREHENSIVE WORK PROCESS FOR EACH AI AGENT
+################################################################################
+
+--------------------------------------------------------------------------------
+1. INTAKE & PROJECT UNDERSTANDING AGENT (IntakeHost / Elena)
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Deconstructs an ambiguous, unstructured natural language prompt into a structured,
+  auditable architectural representation across 17 foundational dimensions.
+
+• Input Data:
+  - Raw natural language prompt (e.g. "I want to build a student assignment evaluation platform").
+  - Execution mode ("AUTONOMOUS" or "GUIDED").
+
+• Internal Work Process:
+  1. Semantic Tokenization & Scope Analysis: Extracts keywords, domain concepts, and intended scale.
+  2. 17-Dimensional Decomposition: Evaluates prompt across:
+     (1) Problem Statement, (2) Core Goals, (3) User Personas, (4) Functional Scope,
+     (5) Non-Goals, (6) Data Models, (7) Integrations, (8) SLA/Performance,
+     (9) Scalability, (10) Security/Auth, (11) UX States, (12) Tech Stack,
+     (13) Risks, (14) Assumptions, (15) Unknowns, (16) Cost, (17) Acceptance Criteria.
+  3. Provenance Tagging: Distinguishes explicit user demands from inferred assumptions:
+     - source = "USER" (Explicitly requested by user)
+     - source = "INFERENCE" (Derived by architectural common sense)
+     - source = "AGENT" (Recommended by engineering best practice)
+
+• Output Artifacts:
+  - ProjectContext (Version 1)
+  - ExtractedRequirementItem collection
+  - Ambiguity & Unknowns list (UNK-001...UNK-NNN)
+
+
+--------------------------------------------------------------------------------
+2. REQUIREMENT ENGINE & MATERIALITY FILTER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Prevents question fatigue. Decides whether an unknown requires human clarification
+  or can be safely assigned a production-grade sensible default.
+
+• Input Data:
+  - Extracted Unknowns and Requirements from Intake Agent.
+
+• Internal Work Process:
+  1. Materiality Evaluation: For each unknown, computes an Impact Score:
+     - High Impact (Architectural Blocker): Core datastore paradigm, auth model, billing gateway.
+     - Low Impact (Sensible Default): Theme color, font, default pagination size.
+  2. Question Generation: If high-impact unknown exists, formulates exactly ONE targeted,
+     multiple-choice question with clear trade-offs and consequences.
+  3. Decision Recording: When user answers, records the choice into an immutable Decision Log
+     with timestamp, confidence (1.0), and increments Context version (v1 -> v2).
+
+• Output Artifacts:
+  - ClarificationQuestion (or null if all unknowns safely defaulted)
+  - DecisionRecord
+  - Validated ProjectContext
+
+
+--------------------------------------------------------------------------------
+3. PRODUCT MANAGER AGENT (Elena Rostova)
+--------------------------------------------------------------------------------
+• Role Accent: #10B981 (Emerald)
+• Primary Purpose:
+  Defines market scope, target user personas, and prioritized functional requirements.
+
+• Input Data:
+  - Validated ProjectContext, Decision Log, Scope constraints.
+
+• Internal Work Process:
+  1. Persona Construction: Identifies primary and secondary user roles with goals and pain points.
+  2. Scope Boundary Capping: Defines strict MVP scope (Phase 1) vs Future Roadmap (Phase 2+).
+  3. Functional Specification: Creates atomic, numbered functional requirements (FR-001...FR-NNN).
+
+• Output Artifacts:
+  - Product Specification (`prd.md`)
+  - User Persona Matrix, OKR Metrics table, MVP Feature Checklist.
+
+
+--------------------------------------------------------------------------------
+4. AI/ML ARCHITECT AGENT (Dr. Aris Thorne)
+--------------------------------------------------------------------------------
+• Role Accent: #A855F7 (Purple)
+• Primary Purpose:
+  Evaluates whether Machine Learning or generative AI is strictly necessary or if a 
+  deterministic heuristic/rule-based algorithm is superior.
+
+• Input Data:
+  - Functional requirements, SLA targets, operational cost limits.
+
+• Internal Work Process:
+  1. Zero-AI vs ML Assessment: Evaluates cost, maintenance, and latency overhead.
+  2. Architecture Selection: If ML needed, determines model type (NLP, CV, Vector Embeddings, LLM).
+  3. Latency & Budget Validation: Specifies inference SLA (e.g. <50ms) and hardware constraints (CPU vs GPU).
+
+• Output Artifacts:
+  - AI/ML Architecture Spec (`model_decision.md`)
+  - Necessity justification, model parameters, fallback heuristic.
+
+
+--------------------------------------------------------------------------------
+5. ENGINEERING LEAD AGENT (Marcus Vance)
+--------------------------------------------------------------------------------
+• Role Accent: #3B82F6 (Blue)
+• Primary Purpose:
+  Designs high-performance system topology, database schemas, and microservice APIs.
+
+• Input Data:
+  - PRD, AI Spec, SLA targets, scale projections.
+
+• Internal Work Process:
+  1. Architectural Topology: Selects pattern (Modular Monolith, Microservices, Event-Driven).
+  2. Schema Design: Defines relational/document tables, primary keys, indexing, and foreign keys.
+  3. API Protocol Specification: Defines RESTful endpoints, SSE streaming routes, or gRPC methods.
+  4. Mermaid Visualization: Generates live syntax-valid system topology diagrams.
+
+• Output Artifacts:
+  - Engineering Specification (`arch_diagram.md`)
+  - Mermaid topology diagram, Entity-Relationship schema, API endpoint dictionary.
+
+
+--------------------------------------------------------------------------------
+6. UX DESIGNER AGENT (Sora Takahashi)
+--------------------------------------------------------------------------------
+• Role Accent: #EC4899 (Pink)
+• Primary Purpose:
+  Maps the complete user journey and defines mandatory UI view states for every screen.
+
+• Input Data:
+  - User personas, user stories, product features.
+
+• Internal Work Process:
+  1. Journey Flow Mapping: Maps step-by-step clicks from entry to task completion.
+  2. Four-State View Contract: Enforces 4 mandatory states for every screen:
+     - Loading State (Skeletons/Spinners)
+     - Empty State (Zero-data onboarding CTA)
+     - Error State (Graceful recovery & retry banner)
+     - Success State (Active populated interface)
+  3. Design Tokens: Specifies responsive breakpoints, color palette, and component hierarchy.
+
+• Output Artifacts:
+  - UX Specification (`ux_spec.md`)
+  - Screen state transition matrix, wireframe specifications.
+
+
+--------------------------------------------------------------------------------
+7. SECURITY AUDITOR AGENT (Kaelen Cross)
+--------------------------------------------------------------------------------
+• Role Accent: #EF4444 (Red)
+• Primary Purpose:
+  Performs threat modeling, access control audits, and vulnerability mitigation.
+
+• Input Data:
+  - System topology, API specs, database entities, authentication requirements.
+
+• Internal Work Process:
+  1. STRIDE Threat Analysis: Evaluates Spoofing, Tampering, Repudiation, Information Disclosure,
+     Denial of Service, and Elevation of Privilege.
+  2. Authentication & Authorization Design: Formulates OAuth2/JWT token signing, session TTL,
+     and Role-Based Access Control (RBAC) permission matrices.
+  3. Encryption Standards: Enforces TLS 1.3 in transit and AES-256 at rest.
+
+• Output Artifacts:
+  - Security Audit Report (`threat_model.md`)
+  - STRIDE mitigation catalog, RBAC matrix, token lifecycle specification.
+
+
+--------------------------------------------------------------------------------
+8. QA STRATEGIST AGENT (Devon Reed)
+--------------------------------------------------------------------------------
+• Role Accent: #F59E0B (Amber)
+• Primary Purpose:
+  Designs the automated test pyramid, regression strategy, and verification budgets.
+
+• Input Data:
+  - Functional requirements (FR), Non-functional requirements (NFR), APIs.
+
+• Internal Work Process:
+  1. Test Pyramid Distribution: Allocates 70% Unit, 20% Integration, 10% End-to-End.
+  2. Traceability Linking: Maps every test case directly back to a traceable Requirement ID (TEST-001 -> FR-001).
+  3. SLA Validation: Formulates automated latency benchmarks and error handling assertions.
+
+• Output Artifacts:
+  - Verification & Test Strategy (`test_strategy.md`)
+  - Critical test case specifications, assertion contracts, coverage targets (>=85%).
+
+
+--------------------------------------------------------------------------------
+9. CONFLICT RESOLVER / ARBITER AGENT (Lex)
+--------------------------------------------------------------------------------
+• Role Accent: #06B6D4 (Cyan)
+• Primary Purpose:
+  Detects and arbitrates architectural contradictions between specialist proposals.
+
+• Input Data:
+  - Aggregated agent specifications (e.g. AI wants WebSockets vs Engineering wants REST).
+
+• Internal Work Process:
+  1. Contradiction Detection: Identifies competing recommendations across protocols, databases, or constraints.
+  2. Multi-Criteria Weighted Trade-Off Scoring: Evaluates competing options on 5 dimensions:
+     - Maintainability (weight: 0.25)
+     - Performance / Latency (weight: 0.25)
+     - Implementation Complexity (weight: 0.20)
+     - Infrastructure Cost (weight: 0.15)
+     - Scalability (weight: 0.15)
+  3. Formal ADR Authoring: Synthesizes the decision into an Architectural Decision Record (ADR)
+     with selected solution, rejected alternatives, and justification.
+
+• Output Artifacts:
+  - Architectural Decision Records (`adr_records.md`)
+  - Multi-criteria score matrix, arbitration audit trail.
+
+
+--------------------------------------------------------------------------------
+10. FINAL ARCHITECT AGENT (Prime)
+--------------------------------------------------------------------------------
+• Role Accent: #6366F1 (Indigo)
+• Primary Purpose:
+  Synthesizes all specialist outputs, ADRs, and requirements into the 27-section Master Blueprint.
+
+• Input Data:
+  - All 6 specialist specs, resolved conflict ADRs, ProjectContext.
+
+• Internal Work Process:
+  1. Full Traceability Synthesis: Builds bidirectional audit matrix mapping:
+     User Prompt -> Requirement ID -> Specialist Spec -> ADR -> Blueprint Section.
+  2. Document Compilation: Generates all 27 canonical blueprint sections (Executive Summary,
+     Scope, Topology, API Contracts, Database Schema, STRIDE, QA, Tech Stack Table, Acceptance Criteria).
+
+• Output Artifacts:
+  - Master Architectural Blueprint (`FINAL_PROJECT_BLUEPRINT.md`)
+  - Bidirectional requirement audit traceability matrix.
+
+
+--------------------------------------------------------------------------------
+11. BUILD SPEC COMPILER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Translates the human-readable Master Blueprint into a machine-readable, strictly 
+  typed JSON specification for physical code generation.
+
+• Input Data:
+  - ProjectContext, Blueprint, Architectural Specs.
+
+• Internal Work Process:
+  1. Pydantic Schema Compilation: Generates `.projectforge/build_spec.json`.
+  2. Requirement Provenance Tagging: Enforces explicit `source = "USER" | "AGENT" | "INFERRED"`.
+  3. Anti-Hallucination Gate: If critical datastore or auth architecture is missing,
+     emits structured `BLOCKED` status instead of inventing assumptions.
+
+• Output Artifacts:
+  - `.projectforge/build_spec.json` (Machine-Readable Build Specification)
+
+
+--------------------------------------------------------------------------------
+12. TASK GRAPH & SCHEDULER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Decomposes the Build Spec into an acyclic directed graph (DAG) of atomic coding tasks.
+
+• Input Data:
+  - `.projectforge/build_spec.json`.
+
+• Internal Work Process:
+  1. Atomic Task Generation: Creates tasks (TASK-001 Scaffold, TASK-002 Models, TASK-003 API, 
+     TASK-004 Tests, TASK-005 Frontend Manifest, TASK-006 UI Components).
+  2. Topological Sort: Applies Kahn's algorithm to determine non-cyclic execution order.
+  3. Dynamic Unlocking: As tasks transition to `COMPLETED`, automatically unlocks downstream 
+     tasks from `PENDING` to `READY`.
+
+• Output Artifacts:
+  - `.projectforge/task_graph.json`
+  - Ordered task queue with strict file modification boundaries.
+
+
+--------------------------------------------------------------------------------
+13. REPOSITORY & GIT MANAGER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Guarantees isolated file surgery, prevents path traversal, and maintains version checkpoints.
+
+• Input Data:
+  - File write requests from Coding Agent, Task IDs.
+
+• Internal Work Process:
+  1. Path Traversal Defense: Verifies all paths remain strictly inside `generated_projects/{id}/`.
+  2. Scope Enforcement: Rejects edits if a task attempts to touch unauthorized files.
+  3. Git Checkpointing: Creates commits at major milestones: `initial_scaffold`, `code_complete`,
+     `repair_successful`, `verified`. Supports rollback upon repair failure.
+
+• Output Artifacts:
+  - Real files written on disk.
+  - `.projectforge/checkpoints.json`
+
+
+--------------------------------------------------------------------------------
+14. CODING ORCHESTRATOR & CODING AGENT (Qwen3-Coder)
+--------------------------------------------------------------------------------
+• Role Accent: #22C55E (Green)
+• Primary Purpose:
+  Synthesizes production-grade source code for each atomic task using controlled tools.
+
+• Input Data:
+  - READY tasks from Task Scheduler, pruned task-specific context.
+
+• Internal Work Process:
+  1. Context Pruning: Receives only relevant schemas, requirements, and constraints for that task.
+  2. Controlled Tool Execution: Modifies code exclusively through `read_file`, `write_file`,
+     `modify_file`, and `search_code`.
+  3. Code Synthesis: Produces clean FastAPI endpoints, Pydantic models, and React UI components.
+
+• Output Artifacts:
+  - Source code files (`backend/app/main.py`, `models.py`, `App.tsx`, etc.)
+  - Structured TaskImplementationResult report.
+
+
+--------------------------------------------------------------------------------
+15. SAFE COMMAND EXECUTOR & TEST RUNNER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Safely executes development commands and automated test suites in a subprocess sandbox.
+
+• Input Data:
+  - Commands requested (`pytest`, `npm test`, `git`).
+
+• Internal Work Process:
+  1. Whitelist Verification: Evaluates command against approved binaries (`python`, `pytest`, `pip`, `npm`, `git`).
+     Blocks dangerous commands (`rm -rf`, `del /f`, `powershell -c`).
+  2. Sandboxed Subprocess: Runs command in project root with execution timeout (60s).
+  3. Output Parsing: Parses stdout/stderr, exit codes, and assertion failures into structured JSON.
+
+• Output Artifacts:
+  - `.projectforge/test_results.json`
+  - ExecutionResult (exit code, duration ms, stdout, stderr).
+
+
+--------------------------------------------------------------------------------
+16. DEBUGGER AGENT, FAILURE CLASSIFIER & SELF-HEALING LOOP
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Automatically diagnoses test failures and applies targeted repair patches (capped at 3 attempts).
+
+• Input Data:
+  - Failed `TestRunResult` from Test Runner.
+
+• Internal Work Process:
+  1. 12-Category Classification: Classifies error into: SYNTAX_ERROR, DEPENDENCY_ERROR, 
+     TYPE_ERROR, DATABASE_ERROR, API_ERROR, TEST_FAILURE, FRONTEND_ERROR, etc.
+  2. Root Cause Hypothesis: Pinpoints exact file, line number, and mismatch reason.
+  3. Pre-Repair Checkpoint: Git commits `checkpoint: pre_repair_attempt_N`.
+  4. Patch & Retest: Applies surgical code replacement and re-runs pytest.
+  5. Bounded Escalation: If not passing after 3 attempts, halts and marks `REQUIRES_HUMAN`.
+
+• Output Artifacts:
+  - `.projectforge/repair_history.json`
+  - Healed verified project or human review escalation report.
+
+
+--------------------------------------------------------------------------------
+17. VS CODE LAUNCHER
+--------------------------------------------------------------------------------
+• Primary Purpose:
+  Launches the generated project in Visual Studio Code only after verification succeeds.
+
+• Input Data:
+  - Generated project path, `.projectforge/test_results.json`.
+
+• Internal Work Process:
+  1. Pre-Flight Verification: Asserts workspace exists, files exist, and test suite exited with code 0.
+  2. CLI Detection: Locates `code` or `code.cmd` binary on system PATH.
+  3. Process Launch: Executes `code <workspace_path>`.
+
+• Output Artifacts:
+  - Running Visual Studio Code window with generated project open.
+
+
+################################################################################
+PART 2: DATA FLOW DIAGRAMS (DFD)
+################################################################################
+
+================================================================================
+DFD LEVEL 0 — CONTEXT DIAGRAM
+================================================================================
+
+[Description]:
+Represents PROJECTFORGE AI as a single high-level system interacting with external 
+entities (User, Host Operating System, VS Code Editor, and Real File System).
+
+----------------- Mermaid Syntax (Copy to Mermaid Live / Markdown) -----------------
+```mermaid
+graph TD
+    User([User / Developer]) -->|1. Natural Language Idea| PF[PROJECTFORGE AI SYSTEM]
+    PF -->|2. Adaptive Clarification Question| User
+    User -->|3. Clarification Answer & Override| PF
+    PF -->|4. Real-time Office Stream / SSE| User
+    PF -->|5. Master Blueprint & Build Spec| User
+
+    PF -->|6. Physical Code & Sandboxed Files| FS[(Local Filesystem / Disk)]
+    FS -->|7. File Content & Directory Tree| PF
+
+    PF -->|8. Whitelisted Dev Commands| OS[Operating System Subprocess / Shell]
+    OS -->|9. Exit Codes, Stdout, Test Results| PF
+
+    PF -->|10. Launch Verified Workspace| VSC[Visual Studio Code Editor]
+```
+
+----------------- PlantUML Syntax (Copy to PlantUML / draw.io) -----------------
+@startuml DFD_Level_0
+skinparam monochrome true
+actor "User / Developer" as User
+rectangle "PROJECTFORGE AI SYSTEM" as System
+database "Local Filesystem" as FS
+node "Operating System Subprocess" as OS
+node "Visual Studio Code" as VSCode
+
+User --> System : 1. Natural Language Idea
+System --> User : 2. Material Clarification Question
+User --> System : 3. Clarification Answer
+System --> User : 4. Real-time Virtual Office Stream (SSE)
+System --> User : 5. Master Blueprint (.md)
+
+System --> FS : 6. Write Physical Source Code
+FS --> System : 7. Read Files & AST
+
+System --> OS : 8. Execute Whitelisted Commands (pytest, npm)
+OS --> System : 9. Return Exit Code, Tracebacks, Logs
+
+System --> VSCode : 10. Launch Verified Project ('code <dir>')
+@enduml
+
+
+================================================================================
+DFD LEVEL 1 — FUNCTIONAL DECOMPOSITION
+================================================================================
+
+[Description]:
+Decomposes the system into the 5 core functional stages:
+(1) Understanding & Clarification, (2) Specialist Analysis & Arbitration, 
+(3) Blueprint & Build Spec Compilation, (4) Task Scheduling & Code Orchestration, 
+(5) Verification, Self-Healing & Editor Launch.
+
+----------------- Mermaid Syntax -----------------
+```mermaid
+graph TD
+    User([User]) -->|Raw Idea| P1[1.0 Intake & Requirement Understanding]
+    P1 -->|Material Unknowns| User
+    User -->|Answers| P1
+    P1 -->|Validated Context v2| D1[(ProjectContext Store)]
+
+    D1 --> P2[2.0 Multi-Agent Specialist Analysis & Conflict Arbitration]
+    P2 -->|Proposals & ADRs| D2[(Audit & Decision Store)]
+
+    D1 & D2 --> P3[3.0 Architecture Synthesis & Build Spec Compiler]
+    P3 -->|FINAL_PROJECT_BLUEPRINT.md| Artifacts[(Document Store)]
+    P3 -->|.projectforge/build_spec.json| D3[(Build Spec Store)]
+
+    D3 --> P4[4.0 Task Graph Generation & Coding Orchestration]
+    P4 -->|Write Scoped Files| D4[(Generated Repository on Disk)]
+    D4 -->|File Content| P4
+
+    D4 --> P5[5.0 Sandboxed Testing, Self-Healing & Editor Launch]
+    P5 -->|Pytest Execution| Shell[OS Process Runner]
+    Shell -->|Test Results / Tracebacks| P5
+    P5 -->|Git Checkpoint / Verified Status| D4
+    P5 -->|Launch Editor| VSCode[Visual Studio Code]
+```
+
+----------------- PlantUML Syntax -----------------
+@startuml DFD_Level_1
+skinparam monochrome true
+actor User
+rectangle "1.0 Intake & Requirement Understanding" as P1
+rectangle "2.0 Specialist Analysis & Conflict Arbitration" as P2
+rectangle "3.0 Architecture Synthesis & Build Spec Compilation" as P3
+rectangle "4.0 Task Graph & Coding Orchestration" as P4
+rectangle "5.0 Testing, Self-Healing & Editor Launch" as P5
+
+database "ProjectContext Store" as D1
+database "ADR & Decisions Store" as D2
+database "Build Spec (.json)" as D3
+database "Generated Project on Disk" as D4
+node "Visual Studio Code" as VSC
+
+User --> P1 : Natural Language Prompt
+P1 --> D1 : Store Validated Context (v1->v2)
+D1 --> P2 : Read Scope & Constraints
+P2 --> D2 : Store 6 Domain Specs & ADRs
+D1 --> P3
+D2 --> P3
+P3 --> D3 : Output build_spec.json
+D3 --> P4 : Compile Task DAG
+P4 --> D4 : Write Physical Code (.py, .tsx)
+D4 --> P5 : Run Pytest & Lint
+P5 --> D4 : Self-Heal Code / Git Checkpoint
+P5 --> VSC : Open Verified Project
+@enduml
+
+
+================================================================================
+DFD LEVEL 2 — DETAILED AGENT & SUBSYSTEM DECOMPOSITION
+================================================================================
+
+[Description]:
+Detailed data flow showing individual agent interactions, queues, data stores, 
+and file boundaries.
+
+----------------- Mermaid Syntax -----------------
+```mermaid
+graph TD
+    %% Subsystem 1: Intake & Understanding
+    User([User]) -->|Raw Idea| UAgent[Project Understanding Agent]
+    UAgent -->|17 Dimensions| ReqEng[Requirement Engine]
+    ReqEng -->|Clarification Q| User
+    User -->|Clarification Answer| ReqEng
+    ReqEng -->|Context v2| CtxStore[(ProjectContext Store)]
+
+    %% Subsystem 2: Specialists
+    CtxStore --> ProductA[Product Agent: Elena]
+    CtxStore --> AIMLA[AI/ML Agent: Dr. Thorne]
+    CtxStore --> EngA[Engineering Agent: Marcus]
+    CtxStore --> UXA[UX Agent: Sora]
+    CtxStore --> SecA[Security Agent: Kaelen]
+    CtxStore --> QAA[QA Agent: Devon]
+
+    ProductA & AIMLA & EngA & UXA & SecA & QAA --> ConflictDet[Conflict Detection Engine]
+    ConflictDet -->|Dispute Detected| Arbiter[Conflict Arbiter: Lex]
+    Arbiter -->|ADR Decision Matrix| ADRStore[(ADR Store)]
+
+    %% Subsystem 3: Synthesis & Spec
+    CtxStore & ADRStore --> Prime
+    ProductA & AIMLA & EngA & UXA & SecA & QAA -->|Validated specialist artifacts| Prime[Final Architect: Prime]
+    Prime -->|Human Blueprint| BlueprintMD[FINAL_PROJECT_BLUEPRINT.md]
+    Prime -->|Machine Spec Input| Compiler[Build Spec Compiler]
+    Compiler -->|build_spec.json| SpecStore[(.projectforge/build_spec.json)]
+
+    %% Subsystem 4: DAG & Coding
+    SpecStore --> TaskDAG[Task Graph & Scheduler]
+    TaskDAG -->|READY Task| Orchestrator[Coding Orchestrator]
+    Orchestrator -->|Pruned Context| CodingAgent[Coding Agent: Qwen3]
+    CodingAgent -->|Controlled Tools| RepoMgr[Repository Manager]
+    RepoMgr -->|Safe File Surgery| Disk[(generated_projects/{id}/)]
+    RepoMgr -->|Git Commit| GitMgr[Git Manager]
+
+    %% Subsystem 5: Execution & Repair
+    Disk --> TestRunner[Test Runner]
+    TestRunner -->|Execute pytest| CmdExec[Safe Command Executor]
+    CmdExec -->|Exit code & Traceback| Parser[Result Parser]
+    Parser -->|Test Results| ResStore[(test_results.json)]
+    
+    ResStore -->|If Failures| Diag[Failure Classifier]
+    Diag --> Debugger[Debugger Agent]
+    Debugger -->|Repair Patch| HealLoop[Self-Healing Loop]
+    HealLoop -->|Apply Patch| RepoMgr
+    HealLoop -->|Re-test| TestRunner
+
+    ResStore -->|If 100% Passed| PreFlight[VS Code Pre-Flight Check]
+    PreFlight -->|Launch| Editor[Visual Studio Code]
+```
+
+----------------- PlantUML Syntax -----------------
+@startuml DFD_Level_2
+skinparam monochrome true
+
+actor User
+package "1. Planning & Understanding Layer" {
+  component "Understanding Agent" as UA
+  component "Requirement Engine" as RE
+  database "ProjectContext" as DB_Ctx
+}
+
+package "2. Specialist Deliberation Layer" {
+  component "Product Agent" as PA
+  component "AI/ML Agent" as AA
+  component "Engineering Agent" as EA
+  component "UX Agent" as UX
+  component "Security Agent" as SA
+  component "QA Agent" as QA
+  component "Conflict Arbiter (Lex)" as Lex
+  database "ADR Store" as DB_ADR
+}
+
+package "3. Build Specification Layer" {
+  component "Final Architect (Prime)" as Prime
+  component "Build Spec Compiler" as BSC
+  database "build_spec.json" as DB_Spec
+}
+
+package "4. Code Execution Layer" {
+  component "Task Graph & Scheduler" as TG
+  component "Coding Orchestrator" as CO
+  component "Coding Agent (Qwen3)" as CA
+  component "Repository Manager" as RM
+  component "Git Manager" as GM
+  database "Generated Project Files" as DB_Disk
+}
+
+package "5. Verification & Healing Layer" {
+  component "Test Runner" as TR
+  component "Safe Command Executor" as SCE
+  component "Failure Classifier" as FC
+  component "Debugger Agent" as DA
+  component "Self-Healing Loop" as SHL
+  component "VS Code Launcher" as VSL
+}
+
+User --> UA : Prompt
+UA --> RE : 17 Dimensions
+RE --> DB_Ctx : Validated Context
+DB_Ctx --> PA
+DB_Ctx --> AA
+DB_Ctx --> EA
+DB_Ctx --> UX
+DB_Ctx --> SA
+DB_Ctx --> QA
+
+PA --> Lex : Specs
+AA --> Lex : Trade-offs
+EA --> Lex : Protocols
+Lex --> DB_ADR : ADR Records
+
+DB_Ctx --> Prime
+DB_ADR --> Prime
+Prime --> BSC : Synthesis
+BSC --> DB_Spec : build_spec.json
+
+DB_Spec --> TG : Decompose
+TG --> CO : Ready Tasks
+CO --> CA : Task Context
+CA --> RM : File Tool Ops
+RM --> DB_Disk : Write Real Code
+RM --> GM : Git Checkpoint
+
+DB_Disk --> TR : Pytest
+TR --> SCE : Subprocess
+SCE --> FC : Traceback
+FC --> DA : Diagnosis
+DA --> SHL : Repair Plan
+SHL --> RM : Apply Fix
+TR --> VSL : 100% Pass Assertion
+VSL --> User : Open in VS Code
+@enduml
+
+
+################################################################################
+PART 3: USE CASE DIAGRAM SPECIFICATION
+################################################################################
+
+================================================================================
+ACTORS & USE CASES OVERVIEW
+================================================================================
+• Primary Actor: User / Software Engineer
+• Secondary Actors:
+  - Host Operating System / CLI Environment
+  - Git Version Control Engine
+  - Visual Studio Code IDE
+
+• Main Use Cases:
+  UC-01: Submit Natural Language Software Idea
+  UC-02: Answer Adaptive Clarification Questions
+  UC-03: Inspect 17-Dimensional Requirements
+  UC-04: View Real-time Virtual Office Simulation (SSE Stream)
+  UC-05: Review Cross-Agent Discussions & Conflict ADRs
+  UC-06: Inspect 27-Section Master Blueprint
+  UC-07: Compile Machine-Readable Build Spec
+  UC-08: Execute Autonomous Code Generation
+  UC-09: Trigger Sandboxed Testing & Build Observation
+  UC-10: Observe Automated Debugging & Self-Healing Loop
+  UC-11: Review Git Checkpoint History & Rollback
+  UC-12: Auto-Launch Verified Project in VS Code
+
+----------------- Mermaid Syntax -----------------
+```mermaid
+graph LR
+    User([User / Developer]) --> UC1[UC-01: Submit Software Idea]
+    User --> UC2[UC-02: Answer Clarification Questions]
+    User --> UC3[UC-03: Inspect 17D Requirements & Assumptions]
+    User --> UC4[UC-04: Monitor Virtual Office Live Stream]
+    User --> UC5[UC-05: Review Conflict ADRs]
+    User --> UC6[UC-06: View 27-Section Master Blueprint]
+    User --> UC7[UC-07: Trigger Autonomous Build]
+    User --> UC12[UC-12: Launch Project in VS Code]
+
+    subgraph PROJECTFORGE SYSTEM BOUNDARY
+        UC1 --> UC2
+        UC2 --> UC3
+        UC3 --> UC4
+        UC4 --> UC5
+        UC5 --> UC6
+        UC6 --> UC7
+        UC7 --> UC8[UC-08: Decompose Task DAG & Generate Code]
+        UC8 --> UC9[UC-09: Run Sandboxed Test Suite]
+        UC9 -->|On Test Failure| UC10[UC-10: Classify Error & Self-Heal]
+        UC10 -->|Retest| UC9
+        UC9 -->|On 100% Pass| UC11[UC-11: Create 'verified' Git Checkpoint]
+        UC11 --> UC12
+    end
+
+    UC9 --> OS[OS Process Runner / Pytest]
+    UC11 --> Git[Git Version Controller]
+    UC12 --> VSCode[Visual Studio Code IDE]
+```
+
+----------------- PlantUML Syntax -----------------
+@startuml Use_Case_Diagram
+left to right direction
+skinparam packageStyle rectangle
+skinparam monochrome true
+
+actor "User / Developer" as User
+actor "Operating System" as OS
+actor "Git Engine" as Git
+actor "VS Code IDE" as VSCode
+
+rectangle "PROJECTFORGE AI Platform" {
+  usecase "UC-01: Submit Software Idea" as UC1
+  usecase "UC-02: Answer Clarifications" as UC2
+  usecase "UC-03: Inspect 17D Architecture" as UC3
+  usecase "UC-04: View Live Virtual Office" as UC4
+  usecase "UC-05: Review Trade-off ADRs" as UC5
+  usecase "UC-06: View Master Blueprint" as UC6
+  usecase "UC-07: Trigger Autonomous Build" as UC7
+  usecase "UC-08: Generate Real Code Files" as UC8
+  usecase "UC-09: Run Sandboxed Tests" as UC9
+  usecase "UC-10: Self-Healing Repair Loop" as UC10
+  usecase "UC-11: Create Git Checkpoints" as UC11
+  usecase "UC-12: Open in VS Code" as UC12
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC12
+
+UC2 ..> UC1 : <<extend>> (material unknown)
+UC2 ..> UC3 : <<include>>
+UC3 ..> UC4 : <<include>>
+UC5 ..> UC6 : <<include>>
+UC7 --> UC8
+UC8 --> UC9
+UC10 ..> UC9 : <<extend>> (on failure)
+UC10 ..> UC9 : retest
+UC9 --> UC11 : on pass
+UC11 --> UC12
+
+UC9 --> OS : executes pytest
+UC11 --> Git : commits checkpoint
+UC12 --> VSCode : executes 'code <path>'
+@enduml
+
+
+################################################################################
+PART 4: READY-TO-USE PROMPTS FOR GEMINI AI
+################################################################################
+
+If you want Gemini AI to explain or generate diagrams for you, copy and paste 
+either of the following prompts into Gemini:
+
+PROMPT 1 (For Explaining Agent Architecture):
+"I am uploading a technical specification document of my capstone project, PROJECTFORGE AI.
+Based on this document, please provide a detailed explanation of:
+1. How the planning agents (Product, AI/ML, Engineering, UX, Security, QA, Lex, Prime) collaborate.
+2. How the execution layer (Build Spec Compiler, Task Graph, Coding Agent, Safe Executor, Debugger) 
+   takes over after the blueprint is generated.
+3. How the bounded self-healing loop operates when a test fails."
+
+PROMPT 2 (For Generating Visual Diagrams / PlantUML / draw.io):
+"Based on the attached PROJECTFORGE specification document, please render the complete:
+1. DFD Level 0 (Context Diagram)
+2. DFD Level 1 (Subsystem Functional Decomposition)
+3. DFD Level 2 (Detailed Agent Data Flows and Store Interactions)
+4. Use Case Diagram with all actors and system boundaries.
+Output them as PlantUML code and explain the key data stores and transitions."
+================================================================================
+EOF

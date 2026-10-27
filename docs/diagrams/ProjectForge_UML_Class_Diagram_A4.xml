@@ -1,0 +1,525 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17" type="device">
+  <diagram id="projectforge-1" name="2.3a Project data and specification classes">
+    <mxGraphModel dx="1123" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1123" pageHeight="794" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ProjectForge AI UML Class Diagram" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=21;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="20" width="1060" height="30" />
+        </mxCell>
+        <mxCell id="subtitle" value="Figure 2.3(a)  Project data and specification classes" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=18;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="52" width="1060" height="28" />
+        </mxCell>
+        <mxCell id="persist" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="persist-name" value="ProjectPersistence" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="persist">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="persist-attr" value="+ path: Path" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="persist">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="persist-ops" value="+ save(id, state, context, spec)&#10;+ load_all(): list&#10;+ append_event(id, payload)&#10;+ events_after(id, sequence)" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="persist">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="112" />
+        </mxCell>
+        <mxCell id="context" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="context-name" value="ProjectContext" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="context">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="context-attr" value="+ project_id: str&#10;+ version: int&#10;+ requirements: List&#10;+ execution_state: str" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="context">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="86" />
+        </mxCell>
+        <mxCell id="context-ops" value="+ model_post_init(context)" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="context">
+          <mxGeometry as="geometry" x="0" y="115" width="300" height="55" />
+        </mxCell>
+        <mxCell id="requirement" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="requirement-name" value="ExtractedRequirementItem" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="requirement">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="requirement-attr" value="+ id: str&#10;+ dimension: str&#10;+ description: str&#10;+ source: RequirementSource" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="requirement">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="86" />
+        </mxCell>
+        <mxCell id="requirement-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="requirement">
+          <mxGeometry as="geometry" x="0" y="115" width="300" height="55" />
+        </mxCell>
+        <mxCell id="state" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="340" width="300" height="170" />
+        </mxCell>
+        <mxCell id="state-name" value="ProjectState" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="state">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="state-attr" value="+ project_id: str&#10;+ revision: int&#10;+ status: ProjectStatus&#10;+ product_spec: Optional&#10;+ final_blueprint_markdown: str" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="state">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="105" />
+        </mxCell>
+        <mxCell id="state-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="state">
+          <mxGeometry as="geometry" x="0" y="134" width="300" height="36" />
+        </mxCell>
+        <mxCell id="spec" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="340" width="300" height="190" />
+        </mxCell>
+        <mxCell id="spec-name" value="BuildSpec" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="spec">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="spec-attr" value="+ project_id: str&#10;+ version: int&#10;+ status: BuildSpecStatus&#10;+ source_generation_strategy: str&#10;+ acceptance_checks: List&#10;+ browser_checks: List" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="spec">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="124" />
+        </mxCell>
+        <mxCell id="spec-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="spec">
+          <mxGeometry as="geometry" x="0" y="153" width="300" height="37" />
+        </mxCell>
+        <mxCell id="file" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="340" width="300" height="170" />
+        </mxCell>
+        <mxCell id="file-name" value="TargetFileDef" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="file">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="file-attr" value="+ file_path: str&#10;+ description: str&#10;+ dependencies: List[str]&#10;+ traceable_requirements: List" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="file">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="86" />
+        </mxCell>
+        <mxCell id="file-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="file">
+          <mxGeometry as="geometry" x="0" y="115" width="300" height="55" />
+        </mxCell>
+        <mxCell id="base" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="595" width="300" height="90" />
+        </mxCell>
+        <mxCell id="base-name" value="BaseModel" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="base">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="base-attr" value="Pydantic framework class" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="base">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="base-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="base">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="32" />
+        </mxCell>
+        <mxCell id="compiler" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="595" width="300" height="115" />
+        </mxCell>
+        <mxCell id="compiler-name" value="BuildSpecCompiler" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="compiler">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="compiler-attr" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="compiler">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="24" />
+        </mxCell>
+        <mxCell id="compiler-ops" value="+ compile_model(context, state, llm)&#10;+ compile(context, state): BuildSpec" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="compiler">
+          <mxGeometry as="geometry" x="0" y="53" width="300" height="62" />
+        </mxCell>
+        <mxCell id="buildreq" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="595" width="300" height="115" />
+        </mxCell>
+        <mxCell id="buildreq-name" value="BuildRequirementItem" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="buildreq">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="buildreq-attr" value="+ id: str&#10;+ description: str&#10;+ source: RequirementSourceType" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="buildreq">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="67" />
+        </mxCell>
+        <mxCell id="buildreq-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="buildreq">
+          <mxGeometry as="geometry" x="0" y="96" width="300" height="19" />
+        </mxCell>
+        <mxCell id="edge-0" value="serializes" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="persist" target="context">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="serializes" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="persist" target="state">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="context" target="requirement">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mult-2" value="0..*" style="edgeLabel;html=0;resizable=0;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="edge-2">
+          <mxGeometry as="geometry" x="0.75" y="-12" relative="1">
+            <mxPoint as="offset" x="0" y="0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;endArrow=open;endFill=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="context" target="spec">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mult-3" value="0..1" style="edgeLabel;html=0;resizable=0;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="edge-3">
+          <mxGeometry as="geometry" x="0.75" y="-12" relative="1">
+            <mxPoint as="offset" x="0" y="0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="state" target="base">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.4473684210526316;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="spec" target="file">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mult-5" value="0..*" style="edgeLabel;html=0;resizable=0;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="edge-5">
+          <mxGeometry as="geometry" x="0.75" y="-12" relative="1">
+            <mxPoint as="offset" x="0" y="0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" value="creates" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="compiler" target="spec">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.8157894736842105;entryX=0.0;entryY=0.4782608695652174;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="spec" target="buildreq">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="745" y="495" />
+              <mxPoint x="745" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mult-7" value="0..*" style="edgeLabel;html=0;resizable=0;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="edge-7">
+          <mxGeometry as="geometry" x="0.75" y="-12" relative="1">
+            <mxPoint as="offset" x="0" y="0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note-0" value="Selected members shown. ProjectState, ProjectContext and BuildSpec are Pydantic models." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="716" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="note-1" value="SQLite tables: snapshots, history, events. Nested JSON models are not separate SQL tables." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="735" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="legend" value="UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="757" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="page" value="A4 landscape | Selected implementation classes | 1 / 3" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="778" width="1050" height="15" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="projectforge-2" name="2.3b Specialist agents and model access">
+    <mxGraphModel dx="1123" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1123" pageHeight="794" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ProjectForge AI UML Class Diagram" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=21;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="20" width="1060" height="30" />
+        </mxCell>
+        <mxCell id="subtitle" value="Figure 2.3(b)  Specialist agents and model access" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=18;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="52" width="1060" height="28" />
+        </mxCell>
+        <mxCell id="product" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="100" width="300" height="86" />
+        </mxCell>
+        <mxCell id="product-name" value="ProductAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="product">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="product-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="product">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="product-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="product">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="aiml" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="196" width="300" height="86" />
+        </mxCell>
+        <mxCell id="aiml-name" value="AIMLAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="aiml">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="aiml-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="aiml">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="aiml-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="aiml">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="eng" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="292" width="300" height="86" />
+        </mxCell>
+        <mxCell id="eng-name" value="EngineeringAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="eng">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="eng-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="eng">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="eng-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="eng">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="ux" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="388" width="300" height="86" />
+        </mxCell>
+        <mxCell id="ux-name" value="UXAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="ux">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="ux-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="ux">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="ux-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="ux">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="security" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="484" width="300" height="86" />
+        </mxCell>
+        <mxCell id="security-name" value="SecurityAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="security">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="security-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="security">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="security-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="security">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="qa" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="580" width="300" height="86" />
+        </mxCell>
+        <mxCell id="qa-name" value="QAAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="qa">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="qa-attr" value="- _harness: AgentExecutionHarness" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="qa">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="qa-ops" value="+ analyze(state): HarnessResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="qa">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="28" />
+        </mxCell>
+        <mxCell id="harness" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="300" width="300" height="190" />
+        </mxCell>
+        <mxCell id="harness-name" value="AgentExecutionHarness&lt;T&gt;" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="harness">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="harness-attr" value="+ target_schema: Type[T]&#10;+ agent_name: str&#10;+ llm_client: Callable&#10;+ lint_rules: List" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="harness">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="86" />
+        </mxCell>
+        <mxCell id="harness-ops" value="+ execute(context, max_retries)" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="harness">
+          <mxGeometry as="geometry" x="0" y="115" width="300" height="75" />
+        </mxCell>
+        <mxCell id="local" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="140" width="300" height="190" />
+        </mxCell>
+        <mxCell id="local-name" value="LocalModelClient" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="local">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="local-attr" value="+ settings: Settings&#10;+ calls: int&#10;+ input_tokens: int" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="local">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="67" />
+        </mxCell>
+        <mxCell id="local-ops" value="+ generate(prompt): str&#10;+ generate_sync(prompt): str&#10;+ usage(): dict" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="local">
+          <mxGeometry as="geometry" x="0" y="96" width="300" height="94" />
+        </mxCell>
+        <mxCell id="cloud" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="460" width="300" height="170" />
+        </mxCell>
+        <mxCell id="cloud-name" value="GeminiModelClient" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="cloud">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="cloud-attr" value="+ settings: Settings&#10;+ client: genai.Client" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="cloud">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="48" />
+        </mxCell>
+        <mxCell id="cloud-ops" value="+ __new__(): provider selection&#10;+ generate(prompt): str&#10;+ generate_sync(prompt): str" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="cloud">
+          <mxGeometry as="geometry" x="0" y="77" width="300" height="93" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.13157894736842105;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="product" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.2789473684210526;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="aiml" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.4263157894736842;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="eng" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5736842105263158;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ux" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7210526315789474;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="security" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.868421052631579;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="qa" target="harness">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="callback" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=1.0;exitY=0.23684210526315788;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="harness" target="local">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="745" y="345" />
+              <mxPoint x="745" y="235" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="callback" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=1.0;exitY=0.7631578947368421;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="harness" target="cloud">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="745" y="445" />
+              <mxPoint x="745" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" value="selects local provider" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="cloud" target="local">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="note-0" value="Each agent owns its own harness instance; six agents do not share one harness object." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="716" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="note-1" value="LocalModelClient and GeminiModelClient are alternative providers, not subclasses of each other." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="735" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="legend" value="UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="757" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="page" value="A4 landscape | Selected implementation classes | 2 / 3" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="778" width="1050" height="15" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="projectforge-3" name="2.3c Source generation and isolated verification">
+    <mxGraphModel dx="1123" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1123" pageHeight="794" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ProjectForge AI UML Class Diagram" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=21;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="20" width="1060" height="30" />
+        </mxCell>
+        <mxCell id="subtitle" value="Figure 2.3(c)  Source generation and isolated verification" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=18;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="52" width="1060" height="28" />
+        </mxCell>
+        <mxCell id="graph" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="graph-name" value="TaskGraph" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="graph">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="graph-attr" value="+ tasks: Dict&#10;+ adj_list: Dict&#10;+ in_degree: Dict" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="graph">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="67" />
+        </mxCell>
+        <mxCell id="graph-ops" value="+ build_from_spec(spec)&#10;+ validate_dag(): List[str]" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="graph">
+          <mxGeometry as="geometry" x="0" y="96" width="300" height="74" />
+        </mxCell>
+        <mxCell id="orchestrator" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="orchestrator-name" value="CodingOrchestrator" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="orchestrator">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="orchestrator-attr" value="+ workspace_root: Path&#10;+ repo: RepositoryManager&#10;+ coding_agent: CodingAgent&#10;+ test_runner: TestRunner" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="orchestrator">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="86" />
+        </mxCell>
+        <mxCell id="orchestrator-ops" value="+ execute_build(spec): Report" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="orchestrator">
+          <mxGeometry as="geometry" x="0" y="115" width="300" height="55" />
+        </mxCell>
+        <mxCell id="coding" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="100" width="300" height="170" />
+        </mxCell>
+        <mxCell id="coding-name" value="CodingAgent" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="coding">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="coding-attr" value="+ agent_name: str&#10;+ model_client: object" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="coding">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="48" />
+        </mxCell>
+        <mxCell id="coding-ops" value="+ execute_task(task, context, tools)" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="coding">
+          <mxGeometry as="geometry" x="0" y="77" width="300" height="93" />
+        </mxCell>
+        <mxCell id="scheduler" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="340" width="300" height="170" />
+        </mxCell>
+        <mxCell id="scheduler-name" value="TaskScheduler" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="scheduler">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="scheduler-attr" value="+ graph: TaskGraph" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="scheduler">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="scheduler-ops" value="+ get_ready_tasks(): List&#10;+ mark_completed(task_id)&#10;+ mark_failed(task_id, error)&#10;+ is_finished(): bool" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="scheduler">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="112" />
+        </mxCell>
+        <mxCell id="test" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="340" width="300" height="190" />
+        </mxCell>
+        <mxCell id="test-name" value="TestRunner" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="test">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="test-attr" value="+ workspace_root: Path&#10;+ executor: SafeCommandExecutor" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="test">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="48" />
+        </mxCell>
+        <mxCell id="test-ops" value="+ run_backend_tests(): Result&#10;+ run_frontend_build(): Result&#10;+ run_acceptance(checks): Result&#10;+ run_browser_checks(journeys)" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="test">
+          <mxGeometry as="geometry" x="0" y="77" width="300" height="113" />
+        </mxCell>
+        <mxCell id="tools" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="340" width="300" height="170" />
+        </mxCell>
+        <mxCell id="tools-name" value="AgentToolContext" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="tools">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="tools-attr" value="+ repo: RepositoryManager&#10;+ task_id: str&#10;+ allowed_files: List[str]" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="tools">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="67" />
+        </mxCell>
+        <mxCell id="tools-ops" value="+ read_file(path): str&#10;+ write_file(path, content): str" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="tools">
+          <mxGeometry as="geometry" x="0" y="96" width="300" height="74" />
+        </mxCell>
+        <mxCell id="task" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="595" width="300" height="115" />
+        </mxCell>
+        <mxCell id="task-name" value="ImplementationTask" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="task">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="task-attr" value="+ task_id: str&#10;+ dependencies: List[str]&#10;+ status: TaskStatus" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="task">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="67" />
+        </mxCell>
+        <mxCell id="task-ops" value=" " style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="task">
+          <mxGeometry as="geometry" x="0" y="96" width="300" height="19" />
+        </mxCell>
+        <mxCell id="executor" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="580" width="300" height="125" />
+        </mxCell>
+        <mxCell id="executor-name" value="SafeCommandExecutor" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="executor">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="executor-attr" value="+ workspace_root: Path&#10;+ image: str" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="executor">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="48" />
+        </mxCell>
+        <mxCell id="executor-ops" value="+ preflight(): tuple&#10;+ execute(command): ExecutionResult" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="executor">
+          <mxGeometry as="geometry" x="0" y="77" width="300" height="48" />
+        </mxCell>
+        <mxCell id="repo" value="" style="rounded=0;html=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="780" y="580" width="300" height="125" />
+        </mxCell>
+        <mxCell id="repo-name" value="RepositoryManager" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontStyle=1;align=center;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="repo">
+          <mxGeometry as="geometry" x="0" y="0" width="300" height="29" />
+        </mxCell>
+        <mxCell id="repo-attr" value="+ workspace_root: Path" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="repo">
+          <mxGeometry as="geometry" x="0" y="29" width="300" height="29" />
+        </mxCell>
+        <mxCell id="repo-ops" value="+ initialize_project()&#10;+ write_task_file(...)&#10;+ create_checkpoint(name): bool" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fillColor=#FFFFFF;" vertex="1" parent="repo">
+          <mxGeometry as="geometry" x="0" y="58" width="300" height="67" />
+        </mxCell>
+        <mxCell id="edge-0" value="creates" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="orchestrator" target="graph">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="orchestrator" target="coding">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="orchestrator" target="test">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=0;endArrow=none;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="scheduler" target="graph">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=0.0;exitY=0.7058823529411765;entryX=0.0;entryY=0.4782608695652174;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="graph" target="task">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="20" y="220" />
+              <mxPoint x="20" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mult-4" value="0..*" style="edgeLabel;html=0;resizable=0;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="edge-4">
+          <mxGeometry as="geometry" x="0.75" y="-12" relative="1">
+            <mxPoint as="offset" x="0" y="0" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" value="uses" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="coding" target="tools">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=1;endArrow=none;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="test" target="executor">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" value="" style="html=0;rounded=0;strokeColor=#000000;strokeWidth=1.2;fontFamily=Times New Roman;fontSize=14;labelBackgroundColor=#FFFFFF;startArrow=diamond;startFill=0;endArrow=none;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="tools" target="repo">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="note-0" value="Graph and scheduler are created inside execute_build(); their links are dependencies, not stored fields." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="716" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="note-1" value="Selected core classes only. Repair, conflict-resolution and blueprint helper details are omitted." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="735" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="legend" value="UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance." style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="757" width="1050" height="20" />
+        </mxCell>
+        <mxCell id="page" value="A4 landscape | Selected implementation classes | 3 / 3" style="text;html=0;whiteSpace=wrap;overflow=hidden;fontFamily=Times New Roman;fontSize=16;align=left;verticalAlign=middle;spacing=5;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="778" width="1050" height="15" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

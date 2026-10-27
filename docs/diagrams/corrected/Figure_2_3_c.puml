@@ -1,0 +1,82 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.3(c)  Build ownership and execution collaborators
+hide empty members
+class "TaskGraph" as graph {
+  + tasks: Dict
+  + adj_list: Dict
+  + in_degree: Dict
+  --
+  + build_from_spec(spec): None
+  + validate_dag(): List[str]
+}
+class "CodingOrchestrator" as orch {
+  + workspace_root: Path
+  + coding_agent: CodingAgent
+  + test_runner: TestRunner
+  + repo: RepositoryManager
+  --
+  + execute_build(spec): ExecutionPipelineReport
+}
+class "CodingAgent" as coding {
+  + agent_name: str
+  + model_client: object
+  --
+  + execute_task(task, spec, tools, focused_context=None): TaskImplementationResult
+}
+class "TaskScheduler" as scheduler {
+  + graph: TaskGraph
+  --
+  + get_ready_tasks(): List
+  + mark_completed(task_id, output_summary=None): List
+  + mark_failed(task_id, error_message, retryable=True): None
+}
+class "TestRunner" as runner {
+  + workspace_root: Path
+  + executor: SafeCommandExecutor
+  --
+  + run_backend_tests(test_path)
+  + run_frontend_build()
+  + run_acceptance(checks)
+  + run_browser_checks(journeys)
+}
+class "AgentToolContext" as tools {
+  + repo: RepositoryManager
+  + allowed_files: List[str]
+  --
+  + read_file(relative_path): str
+  + write_file(relative_path, content): str
+}
+class "ImplementationTask" as task {
+  + task_id: str
+  + dependencies: List[str]
+  + status: TaskStatus
+}
+class "SafeCommandExecutor" as executor {
+  + image: str
+  --
+  + preflight(): tuple
+  + execute(command_str, ...): ExecutionResult
+}
+class "RepositoryManager" as repo {
+  + workspace_root: Path
+  --
+  + write_task_file(...): Path
+  + create_checkpoint(...): bool
+}
+orch ..> graph : «create»
+orch ..> scheduler : «create»
+orch *-- "1" coding
+orch *-- "1" runner
+scheduler --> "1" graph
+graph --> "0..*" task
+coding ..> tools
+runner *-- "1" executor
+tools --> "1" repo
+note "TaskGraph and TaskScheduler are local variables in execute_build(), not permanent CodingOrchestrator attributes." as note0
+note "Associations denote references, not whole-part ownership. Ellipses abbreviate selected method parameters." as note1
+@enduml

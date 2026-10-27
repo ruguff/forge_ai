@@ -1,0 +1,23 @@
+{
+  "frontend_build": {
+    "command": "npm --prefix frontend run build",
+    "exit_code": 0,
+    "stdout": "\n> generated-local-crud@1.0.0 build\n> tsc --noEmit && vite build\n\nvite v5.4.21 building for production...\ntransforming...\n\u2713 30 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                  0.30 kB \u2502 gzip:  0.24 kB\ndist/assets/index-CYJmaJRY.js  147.18 kB \u2502 gzip: 47.52 kB\n\u2713 built in 1.40s\n",
+    "stderr": "",
+    "duration_ms": 6009.32,
+    "timed_out": false,
+    "safety_level": "ALLOWED"
+  },
+  "browser_journeys": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 1,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 6216.48,
+    "failures": [],
+    "raw_stdout": "============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_browser.py::test_browser_journeys PASSED [100%]\n\n============================== 1 passed in 4.96s ===============================\n",
+    "raw_stderr": ""
+  }
+}

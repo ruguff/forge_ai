@@ -1,0 +1,79 @@
+{
+  "contract_version": 1,
+  "build": {
+    "project_id": "PROJ-CATALOGUE-DEMO",
+    "project_name": "Fieldwork catalogue",
+    "workspace_path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-app",
+    "status": "VERIFIED",
+    "tasks_executed": 27,
+    "files_created_count": 27,
+    "tests_passed": true,
+    "self_healing_invoked": false,
+    "repair_report": null,
+    "final_test_result": {
+      "command": "pytest",
+      "exit_code": 0,
+      "passed_count": 1,
+      "failed_count": 0,
+      "error_count": 0,
+      "total_count": 1,
+      "duration_ms": 3164.36,
+      "failures": [],
+      "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\nbackend/tests/test_app.py::test_public_read_contract PASSED              [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 0.73s =========================\n",
+      "raw_stderr": ""
+    },
+    "verification_checks": {
+      "backend_tests": "PASSED",
+      "frontend_build": "PASSED",
+      "requirement_acceptance": "PASSED",
+      "browser_journeys": "PASSED"
+    },
+    "limitations": [
+      "Verification covers declared acceptance cases; load and security scans remain unverified."
+    ],
+    "source_digest": "7fc23b7d1b4ff3a6cafdaa70dc4398a56549f29cacefd5f215f5259e68d87f37"
+  },
+  "functional": "PASSED",
+  "security": "UNVERIFIED",
+  "accessibility": "TARGETED_KEYBOARD_AND_LAYOUT_PASSED",
+  "performance": "UNVERIFIED",
+  "provider_integration": "NOT_IMPLEMENTED",
+  "screenshots": [
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-desktop-catalogue.png",
+      "sha256": "b04f14b64e60894f99e1197f06e4d672d712bea57968e82c9fcdbe7d54cb531a"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-mobile-catalogue.png",
+      "sha256": "1afa1f3d546ab0a70023ade6e180f24d8cdfaed618935f2ecb8e14f83aee5b48"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-mobile-detail.png",
+      "sha256": "91bc703492dc40186053b1b25a4842f5cc5de83bb32af6c9a04c65356b9d39a9"
+    }
+  ],
+  "postgresql": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 1,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 4693.9,
+    "failures": [],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_catalogue_postgresql.py::test_catalogue_postgresql_constraints_visibility_and_restart INFO:     127.0.0.1:60108 - \"GET /api/store HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:60118 - \"GET /api/products/daily-pack HTTP/1.1\" 404 Not Found\nINFO:     127.0.0.1:60118 - \"GET /api/products/woven-throw HTTP/1.1\" 404 Not Found\nINFO:     127.0.0.1:60118 - \"GET /api/products?category=home HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:60118 - \"POST /api/products HTTP/1.1\" 405 Method Not Allowed\nINFO:     127.0.0.1:60172 - \"GET /api/store HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:60182 - \"GET /api/products/trail-pack HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:60182 - \"GET /api/products HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:60182 - \"GET /api/products/daily-pack HTTP/1.1\" 404 Not Found\nPASSED\n\n============================== 1 passed in 2.58s ===============================",
+    "raw_stderr": "INFO:     Started server process [35]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)\nINFO:     Shutting down\nINFO:     Waiting for application shutdown.\nINFO:     Application shutdown complete.\nINFO:     Finished server process [35]\nINFO:     Started server process [39]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)\nINFO:     Shutting down\nINFO:     Waiting for application shutdown.\nINFO:     Application shutdown complete.\nINFO:     Finished server process [39]\n"
+  },
+  "rendered": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 1,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 11661.0,
+    "failures": [],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\nPASSED\n\n============================== 1 passed in 9.69s ===============================",
+    "raw_stderr": ""
+  }
+}

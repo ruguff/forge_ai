@@ -1,0 +1,70 @@
+{
+  "title": "Related catalogue foundation",
+  "revision": "0001",
+  "database": "sqlite",
+  "entities": [
+    {
+      "entity_name": "Category",
+      "table_name": "categories",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "integer",
+          "is_primary_key": true,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "name",
+          "data_type": "text",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": true,
+          "default_value": null
+        }
+      ],
+      "relationships": []
+    },
+    {
+      "entity_name": "Product",
+      "table_name": "products",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "integer",
+          "is_primary_key": true,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "name",
+          "data_type": "text",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        },
+        {
+          "name": "category_id",
+          "data_type": "integer",
+          "is_primary_key": false,
+          "is_nullable": false,
+          "is_unique": false,
+          "default_value": null
+        }
+      ],
+      "relationships": []
+    }
+  ],
+  "relationships": [
+    {
+      "source_table": "products",
+      "source_column": "category_id",
+      "target_table": "categories",
+      "target_column": "id",
+      "on_delete": "RESTRICT"
+    }
+  ]
+}

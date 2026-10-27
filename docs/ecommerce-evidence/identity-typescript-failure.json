@@ -1,0 +1,78 @@
+{
+  "contract_version": 1,
+  "build": {
+    "project_id": "IDENTITY-DEMO",
+    "project_name": "Fieldwork catalogue",
+    "workspace_path": "D:\\capstone_project\\docs\\ecommerce-evidence\\identity-app",
+    "status": "REQUIRES_HUMAN",
+    "tasks_executed": 35,
+    "files_created_count": 35,
+    "tests_passed": true,
+    "self_healing_invoked": false,
+    "repair_report": null,
+    "final_test_result": {
+      "command": "pytest",
+      "exit_code": 0,
+      "passed_count": 1,
+      "failed_count": 0,
+      "error_count": 0,
+      "total_count": 1,
+      "duration_ms": 4378.76,
+      "failures": [],
+      "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\nbackend/tests/test_app.py::test_public_read_contract PASSED              [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 1.42s =========================\n",
+      "raw_stderr": ""
+    },
+    "verification_checks": {
+      "backend_tests": "PASSED",
+      "frontend_build": "FAILED",
+      "requirement_acceptance": "PASSED",
+      "browser_journeys": "PASSED"
+    },
+    "limitations": [
+      "Verification covers declared acceptance cases; load and security scans remain unverified."
+    ],
+    "source_digest": "f750ae966cb639b81104a494db892821cde703283c3d2c9bb652a609d8017405"
+  },
+  "functional": "FAILED",
+  "security": "TARGETED_IDENTITY_CHECKS_PASSED",
+  "accessibility": "TARGETED_KEYBOARD_LAYOUT_PASSED",
+  "performance": "UNVERIFIED",
+  "smtp_delivery": "UNVERIFIED",
+  "provider_integration": "NOT_IMPLEMENTED",
+  "screenshots": [
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\identity-desktop-account.png",
+      "sha256": "52bd64c950c7f321c6cf9bfde953283714b02134841b5296a9d7d06397762f00"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\identity-mobile-account.png",
+      "sha256": "1577d0ee9d1cbc6e44693c2fd88cf8ce87baa34b0ee821c56bcd7decad3158fb"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\identity-desktop-admin.png",
+      "sha256": "416bb843faacfa35b3cc04e5b48fd8e55902386b24829b0e5d7bb45c671bd145"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\identity-mobile-admin.png",
+      "sha256": "55204ecaf3430c906bfd848faf8868c5e0b8276d682dbb53f26e6444b5642c0a"
+    }
+  ],
+  "postgresql": {
+    "command": "python -m pytest /source/.projectforge/test_identity_postgresql.py -v -s --no-header -p no:cacheprovider",
+    "exit_code": 0,
+    "stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_identity_postgresql.py::test_real_postgresql_identity_security_restart_and_admin PASSED\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 6.50s =========================",
+    "stderr": "",
+    "duration_ms": 9256.37,
+    "timed_out": false,
+    "safety_level": "ALLOWED"
+  },
+  "browser": {
+    "command": "python -m pytest /source/.projectforge/test_identity_browser.py -v -s --no-header -p no:cacheprovider",
+    "exit_code": 0,
+    "stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_identity_browser.py::test_account_address_admin_and_responsive_pages Administrator created; no existing customer was promoted\nPASSED\n\n============================== 1 passed in 17.88s ==============================",
+    "stderr": "",
+    "duration_ms": 20030.66,
+    "timed_out": false,
+    "safety_level": "ALLOWED"
+  }
+}

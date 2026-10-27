@@ -1,0 +1,23 @@
+{
+  "revision": "0004",
+  "parent": "0003",
+  "module": "offline-payments-v1",
+  "tables": [
+    "simulated_payments",
+    "simulated_refunds",
+    "simulation_events"
+  ],
+  "order_states": [
+    "awaiting_payment",
+    "cancelled",
+    "expired",
+    "simulated_paid",
+    "simulated_refunded"
+  ],
+  "money": "simulation only; full admin refunds; no fulfillment",
+  "rules": {
+    "version": 1,
+    "mode": "offline_simulator",
+    "refunds": "admin_full_only"
+  }
+}

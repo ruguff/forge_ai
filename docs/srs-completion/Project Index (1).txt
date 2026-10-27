@@ -1,0 +1,35 @@
+INDEX OF THE PROJECT REPORT (B. Tech CEs & IT SEM VII)
+ 
+
+Note: Here minimum pages are counted (Must be up to 40 to 50 pages, excluding Roman pages), further you can increase according to your requirements completion.    	 
+
+
+
+Project Coordinator:						 Head of the School
+
+SR. NO.  | CONTENTS   | PAGE NO.
+*  | Acknowledgment   | I
+*  | Abstract   | II
+*  | Index of the project report  | VI
+*  | List of Figures (if any) | VII
+*  | List of Tables (if any) | VIII
+1  | ABOUT THE SYSTEM:  | (1)
+   1.1  | Problem definition (Identification of needs): | 
+   1.2  | Requirement Specifications (Product/System Tasks)  | 
+       1.3 | Tools and Technology Used (Front-End/Back-End/Framework/Protocol/API/Services/App. etc.).  | 
+2  | SYSTEM DESIGN USING UML:  | (5)
+   2.1  | Data Flow Diagrams (1 Level DFD, 2 Level DFD must).  | 
+   2.2  | Use Case Diagram.  | 
+   2.3  | Class Diagram.  | 
+   2.4  | Sequence Diagrams.  | 
+3  | DATA DICTIONARY: | (15)
+  3.1 | Database tables SQL/NoSQL (Dimension if NoSQL used) | 
+4  | IMPLEMENTATION:  | (18)
+   4.1  | Screen Layouts with validations.  | 
+   4.2  | Sample Coding (with Security tasks). | 
+   4.3  | Steps of the execution Project and Navigation.  | 
+5  | CONCLUSION:  | (28)
+   5.1  | Importance of the worked-out tasks | 
+   5.2  | Further Enhancement in future.  | 
+6  | REFERENCES:  | (30)
+   6.1  | Books, Research Papers, Experts persons, Technology, Webs, etc. | 

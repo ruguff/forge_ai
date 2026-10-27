@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "public_origin": "http://127.0.0.1:3001",
+  "allow_local_http": true,
+  "session_idle_seconds": 1800,
+  "session_absolute_seconds": 28800,
+  "recovery_seconds": 900
+}

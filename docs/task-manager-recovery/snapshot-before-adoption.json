@@ -1,0 +1,3203 @@
+{
+  "state": {
+    "project_id": "PROJ-7F5BD586F492",
+    "revision": 2,
+    "status": "COMPLETED",
+    "raw_idea": "Build a Personal Task Manager website for a single user.\n\nEach task must have:\n- An automatically generated integer ID\n- A required title\n- A required description\n\nThe user must be able to:\n1. Create a task.\n2. View all saved tasks.\n3. Edit a task\u2019s title and description.\n4. Delete a task.\n\nUse React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage.\n\nProvide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons. Show validation errors clearly.\n\nKeep the application limited to one Task entity. Do not add login, user accounts, AI features, file uploads, notifications, or external services.\n\nAcceptance criteria:\n- Creating a valid task makes it appear in the list.\n- Editing a task updates its displayed information.\n- Deleting a task removes it from the list.\n- Blank titles and descriptions are rejected.\n- Saved tasks remain available after restarting the application.",
+    "intake_qa": {},
+    "product_spec": {
+      "problem_statement": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+      "target_users": [
+        "Individual professionals managing personal tasks"
+      ],
+      "user_personas": [
+        {
+          "name": "Alex",
+          "role": "Freelance Designer",
+          "pain_point": "Forgot to schedule follow-up tasks after meetings",
+          "goal": "Never miss a task again"
+        }
+      ],
+      "core_value_proposition": "A lightweight, persistent task manager that lets you create and manage tasks without login or complexity.",
+      "functional_requirements": [
+        "Create a task with title and description",
+        "View all saved tasks",
+        "Edit task title and description",
+        "Delete a task",
+        "Blank inputs are rejected"
+      ],
+      "mvp_features": [
+        "Task creation",
+        "Task list view",
+        "Task editing",
+        "Task deletion",
+        "Persistent storage"
+      ],
+      "future_scope": [
+        "User authentication",
+        "Multi-user collaboration",
+        "AI-powered task suggestions",
+        "File attachment support"
+      ],
+      "non_goals": [
+        "Login system",
+        "AI features",
+        "File uploads",
+        "Real-time notifications",
+        "External service integration"
+      ],
+      "success_metrics": [
+        {
+          "metric": "Task creation time",
+          "target": "< 2 seconds",
+          "unit": "seconds",
+          "timeframe": "3 months"
+        },
+        {
+          "metric": "Manual review time",
+          "target": "40% reduction",
+          "unit": "%",
+          "timeframe": "3 months"
+        }
+      ],
+      "product_risks": [
+        "SQLite data loss if application crashes before saving",
+        "React state not syncing with FastAPI backend"
+      ]
+    },
+    "ai_spec": {
+      "ai_required": false,
+      "necessity_justification": "The task management system involves only CRUD operations (create, read, update, delete) on a simple Task entity with required fields and validation. All requirements can be satisfied using deterministic approaches: regex for input validation, SQL queries for data retrieval/storage, and rule-based logic for ID generation. No AI/ML capabilities are needed to fulfill the functional or non-functional requirements.",
+      "problem_type": "NONE",
+      "problem_formulation": null,
+      "candidate_models": [],
+      "recommended_model": null,
+      "dataset_requirements": null,
+      "training_vs_api_strategy": null,
+      "inference_latency_sla_ms": null,
+      "evaluation_metrics": [],
+      "baseline_heuristic": "Deterministic rule engine with SQL and regex for validation and storage",
+      "compute_and_cost_estimation": {
+        "monthly_compute_costs_usd": ".00"
+      },
+      "hallucination_and_drift_mitigation": []
+    },
+    "engineering_spec": {
+      "system_architecture_pattern": "Client-Server with REST API",
+      "frontend_architecture": {
+        "category": "UI Framework",
+        "selected": "React",
+        "version": null,
+        "why": "React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app.",
+        "alternatives_rejected": {
+          "Vue.js": "Less mature ecosystem for rapid prototyping; not as optimized for TypeScript integration in this context.",
+          "Angular": "Overkill for simple CRUD operations; adds unnecessary complexity (e.g., RxJS, dependency injection) without benefit."
+        },
+        "tradeoffs": [
+          "React requires manual state management via useState/useReducer; no built-in routing or server communication abstraction.",
+          "TypeScript adds development time but ensures type safety and reduces runtime errors."
+        ],
+        "failure_conditions": [
+          "Frontend state does not sync with backend due to unhandled async updates.",
+          "React component re-renders excessively causing performance degradation."
+        ],
+        "confidence": {
+          "score": 0.95,
+          "fact_references": [
+            "REQ-T-004",
+            "REQ-C-002"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.05,
+          "justification": "React + TypeScript is the explicit choice and matches project constraints."
+        }
+      },
+      "backend_architecture": {
+        "category": "Web Framework",
+        "selected": "FastAPI",
+        "version": null,
+        "why": "FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations.",
+        "alternatives_rejected": {
+          "Django REST Framework": "Over-engineered; adds unnecessary layers (ORM, serializers) and synchronous defaults that may not meet performance targets.",
+          "Flask": "Lacks built-in async support and auto-docs; requires manual configuration for high-performance endpoints."
+        },
+        "tradeoffs": [
+          "FastAPI is minimalist but requires careful async handling to avoid blocking calls.",
+          "TypeScript frontend must be carefully synchronized with FastAPI's async responses."
+        ],
+        "failure_conditions": [
+          "Backend API latency exceeds 2 seconds due to synchronous processing or unoptimized queries.",
+          "State mismatch between React and FastAPI due to unsynchronized state updates."
+        ],
+        "confidence": {
+          "score": 0.96,
+          "fact_references": [
+            "REQ-T-003",
+            "REQ-NF-001"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.04,
+          "justification": "FastAPI is explicitly chosen and meets performance SLAs for this use case."
+        }
+      },
+      "database_primary": {
+        "category": "Persistent Storage",
+        "selected": "SQLite",
+        "version": null,
+        "why": "SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight.",
+        "alternatives_rejected": {
+          "PostgreSQL": "Overkill; requires server setup, configuration, and maintenance beyond scope of a local app.",
+          "MongoDB": "Not relational; unnecessary complexity for simple CRUD on a single entity."
+        },
+        "tradeoffs": [
+          "SQLite is not designed for high concurrency or large datasets.",
+          "Data loss risk if application crashes before commit (mitigated by using WAL mode)."
+        ],
+        "failure_conditions": [
+          "Application crash during write operation causes data corruption or loss.",
+          "Write throughput limited to ~10k TPS, insufficient for >100 tasks."
+        ],
+        "confidence": {
+          "score": 0.9,
+          "fact_references": [
+            "REQ-T-004",
+            "REQ-R-002"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.1,
+          "justification": "SQLite is the explicit choice and fits single-user, low-volume use case."
+        }
+      },
+      "database_cache": null,
+      "api_protocol": {
+        "category": "Communication Protocol",
+        "selected": "HTTP/2 over WebSocket (for real-time updates)",
+        "version": null,
+        "why": "FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency.",
+        "alternatives_rejected": {
+          "REST only with polling": "Inefficient; causes unnecessary round trips and higher latency, violating <2s SLA.",
+          "gRPC": "Overkill; adds complexity without benefit for simple CRUD over a single client."
+        },
+        "tradeoffs": [
+          "WebSocket requires persistent connection; may increase memory usage per instance.",
+          "HTTP/2 is standard but not universally supported in all environments (e.g., older browsers)."
+        ],
+        "failure_conditions": [
+          "WebSocket connection drops cause task list to appear stale or unresponsive.",
+          "High number of concurrent WebSocket connections exceeds server limit (~65k per instance)."
+        ],
+        "confidence": {
+          "score": 0.94,
+          "fact_references": [
+            "REQ-T-003",
+            "REQ-NF-001"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.06,
+          "justification": "WebSocket is necessary for real-time updates and meets performance goals."
+        }
+      },
+      "async_processing": null,
+      "storage_strategy": {
+        "category": "Data Persistence",
+        "selected": "SQLite with WAL mode enabled",
+        "version": null,
+        "why": "WAL (Write-Ahead Logging) ensures crash safety by allowing safe concurrent reads/writes. SQLite is embedded and file-based.",
+        "alternatives_rejected": {
+          "JSON file storage": "No transaction support; risk of corruption on crash; no ACID guarantees.",
+          "Redis cache only": "Not persistent; data lost on restart, violating requirement."
+        },
+        "tradeoffs": [
+          "WAL mode increases disk I/O slightly but improves safety.",
+          "SQLite is single-threaded; concurrent writes may be serialized."
+        ],
+        "failure_conditions": [
+          "Application crash during write causes SQLite file corruption or data loss.",
+          "Write throughput limited to ~10k TPS, sufficient for 100 tasks."
+        ],
+        "confidence": {
+          "score": 0.85,
+          "fact_references": [
+            "REQ-T-004",
+            "REQ-R-002"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.15,
+          "justification": "WAL mode mitigates crash risk; SQLite is optimal for single-user, low-volume use."
+        }
+      },
+      "observability_stack": {
+        "logging": "loguru",
+        "metrics": "Prometheus with FastAPI middleware",
+        "tracing": "OpenTelemetry (OTel) instrumentation"
+      },
+      "mermaid_diagram": "graph TD\\n    React[React App] -->|HTTP/2, WS| FastAPI[FastAPI Backend]\\n    FastAPI -->|SQLite DB| SQLite\\n    SQLite -->|WAL mode| Disk File\\n    FastAPI -->|Prometheus| Prometheus\\n    FastAPI -->|OTel| OpenTelemetry",
+      "scalability_limits_and_bottlenecks": [
+        "Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)",
+        "WebSocket connection limit per instance: ~65k"
+      ]
+    },
+    "ux_spec": {
+      "primary_user_journey": [
+        "Sign up",
+        "Create project",
+        "View results"
+      ],
+      "information_architecture": {
+        "views": [
+          "TaskForm",
+          "TaskList",
+          "ValidationMessage"
+        ]
+      },
+      "view_states": [
+        {
+          "view_name": "TaskForm",
+          "loading_state": "Displaying task creation form with spinner replacing input fields",
+          "empty_state": "No tasks saved; list is empty",
+          "error_state": "Error message 'Title and description are required' displayed above inputs",
+          "success_state": "Task created successfully; new task appears in TaskList"
+        },
+        {
+          "view_name": "TaskList",
+          "loading_state": "Loading spinner replaces task list while fetching from backend",
+          "empty_state": "No tasks saved; message 'No tasks to display' shown",
+          "error_state": "Error message 'Failed to load tasks. Please try again.' appears at top",
+          "success_state": "List of tasks with Edit and Delete buttons displayed"
+        },
+        {
+          "view_name": "ValidationMessage",
+          "loading_state": "Loading spinner replaces validation messages while checking inputs",
+          "empty_state": "No errors; message 'Task created' shown after success",
+          "error_state": "Error message 'Title and description are required' shown above fields",
+          "success_state": "Success message 'Task updated' displayed after edit or delete"
+        }
+      ],
+      "accessibility_standards": [
+        "Keyboard navigation support for all interactive elements (WCAG 2.1 AA)",
+        "Focus management on form inputs and buttons"
+      ],
+      "responsive_breakpoints": {
+        "mobile": "320px",
+        "tablet": "768px",
+        "desktop": "1024px"
+      }
+    },
+    "security_report": {
+      "authentication_mechanism": {
+        "category": "Authentication",
+        "selected": "No authentication",
+        "version": null,
+        "why": "The system is a single-user application with no user accounts or login functionality required by the intake constraints.",
+        "alternatives_rejected": {
+          "Local Passwords": "Excluded because the scope is strictly single-user and no account management is needed; local passwords would imply multiple users or persistent credentials.",
+          "OAuth": "Excluded as it introduces external identity providers, user accounts, and authentication flows that violate the 'no login' constraint."
+        },
+        "tradeoffs": [
+          "No need for credential storage or validation overhead.",
+          "Eliminates risk of credential leakage or token theft."
+        ],
+        "failure_conditions": [],
+        "confidence": {
+          "score": 0.98,
+          "fact_references": [
+            "REQ-NG-001",
+            "REQ-C-001"
+          ],
+          "unverified_assumptions": [],
+          "risk_penalty": 0.0,
+          "justification": "Single-user scope mandates no authentication; alternatives introduce unnecessary complexity and violate constraints."
+        }
+      },
+      "authorization_model": "Single-user local access; no application roles",
+      "data_protection_at_rest": "SQLite file stored with WAL mode enabled, encrypted at rest using OS-level file permissions (chmod 600).",
+      "data_protection_in_transit": "HTTPS enforced via FastAPI middleware; WebSocket connections use TLS 1.3 for encryption.",
+      "input_validation_rules": [
+        "Task title and description must not be empty strings.",
+        "Generated task ID must be a positive integer."
+      ],
+      "ai_threat_mitigations": [],
+      "threat_catalog": [
+        {
+          "threat_id": "T-001",
+          "stride_category": "Spoofing",
+          "threat_description": "Client could send forged HTTP/2/WebSocket messages to bypass validation or trigger unintended state changes.",
+          "severity": "HIGH",
+          "impact": "Potential unauthorized task creation or data corruption.",
+          "likelihood": "MEDIUM",
+          "mitigation_strategy": "Validate all incoming payloads on FastAPI server using Pydantic models and reject malformed requests.",
+          "priority": 3
+        },
+        {
+          "threat_id": "T-002",
+          "stride_category": "Tampering",
+          "threat_description": "Malicious client could modify task data in transit via WebSocket to alter title or description fields.",
+          "severity": "MEDIUM",
+          "impact": "Inconsistent UI state and potential logic bypass.",
+          "likelihood": "LOW",
+          "mitigation_strategy": "Enforce schema validation on FastAPI endpoints; reject unsupported field modifications.",
+          "priority": 2
+        },
+        {
+          "threat_id": "T-003",
+          "stride_category": "Denial of Service",
+          "threat_description": "Excessive WebSocket connections from a single client could exhaust server limits (~65k), causing service degradation.",
+          "severity": "CRITICAL",
+          "impact": "Application becomes unresponsive to all users, violating SLA.",
+          "likelihood": "MEDIUM",
+          "mitigation_strategy": "Implement per-client connection rate limiting and graceful disconnect handling.",
+          "priority": 1
+        }
+      ]
+    },
+    "qa_spec": {
+      "test_pyramid_distribution": {
+        "unit": "80%",
+        "integration": "15%",
+        "e2e": "5%"
+      },
+      "frameworks_and_tooling": [
+        {
+          "category": "Testing Framework",
+          "selected": "pytest",
+          "version": null,
+          "why": "Mature, Python-native testing framework with rich assertion support.",
+          "alternatives_rejected": {
+            "unittest": "Lacks modern pytest features like fixtures and parameterization.",
+            "nose2": "Outdated syntax; not actively maintained for new projects."
+          },
+          "tradeoffs": [
+            "Requires test discovery setup",
+            "Verbose output compared to Playwright"
+          ],
+          "failure_conditions": [],
+          "confidence": {
+            "score": 0.95,
+            "fact_references": [
+              "REQ-T-002"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.05,
+            "justification": "React + TypeScript is the explicit choice and matches project constraints."
+          }
+        },
+        {
+          "category": "UI Testing",
+          "selected": "Playwright",
+          "version": null,
+          "why": "Excellent for end-to-end UI validation with built-in assertions.",
+          "alternatives_rejected": {
+            "Selenium": "Slower execution; requires manual WebDriver management.",
+            "Cypress": "Not ideal for React + FastAPI hybrid; lacks native API testing."
+          },
+          "tradeoffs": [
+            "Longer test setup time",
+            "Browser dependency"
+          ],
+          "failure_conditions": [],
+          "confidence": {
+            "score": 0.94,
+            "fact_references": [
+              "REQ-T-003"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.06,
+            "justification": "WebSocket is necessary for real-time updates and meets performance goals."
+          }
+        }
+      ],
+      "critical_test_cases": [
+        {
+          "test_id": "TC-001",
+          "target_component": "Task Creation API",
+          "category": "Unit",
+          "scenario": "Create task with valid title and description",
+          "expected_outcome": "API returns 201 Created with generated ID, task stored in SQLite",
+          "traceable_requirement_id": "REQ-F-001"
+        },
+        {
+          "test_id": "TC-002",
+          "target_component": "Task List API",
+          "category": "Integration",
+          "scenario": "Retrieve all tasks after creation",
+          "expected_outcome": "API returns 200 OK with list of tasks including generated ID, title, description",
+          "traceable_requirement_id": "REQ-F-001"
+        },
+        {
+          "test_id": "TC-003",
+          "target_component": "Task Deletion API",
+          "category": "e2e",
+          "scenario": "Delete task and verify removal from list",
+          "expected_outcome": "API returns 204 No Content; subsequent retrieval shows task absent",
+          "traceable_requirement_id": "REQ-F-001"
+        }
+      ],
+      "performance_load_thresholds": {
+        "p99_latency": "< 2 seconds",
+        "rps": "500"
+      },
+      "ai_model_validation_protocol": null
+    },
+    "detected_conflicts": [],
+    "final_blueprint_markdown": "# FINAL PROJECT BLUEPRINT: PROJ-7F5BD586F492\n\n## 1. Executive Summary\n**Project ID**: `PROJ-7F5BD586F492`  \n**Revision**: `2`  \n**Status**: `ARCHITECTING`  \n\n### High-Level Idea\nBuild a Personal Task Manager website for a single user.\n\nEach task must have:\n- An automatically generated integer ID\n- A required title\n- A required description\n\nThe user must be able to:\n1. Create a task.\n2. View all saved tasks.\n3. Edit a task\u2019s title and description.\n4. Delete a task.\n\nUse React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage.\n\nProvide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons. Show validation errors clearly.\n\nKeep the application limited to one Task entity. Do not add login, user accounts, AI features, file uploads, notifications, or external services.\n\nAcceptance criteria:\n- Creating a valid task makes it appear in the list.\n- Editing a task updates its displayed information.\n- Deleting a task removes it from the list.\n- Blank titles and descriptions are rejected.\n- Saved tasks remain available after restarting the application.\n\n### Core Value Proposition\nA lightweight, persistent task manager that lets you create and manage tasks without login or complexity.\n\n## 2. Problem Statement & Scope Boundaries\n\n### Problem Statement\nUser needs a simple way to create, view, edit, and delete tasks with persistent storage.\n\n### Non-Goals & Exclusions\n- Login system\n- AI features\n- File uploads\n- Real-time notifications\n- External service integration\n\n## 3. Target User Personas & Use Case Matrix\n\n| Persona Name | Role | Pain Point | Goal |\n|---|---|---|---|\n| Alex | Freelance Designer | Forgot to schedule follow-up tasks after meetings | Never miss a task again |\n\n## 4. System Objectives & Measurable OKRs\n\n| Metric | Target Threshold |\n|---|---|\n| Task creation time | < 2 seconds |\n| Manual review time | 40% reduction |\n\n## 5. Functional Requirements (FR-001 through FR-NNN)\n\n- **FR-001**: Create a task with title and description\n- **FR-002**: View all saved tasks\n- **FR-003**: Edit task title and description\n- **FR-004**: Delete a task\n- **FR-005**: Blank inputs are rejected\n\n## 6. Non-Functional Requirements (Latency, Throughput, SLA)\n\n- **Scale & Availability Target (Q9)**: N/A\n- **Infrastructure Budget / Constraints (Q8)**: N/A\n- **Inference Latency SLA**: N/A ms\n\n## 7. MVP Scope (Phase 1 Deliverables)\n\n- [x] **Task creation**\n- [x] **Task list view**\n- [x] **Task editing**\n- [x] **Task deletion**\n- [x] **Persistent storage**\n\n## 8. Future Roadmap (Phase 2+ Deferred Features)\n\n- [ ] **User authentication**\n- [ ] **Multi-user collaboration**\n- [ ] **AI-powered task suggestions**\n- [ ] **File attachment support**\n\n## 9. System Architecture & Topology\n\n**Pattern**: `Client-Server with REST API`\n\n```mermaid\ngraph TD\\n    React[React App] -->|HTTP/2, WS| FastAPI[FastAPI Backend]\\n    FastAPI -->|SQLite DB| SQLite\\n    SQLite -->|WAL mode| Disk File\\n    FastAPI -->|Prometheus| Prometheus\\n    FastAPI -->|OTel| OpenTelemetry\n```\n\n## 10. Frontend Architecture (State, Routing, Caching)\n\n- **Selected**: React (vlatest)\n- **Rationale**: React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app.\n- **Trade-offs**: React requires manual state management via useState/useReducer; no built-in routing or server communication abstraction., TypeScript adds development time but ensures type safety and reduces runtime errors.\n\n## 11. Backend Architecture & Workflows (Services, Async Pipelines)\n\n- **Selected**: FastAPI (vlatest)\n- **Rationale**: FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations.\n- **API Protocol**: HTTP/2 over WebSocket (for real-time updates)\n\n## 12. Database Architecture & Schemas (ER Diagram, Indexing)\n\n- **Primary Database**: SQLite\n- **Rationale**: SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight.\n\n## 13. API Design & Interface Contracts (Endpoints, Payloads, Errors)\n\n- **Protocol**: HTTP/2 over WebSocket (for real-time updates)\n- **Why**: FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency.\n\n## 14. AI/ML Subsystem Architecture\n\n- **AI Required**: `False`\n- **Problem Type**: `NONE`\n- **Justification**: The task management system involves only CRUD operations (create, read, update, delete) on a simple Task entity with required fields and validation. All requirements can be satisfied using deterministic approaches: regex for input validation, SQL queries for data retrieval/storage, and rule-based logic for ID generation. No AI/ML capabilities are needed to fulfill the functional or non-functional requirements.\n\n## 15. Dataset Strategy & Data Engineering (Pipelines, Validation)\n\nDataset strategy unspecified or non-ML project.\n\n## 16. UX Design & View State Specifications (4 States per screen)\n\n| View Name | Loading State | Empty State | Error State | Success State |\n|---|---|---|---|---|\n| TaskForm | Displaying task creation form with spinner replacing input fields | No tasks saved; list is empty | Error message 'Title and description are required' displayed above inputs | Task created successfully; new task appears in TaskList |\n| TaskList | Loading spinner replaces task list while fetching from backend | No tasks saved; message 'No tasks to display' shown | Error message 'Failed to load tasks. Please try again.' appears at top | List of tasks with Edit and Delete buttons displayed |\n| ValidationMessage | Loading spinner replaces validation messages while checking inputs | No errors; message 'Task created' shown after success | Error message 'Title and description are required' shown above fields | Success message 'Task updated' displayed after edit or delete |\n\n## 17. Security Architecture & Threat Model (STRIDE Catalog)\n\n- **Authentication**: No authentication\n- **Authorization**: Single-user local access; no application roles\n\n| Threat ID | STRIDE | Severity | Impact | Mitigation |\n|---|---|---|---|---|\n| T-001 | Spoofing | HIGH | Potential unauthorized task creation or data corruption. | Validate all incoming payloads on FastAPI server using Pydantic models and reject malformed requests. |\n| T-002 | Tampering | MEDIUM | Inconsistent UI state and potential logic bypass. | Enforce schema validation on FastAPI endpoints; reject unsupported field modifications. |\n| T-003 | Denial of Service | CRITICAL | Application becomes unresponsive to all users, violating SLA. | Implement per-client connection rate limiting and graceful disconnect handling. |\n\n## 18. Verification & QA Test Pyramid (Test Cases, Load Thresholds)\n\n- **Test Pyramid**: {\"unit\": \"80%\", \"integration\": \"15%\", \"e2e\": \"5%\"}\n\n| Test ID | Component | Category | Scenario | Expected Outcome | Req ID |\n|---|---|---|---|---|---|\n| TC-001 | Task Creation API | Unit | Create task with valid title and description | API returns 201 Created with generated ID, task stored in SQLite | REQ-F-001 |\n| TC-002 | Task List API | Integration | Retrieve all tasks after creation | API returns 200 OK with list of tasks including generated ID, title, description | REQ-F-001 |\n| TC-003 | Task Deletion API | e2e | Delete task and verify removal from list | API returns 204 No Content; subsequent retrieval shows task absent | REQ-F-001 |\n\n## 19. Complete Technology Stack Table\n\n| Layer | Technology Tool | Version | Rationale |\n|---|---|---|---|\n| Frontend | React | latest | React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app. |\n| Backend | FastAPI | latest | FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations. |\n| Database | SQLite | latest | SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight. |\n| API Protocol | HTTP/2 over WebSocket (for real-time updates) | latest | FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency. |\n| Storage | SQLite with WAL mode enabled | latest | WAL (Write-Ahead Logging) ensures crash safety by allowing safe concurrent reads/writes. SQLite is embedded and file-based. |\n\n## 20. Rejected Technology Alternatives & Trade-Offs Matrix\n\n| Technology Category | Selected | Rejected Alternatives & Reasons |\n|---|---|---|\n| UI Framework | React | Vue.js: Less mature ecosystem for rapid prototyping; not as optimized for TypeScript integration in this context.; Angular: Overkill for simple CRUD operations; adds unnecessary complexity (e.g., RxJS, dependency injection) without benefit. |\n| Web Framework | FastAPI | Django REST Framework: Over-engineered; adds unnecessary layers (ORM, serializers) and synchronous defaults that may not meet performance targets.; Flask: Lacks built-in async support and auto-docs; requires manual configuration for high-performance endpoints. |\n| Persistent Storage | SQLite | PostgreSQL: Overkill; requires server setup, configuration, and maintenance beyond scope of a local app.; MongoDB: Not relational; unnecessary complexity for simple CRUD on a single entity. |\n| Communication Protocol | HTTP/2 over WebSocket (for real-time updates) | REST only with polling: Inefficient; causes unnecessary round trips and higher latency, violating <2s SLA.; gRPC: Overkill; adds complexity without benefit for simple CRUD over a single client. |\n\n## 21. Major Architectural Decisions (ADR Matrix)\n\n| ADR ID | Context | Decision | Consequence |\n|---|---|---|---|\n| ADR-001 | High concurrency & scale | System Pattern: Client-Server with REST API | Scalability bottlenecks: Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison); WebSocket connection limit per instance: ~65k |\n\n## 22. Resolved Cross-Agent Conflicts (Audit trail of arbitrations)\n\nNo cross-agent conflicts detected.\n\n## 23. Technical Risks & Failure Modes\n\n- **Product Risk**: SQLite data loss if application crashes before saving\n- **Product Risk**: React state not syncing with FastAPI backend\n- **Scalability Limit**: Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)\n- **Scalability Limit**: WebSocket connection limit per instance: ~65k\n\n## 24. Known System Limitations\n\n- Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)\n- WebSocket connection limit per instance: ~65k\n\n## 25. Implementation Sequencing & Dependency Roadmap\n\n1. **Phase 1A**: Database schema setup & core API models\n2. **Phase 1B**: Auth service & user session management\n3. **Phase 1C**: Core backend business logic & third-party integrations\n4. **Phase 1D**: Frontend views implementation & state wiring\n5. **Phase 1E**: QA Test suite execution & Security audit verification\n\n## 26. Acceptance Criteria (Testable validation assertions)\n\n- [ ] **TC-001**: Create task with valid title and description => Assert `API returns 201 Created with generated ID, task stored in SQLite`\n- [ ] **TC-002**: Retrieve all tasks after creation => Assert `API returns 200 OK with list of tasks including generated ID, title, description`\n- [ ] **TC-003**: Delete task and verify removal from list => Assert `API returns 204 No Content; subsequent retrieval shows task absent`\n\n## 27. Definition of Done (DoD Checklist)\n\n- [ ] All 27 blueprint sections generated and verified\n- [ ] 100% test coverage for critical unit and integration tests\n- [ ] Zero CRITICAL or HIGH security vulnerability findings in STRIDE catalog\n- [ ] Architecture diagram verified syntactically valid\n- [ ] Traceability matrix fully populated across all intake requirements\n",
+    "audit_traceability_matrix": {}
+  },
+  "context": {
+    "project_id": "PROJ-7F5BD586F492",
+    "version": 2,
+    "raw_request": "Build a Personal Task Manager website for a single user.\n\nEach task must have:\n- An automatically generated integer ID\n- A required title\n- A required description\n\nThe user must be able to:\n1. Create a task.\n2. View all saved tasks.\n3. Edit a task\u2019s title and description.\n4. Delete a task.\n\nUse React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage.\n\nProvide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons. Show validation errors clearly.\n\nKeep the application limited to one Task entity. Do not add login, user accounts, AI features, file uploads, notifications, or external services.\n\nAcceptance criteria:\n- Creating a valid task makes it appear in the list.\n- Editing a task updates its displayed information.\n- Deleting a task removes it from the list.\n- Blank titles and descriptions are rejected.\n- Saved tasks remain available after restarting the application.",
+    "raw_idea": "Build a Personal Task Manager website for a single user.\n\nEach task must have:\n- An automatically generated integer ID\n- A required title\n- A required description\n\nThe user must be able to:\n1. Create a task.\n2. View all saved tasks.\n3. Edit a task\u2019s title and description.\n4. Delete a task.\n\nUse React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage.\n\nProvide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons. Show validation errors clearly.\n\nKeep the application limited to one Task entity. Do not add login, user accounts, AI features, file uploads, notifications, or external services.\n\nAcceptance criteria:\n- Creating a valid task makes it appear in the list.\n- Editing a task updates its displayed information.\n- Deleting a task removes it from the list.\n- Blank titles and descriptions are rejected.\n- Saved tasks remain available after restarting the application.",
+    "project_name": "Personal Task Manager",
+    "problem_statement": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+    "goals": [
+      "Enable creation, viewing, editing, and deletion of tasks with persistent storage."
+    ],
+    "target_users": [
+      "A single individual using the application to manage their tasks."
+    ],
+    "user_journeys": [
+      "User fills out task form and submits to create a new task.",
+      "User sees all saved tasks in a list.",
+      "User edits title and description of a task.",
+      "User removes a task from the list."
+    ],
+    "requirements": [
+      {
+        "id": "REQ-P-001",
+        "dimension": "problem",
+        "title": "Task Management for Single User",
+        "description": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Build a Personal Task Manager website for a single user."
+      },
+      {
+        "id": "REQ-G-001",
+        "dimension": "goal",
+        "title": "Single User Task Management",
+        "description": "Enable creation, viewing, editing, and deletion of tasks with persistent storage.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Each task must have an automatically generated integer ID, a required title, and a required description."
+      },
+      {
+        "id": "REQ-F-001",
+        "dimension": "functional_requirements",
+        "title": "Task Creation",
+        "description": "System generates an integer ID and stores title and description.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Each task must have: An automatically generated integer ID, A required title, A required description."
+      },
+      {
+        "id": "REQ-F-002",
+        "dimension": "functional_requirements",
+        "title": "Task Persistence",
+        "description": "Tasks remain available after application restart.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Saved tasks remain available after restarting the application."
+      },
+      {
+        "id": "REQ-F-003",
+        "dimension": "functional_requirements",
+        "title": "Validation",
+        "description": "Blank titles and descriptions are rejected.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Blank titles and descriptions are rejected."
+      },
+      {
+        "id": "REQ-NF-001",
+        "dimension": "non_functional_requirements",
+        "title": "Performance",
+        "description": "Application must respond within 2 seconds for task operations.",
+        "type": "INFERRED",
+        "source": "AGENT",
+        "confidence": 0.85,
+        "evidence": "FastAPI is used, which typically provides low latency; assumed to meet performance standards."
+      },
+      {
+        "id": "REQ-NF-002",
+        "dimension": "non_functional_requirements",
+        "title": "Scalability",
+        "description": "System should handle up to 100 tasks without degradation.",
+        "type": "INFERRED",
+        "source": "AGENT",
+        "confidence": 0.8,
+        "evidence": "SQLite is used, which scales well for small datasets; assumed to support up to 100 tasks."
+      },
+      {
+        "id": "REQ-E-001",
+        "dimension": "expected_outputs",
+        "title": "Task Form UI",
+        "description": "A form to input task title and description.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Provide a simple interface with a task form."
+      },
+      {
+        "id": "REQ-E-002",
+        "dimension": "expected_outputs",
+        "title": "Task List UI",
+        "description": "A list displaying all tasks with Edit and Delete buttons.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Provide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons."
+      },
+      {
+        "id": "REQ-E-003",
+        "dimension": "expected_outputs",
+        "title": "Validation Messages",
+        "description": "Clear error messages for blank inputs.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Show validation errors clearly."
+      },
+      {
+        "id": "REQ-T-002",
+        "dimension": "technology_preferences",
+        "title": "Frontend Framework",
+        "description": "React with TypeScript.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Use React with TypeScript for the frontend."
+      },
+      {
+        "id": "REQ-T-003",
+        "dimension": "technology_preferences",
+        "title": "Backend Framework",
+        "description": "FastAPI.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Use React with TypeScript for the frontend, FastAPI for the backend."
+      },
+      {
+        "id": "REQ-T-004",
+        "dimension": "technology_preferences",
+        "title": "Database",
+        "description": "SQLite.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Use React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage."
+      },
+      {
+        "id": "REQ-NG-001",
+        "dimension": "non_goals",
+        "title": "No Login System",
+        "description": "User authentication is not implemented.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts."
+      },
+      {
+        "id": "REQ-NG-002",
+        "dimension": "non_goals",
+        "title": "No AI Features",
+        "description": "Artificial intelligence capabilities are excluded.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts, AI features."
+      },
+      {
+        "id": "REQ-NG-003",
+        "dimension": "non_goals",
+        "title": "No File Uploads",
+        "description": "File upload functionality is omitted.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts, AI features, file uploads."
+      },
+      {
+        "id": "REQ-NG-004",
+        "dimension": "non_goals",
+        "title": "No Notifications",
+        "description": "Real-time notifications are not included.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts, AI features, file uploads, or external services."
+      },
+      {
+        "id": "REQ-NG-005",
+        "dimension": "non_goals",
+        "title": "No External Services",
+        "description": "The system does not integrate with any third-party APIs.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts, AI features, file uploads, notifications, or external services."
+      },
+      {
+        "id": "REQ-R-001",
+        "dimension": "risks",
+        "title": "SQLite Data Loss",
+        "description": "Application restart may cause data loss if not properly saved.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Saved tasks remain available after restarting the application."
+      },
+      {
+        "id": "REQ-R-002",
+        "dimension": "risks",
+        "title": "Frontend State Management",
+        "description": "React state may not sync correctly with backend.",
+        "type": "INFERRED",
+        "source": "AGENT",
+        "confidence": 0.75,
+        "evidence": "FastAPI is used for backend; React frontend must maintain consistent state."
+      }
+    ],
+    "assumptions": [
+      {
+        "id": "REQ-A-001",
+        "dimension": "assumptions",
+        "title": "SQLite Capacity",
+        "description": "SQLite can store up to 100 tasks without performance issues.",
+        "type": "ASSUMPTION",
+        "source": "INFERENCE",
+        "confidence": 0.8,
+        "evidence": "SQLite is used for persistent storage; assumed to handle small datasets efficiently."
+      },
+      {
+        "id": "REQ-A-002",
+        "dimension": "assumptions",
+        "title": "FastAPI Latency",
+        "description": "FastAPI will provide sub-second response times.",
+        "type": "ASSUMPTION",
+        "source": "INFERENCE",
+        "confidence": 0.85,
+        "evidence": "FastAPI is used, which typically provides low latency; assumed to meet performance standards."
+      }
+    ],
+    "unknowns": [
+      {
+        "id": "REQ-U-001",
+        "dimension": "unknowns",
+        "title": "Task ID Generation Algorithm",
+        "description": "How the integer ID is generated (e.g., auto-increment, UUID).",
+        "type": "UNKNOWN",
+        "source": "INFERENCE",
+        "confidence": 0.7,
+        "evidence": "Each task must have an automatically generated integer ID."
+      },
+      {
+        "id": "REQ-U-002",
+        "dimension": "unknowns",
+        "title": "UI Design Details",
+        "description": "Exact layout and styling of the interface.",
+        "type": "UNKNOWN",
+        "source": "INFERENCE",
+        "confidence": 0.6,
+        "evidence": "Provide a simple interface with a task form, a task list."
+      }
+    ],
+    "constraints": [
+      {
+        "id": "REQ-C-001",
+        "dimension": "constraints",
+        "title": "Single User Scope",
+        "description": "No user accounts or login functionality.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Do not add login, user accounts, AI features, file uploads, notifications, or external services."
+      },
+      {
+        "id": "REQ-C-002",
+        "dimension": "constraints",
+        "title": "Technology Stack",
+        "description": "Use React with TypeScript for frontend and FastAPI with SQLite for backend.",
+        "type": "EXPLICIT",
+        "source": "USER",
+        "confidence": 0.95,
+        "evidence": "Use React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage."
+      }
+    ],
+    "clarification_questions": [],
+    "decisions": [],
+    "agent_outputs": {
+      "product_spec": {
+        "problem_statement": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+        "target_users": [
+          "Individual professionals managing personal tasks"
+        ],
+        "user_personas": [
+          {
+            "name": "Alex",
+            "role": "Freelance Designer",
+            "pain_point": "Forgot to schedule follow-up tasks after meetings",
+            "goal": "Never miss a task again"
+          }
+        ],
+        "core_value_proposition": "A lightweight, persistent task manager that lets you create and manage tasks without login or complexity.",
+        "functional_requirements": [
+          "Create a task with title and description",
+          "View all saved tasks",
+          "Edit task title and description",
+          "Delete a task",
+          "Blank inputs are rejected"
+        ],
+        "mvp_features": [
+          "Task creation",
+          "Task list view",
+          "Task editing",
+          "Task deletion",
+          "Persistent storage"
+        ],
+        "future_scope": [
+          "User authentication",
+          "Multi-user collaboration",
+          "AI-powered task suggestions",
+          "File attachment support"
+        ],
+        "non_goals": [
+          "Login system",
+          "AI features",
+          "File uploads",
+          "Real-time notifications",
+          "External service integration"
+        ],
+        "success_metrics": [
+          {
+            "metric": "Task creation time",
+            "target": "< 2 seconds",
+            "unit": "seconds",
+            "timeframe": "3 months"
+          },
+          {
+            "metric": "Manual review time",
+            "target": "40% reduction",
+            "unit": "%",
+            "timeframe": "3 months"
+          }
+        ],
+        "product_risks": [
+          "SQLite data loss if application crashes before saving",
+          "React state not syncing with FastAPI backend"
+        ]
+      },
+      "ai_spec": {
+        "ai_required": false,
+        "necessity_justification": "The task management system involves only CRUD operations (create, read, update, delete) on a simple Task entity with required fields and validation. All requirements can be satisfied using deterministic approaches: regex for input validation, SQL queries for data retrieval/storage, and rule-based logic for ID generation. No AI/ML capabilities are needed to fulfill the functional or non-functional requirements.",
+        "problem_type": "NONE",
+        "problem_formulation": null,
+        "candidate_models": [],
+        "recommended_model": null,
+        "dataset_requirements": null,
+        "training_vs_api_strategy": null,
+        "inference_latency_sla_ms": null,
+        "evaluation_metrics": [],
+        "baseline_heuristic": "Deterministic rule engine with SQL and regex for validation and storage",
+        "compute_and_cost_estimation": {
+          "monthly_compute_costs_usd": ".00"
+        },
+        "hallucination_and_drift_mitigation": []
+      },
+      "engineering_spec": {
+        "system_architecture_pattern": "Client-Server with REST API",
+        "frontend_architecture": {
+          "category": "UI Framework",
+          "selected": "React",
+          "version": null,
+          "why": "React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app.",
+          "alternatives_rejected": {
+            "Vue.js": "Less mature ecosystem for rapid prototyping; not as optimized for TypeScript integration in this context.",
+            "Angular": "Overkill for simple CRUD operations; adds unnecessary complexity (e.g., RxJS, dependency injection) without benefit."
+          },
+          "tradeoffs": [
+            "React requires manual state management via useState/useReducer; no built-in routing or server communication abstraction.",
+            "TypeScript adds development time but ensures type safety and reduces runtime errors."
+          ],
+          "failure_conditions": [
+            "Frontend state does not sync with backend due to unhandled async updates.",
+            "React component re-renders excessively causing performance degradation."
+          ],
+          "confidence": {
+            "score": 0.95,
+            "fact_references": [
+              "REQ-T-004",
+              "REQ-C-002"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.05,
+            "justification": "React + TypeScript is the explicit choice and matches project constraints."
+          }
+        },
+        "backend_architecture": {
+          "category": "Web Framework",
+          "selected": "FastAPI",
+          "version": null,
+          "why": "FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations.",
+          "alternatives_rejected": {
+            "Django REST Framework": "Over-engineered; adds unnecessary layers (ORM, serializers) and synchronous defaults that may not meet performance targets.",
+            "Flask": "Lacks built-in async support and auto-docs; requires manual configuration for high-performance endpoints."
+          },
+          "tradeoffs": [
+            "FastAPI is minimalist but requires careful async handling to avoid blocking calls.",
+            "TypeScript frontend must be carefully synchronized with FastAPI's async responses."
+          ],
+          "failure_conditions": [
+            "Backend API latency exceeds 2 seconds due to synchronous processing or unoptimized queries.",
+            "State mismatch between React and FastAPI due to unsynchronized state updates."
+          ],
+          "confidence": {
+            "score": 0.96,
+            "fact_references": [
+              "REQ-T-003",
+              "REQ-NF-001"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.04,
+            "justification": "FastAPI is explicitly chosen and meets performance SLAs for this use case."
+          }
+        },
+        "database_primary": {
+          "category": "Persistent Storage",
+          "selected": "SQLite",
+          "version": null,
+          "why": "SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight.",
+          "alternatives_rejected": {
+            "PostgreSQL": "Overkill; requires server setup, configuration, and maintenance beyond scope of a local app.",
+            "MongoDB": "Not relational; unnecessary complexity for simple CRUD on a single entity."
+          },
+          "tradeoffs": [
+            "SQLite is not designed for high concurrency or large datasets.",
+            "Data loss risk if application crashes before commit (mitigated by using WAL mode)."
+          ],
+          "failure_conditions": [
+            "Application crash during write operation causes data corruption or loss.",
+            "Write throughput limited to ~10k TPS, insufficient for >100 tasks."
+          ],
+          "confidence": {
+            "score": 0.9,
+            "fact_references": [
+              "REQ-T-004",
+              "REQ-R-002"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.1,
+            "justification": "SQLite is the explicit choice and fits single-user, low-volume use case."
+          }
+        },
+        "database_cache": null,
+        "api_protocol": {
+          "category": "Communication Protocol",
+          "selected": "HTTP/2 over WebSocket (for real-time updates)",
+          "version": null,
+          "why": "FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency.",
+          "alternatives_rejected": {
+            "REST only with polling": "Inefficient; causes unnecessary round trips and higher latency, violating <2s SLA.",
+            "gRPC": "Overkill; adds complexity without benefit for simple CRUD over a single client."
+          },
+          "tradeoffs": [
+            "WebSocket requires persistent connection; may increase memory usage per instance.",
+            "HTTP/2 is standard but not universally supported in all environments (e.g., older browsers)."
+          ],
+          "failure_conditions": [
+            "WebSocket connection drops cause task list to appear stale or unresponsive.",
+            "High number of concurrent WebSocket connections exceeds server limit (~65k per instance)."
+          ],
+          "confidence": {
+            "score": 0.94,
+            "fact_references": [
+              "REQ-T-003",
+              "REQ-NF-001"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.06,
+            "justification": "WebSocket is necessary for real-time updates and meets performance goals."
+          }
+        },
+        "async_processing": null,
+        "storage_strategy": {
+          "category": "Data Persistence",
+          "selected": "SQLite with WAL mode enabled",
+          "version": null,
+          "why": "WAL (Write-Ahead Logging) ensures crash safety by allowing safe concurrent reads/writes. SQLite is embedded and file-based.",
+          "alternatives_rejected": {
+            "JSON file storage": "No transaction support; risk of corruption on crash; no ACID guarantees.",
+            "Redis cache only": "Not persistent; data lost on restart, violating requirement."
+          },
+          "tradeoffs": [
+            "WAL mode increases disk I/O slightly but improves safety.",
+            "SQLite is single-threaded; concurrent writes may be serialized."
+          ],
+          "failure_conditions": [
+            "Application crash during write causes SQLite file corruption or data loss.",
+            "Write throughput limited to ~10k TPS, sufficient for 100 tasks."
+          ],
+          "confidence": {
+            "score": 0.85,
+            "fact_references": [
+              "REQ-T-004",
+              "REQ-R-002"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.15,
+            "justification": "WAL mode mitigates crash risk; SQLite is optimal for single-user, low-volume use."
+          }
+        },
+        "observability_stack": {
+          "logging": "loguru",
+          "metrics": "Prometheus with FastAPI middleware",
+          "tracing": "OpenTelemetry (OTel) instrumentation"
+        },
+        "mermaid_diagram": "graph TD\\n    React[React App] -->|HTTP/2, WS| FastAPI[FastAPI Backend]\\n    FastAPI -->|SQLite DB| SQLite\\n    SQLite -->|WAL mode| Disk File\\n    FastAPI -->|Prometheus| Prometheus\\n    FastAPI -->|OTel| OpenTelemetry",
+        "scalability_limits_and_bottlenecks": [
+          "Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)",
+          "WebSocket connection limit per instance: ~65k"
+        ]
+      },
+      "ux_spec": {
+        "primary_user_journey": [
+          "Sign up",
+          "Create project",
+          "View results"
+        ],
+        "information_architecture": {
+          "views": [
+            "TaskForm",
+            "TaskList",
+            "ValidationMessage"
+          ]
+        },
+        "view_states": [
+          {
+            "view_name": "TaskForm",
+            "loading_state": "Displaying task creation form with spinner replacing input fields",
+            "empty_state": "No tasks saved; list is empty",
+            "error_state": "Error message 'Title and description are required' displayed above inputs",
+            "success_state": "Task created successfully; new task appears in TaskList"
+          },
+          {
+            "view_name": "TaskList",
+            "loading_state": "Loading spinner replaces task list while fetching from backend",
+            "empty_state": "No tasks saved; message 'No tasks to display' shown",
+            "error_state": "Error message 'Failed to load tasks. Please try again.' appears at top",
+            "success_state": "List of tasks with Edit and Delete buttons displayed"
+          },
+          {
+            "view_name": "ValidationMessage",
+            "loading_state": "Loading spinner replaces validation messages while checking inputs",
+            "empty_state": "No errors; message 'Task created' shown after success",
+            "error_state": "Error message 'Title and description are required' shown above fields",
+            "success_state": "Success message 'Task updated' displayed after edit or delete"
+          }
+        ],
+        "accessibility_standards": [
+          "Keyboard navigation support for all interactive elements (WCAG 2.1 AA)",
+          "Focus management on form inputs and buttons"
+        ],
+        "responsive_breakpoints": {
+          "mobile": "320px",
+          "tablet": "768px",
+          "desktop": "1024px"
+        }
+      },
+      "security_report": {
+        "authentication_mechanism": {
+          "category": "Authentication",
+          "selected": "No authentication",
+          "version": null,
+          "why": "The system is a single-user application with no user accounts or login functionality required by the intake constraints.",
+          "alternatives_rejected": {
+            "Local Passwords": "Excluded because the scope is strictly single-user and no account management is needed; local passwords would imply multiple users or persistent credentials.",
+            "OAuth": "Excluded as it introduces external identity providers, user accounts, and authentication flows that violate the 'no login' constraint."
+          },
+          "tradeoffs": [
+            "No need for credential storage or validation overhead.",
+            "Eliminates risk of credential leakage or token theft."
+          ],
+          "failure_conditions": [],
+          "confidence": {
+            "score": 0.98,
+            "fact_references": [
+              "REQ-NG-001",
+              "REQ-C-001"
+            ],
+            "unverified_assumptions": [],
+            "risk_penalty": 0.0,
+            "justification": "Single-user scope mandates no authentication; alternatives introduce unnecessary complexity and violate constraints."
+          }
+        },
+        "authorization_model": "Single-user local access; no application roles",
+        "data_protection_at_rest": "SQLite file stored with WAL mode enabled, encrypted at rest using OS-level file permissions (chmod 600).",
+        "data_protection_in_transit": "HTTPS enforced via FastAPI middleware; WebSocket connections use TLS 1.3 for encryption.",
+        "input_validation_rules": [
+          "Task title and description must not be empty strings.",
+          "Generated task ID must be a positive integer."
+        ],
+        "ai_threat_mitigations": [],
+        "threat_catalog": [
+          {
+            "threat_id": "T-001",
+            "stride_category": "Spoofing",
+            "threat_description": "Client could send forged HTTP/2/WebSocket messages to bypass validation or trigger unintended state changes.",
+            "severity": "HIGH",
+            "impact": "Potential unauthorized task creation or data corruption.",
+            "likelihood": "MEDIUM",
+            "mitigation_strategy": "Validate all incoming payloads on FastAPI server using Pydantic models and reject malformed requests.",
+            "priority": 3
+          },
+          {
+            "threat_id": "T-002",
+            "stride_category": "Tampering",
+            "threat_description": "Malicious client could modify task data in transit via WebSocket to alter title or description fields.",
+            "severity": "MEDIUM",
+            "impact": "Inconsistent UI state and potential logic bypass.",
+            "likelihood": "LOW",
+            "mitigation_strategy": "Enforce schema validation on FastAPI endpoints; reject unsupported field modifications.",
+            "priority": 2
+          },
+          {
+            "threat_id": "T-003",
+            "stride_category": "Denial of Service",
+            "threat_description": "Excessive WebSocket connections from a single client could exhaust server limits (~65k), causing service degradation.",
+            "severity": "CRITICAL",
+            "impact": "Application becomes unresponsive to all users, violating SLA.",
+            "likelihood": "MEDIUM",
+            "mitigation_strategy": "Implement per-client connection rate limiting and graceful disconnect handling.",
+            "priority": 1
+          }
+        ]
+      },
+      "qa_spec": {
+        "test_pyramid_distribution": {
+          "unit": "80%",
+          "integration": "15%",
+          "e2e": "5%"
+        },
+        "frameworks_and_tooling": [
+          {
+            "category": "Testing Framework",
+            "selected": "pytest",
+            "version": null,
+            "why": "Mature, Python-native testing framework with rich assertion support.",
+            "alternatives_rejected": {
+              "unittest": "Lacks modern pytest features like fixtures and parameterization.",
+              "nose2": "Outdated syntax; not actively maintained for new projects."
+            },
+            "tradeoffs": [
+              "Requires test discovery setup",
+              "Verbose output compared to Playwright"
+            ],
+            "failure_conditions": [],
+            "confidence": {
+              "score": 0.95,
+              "fact_references": [
+                "REQ-T-002"
+              ],
+              "unverified_assumptions": [],
+              "risk_penalty": 0.05,
+              "justification": "React + TypeScript is the explicit choice and matches project constraints."
+            }
+          },
+          {
+            "category": "UI Testing",
+            "selected": "Playwright",
+            "version": null,
+            "why": "Excellent for end-to-end UI validation with built-in assertions.",
+            "alternatives_rejected": {
+              "Selenium": "Slower execution; requires manual WebDriver management.",
+              "Cypress": "Not ideal for React + FastAPI hybrid; lacks native API testing."
+            },
+            "tradeoffs": [
+              "Longer test setup time",
+              "Browser dependency"
+            ],
+            "failure_conditions": [],
+            "confidence": {
+              "score": 0.94,
+              "fact_references": [
+                "REQ-T-003"
+              ],
+              "unverified_assumptions": [],
+              "risk_penalty": 0.06,
+              "justification": "WebSocket is necessary for real-time updates and meets performance goals."
+            }
+          }
+        ],
+        "critical_test_cases": [
+          {
+            "test_id": "TC-001",
+            "target_component": "Task Creation API",
+            "category": "Unit",
+            "scenario": "Create task with valid title and description",
+            "expected_outcome": "API returns 201 Created with generated ID, task stored in SQLite",
+            "traceable_requirement_id": "REQ-F-001"
+          },
+          {
+            "test_id": "TC-002",
+            "target_component": "Task List API",
+            "category": "Integration",
+            "scenario": "Retrieve all tasks after creation",
+            "expected_outcome": "API returns 200 OK with list of tasks including generated ID, title, description",
+            "traceable_requirement_id": "REQ-F-001"
+          },
+          {
+            "test_id": "TC-003",
+            "target_component": "Task Deletion API",
+            "category": "e2e",
+            "scenario": "Delete task and verify removal from list",
+            "expected_outcome": "API returns 204 No Content; subsequent retrieval shows task absent",
+            "traceable_requirement_id": "REQ-F-001"
+          }
+        ],
+        "performance_load_thresholds": {
+          "p99_latency": "< 2 seconds",
+          "rps": "500"
+        },
+        "ai_model_validation_protocol": null
+      },
+      "model_usage": {
+        "provider": "lmstudio",
+        "model": "nvidia/nemotron-3-nano-4b",
+        "calls": 12,
+        "input_tokens": 48838,
+        "output_tokens": 7179,
+        "confidence_calibrated": false
+      },
+      "build_report": {
+        "project_id": "PROJ-7F5BD586F492",
+        "project_name": "Personal Task Manager",
+        "workspace_path": "D:\\capstone_project\\backend\\generated_projects\\PROJ-7F5BD586F492\\v2",
+        "status": "REQUIRES_HUMAN",
+        "tasks_executed": 11,
+        "files_created_count": 11,
+        "tests_passed": true,
+        "self_healing_invoked": false,
+        "repair_report": null,
+        "final_test_result": {
+          "command": "pytest",
+          "exit_code": 0,
+          "passed_count": 1,
+          "failed_count": 0,
+          "error_count": 0,
+          "total_count": 1,
+          "duration_ms": 12180.63,
+          "failures": [],
+          "raw_stdout": "============================= test session starts ==============================\ncollecting ... collected 1 item\n\nbackend/tests/test_app.py::test_invalid_create_has_no_side_effect PASSED [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 1.22s =========================\n",
+          "raw_stderr": ""
+        },
+        "verification_checks": {
+          "backend_tests": "PASSED",
+          "frontend_build": "PASSED",
+          "requirement_acceptance": "PASSED",
+          "browser_journeys": "FAILED"
+        },
+        "limitations": [
+          "Verification covers declared acceptance cases; load and security scans remain unverified."
+        ],
+        "source_digest": "d8af319a7dc3abe80c6018e2c2a2e3b8f8c78b70fe373df69cd6251f48085917"
+      },
+      "build_model_usage": {
+        "provider": "lmstudio",
+        "model": "nvidia/nemotron-3-nano-4b",
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "confidence_calibrated": false
+      }
+    },
+    "conflicts": [],
+    "architecture": "# FINAL PROJECT BLUEPRINT: PROJ-7F5BD586F492\n\n## 1. Executive Summary\n**Project ID**: `PROJ-7F5BD586F492`  \n**Revision**: `2`  \n**Status**: `ARCHITECTING`  \n\n### High-Level Idea\nBuild a Personal Task Manager website for a single user.\n\nEach task must have:\n- An automatically generated integer ID\n- A required title\n- A required description\n\nThe user must be able to:\n1. Create a task.\n2. View all saved tasks.\n3. Edit a task\u2019s title and description.\n4. Delete a task.\n\nUse React with TypeScript for the frontend, FastAPI for the backend, and SQLite for persistent storage.\n\nProvide a simple interface with a task form, a task list, and clearly labelled Edit and Delete buttons. Show validation errors clearly.\n\nKeep the application limited to one Task entity. Do not add login, user accounts, AI features, file uploads, notifications, or external services.\n\nAcceptance criteria:\n- Creating a valid task makes it appear in the list.\n- Editing a task updates its displayed information.\n- Deleting a task removes it from the list.\n- Blank titles and descriptions are rejected.\n- Saved tasks remain available after restarting the application.\n\n### Core Value Proposition\nA lightweight, persistent task manager that lets you create and manage tasks without login or complexity.\n\n## 2. Problem Statement & Scope Boundaries\n\n### Problem Statement\nUser needs a simple way to create, view, edit, and delete tasks with persistent storage.\n\n### Non-Goals & Exclusions\n- Login system\n- AI features\n- File uploads\n- Real-time notifications\n- External service integration\n\n## 3. Target User Personas & Use Case Matrix\n\n| Persona Name | Role | Pain Point | Goal |\n|---|---|---|---|\n| Alex | Freelance Designer | Forgot to schedule follow-up tasks after meetings | Never miss a task again |\n\n## 4. System Objectives & Measurable OKRs\n\n| Metric | Target Threshold |\n|---|---|\n| Task creation time | < 2 seconds |\n| Manual review time | 40% reduction |\n\n## 5. Functional Requirements (FR-001 through FR-NNN)\n\n- **FR-001**: Create a task with title and description\n- **FR-002**: View all saved tasks\n- **FR-003**: Edit task title and description\n- **FR-004**: Delete a task\n- **FR-005**: Blank inputs are rejected\n\n## 6. Non-Functional Requirements (Latency, Throughput, SLA)\n\n- **Scale & Availability Target (Q9)**: N/A\n- **Infrastructure Budget / Constraints (Q8)**: N/A\n- **Inference Latency SLA**: N/A ms\n\n## 7. MVP Scope (Phase 1 Deliverables)\n\n- [x] **Task creation**\n- [x] **Task list view**\n- [x] **Task editing**\n- [x] **Task deletion**\n- [x] **Persistent storage**\n\n## 8. Future Roadmap (Phase 2+ Deferred Features)\n\n- [ ] **User authentication**\n- [ ] **Multi-user collaboration**\n- [ ] **AI-powered task suggestions**\n- [ ] **File attachment support**\n\n## 9. System Architecture & Topology\n\n**Pattern**: `Client-Server with REST API`\n\n```mermaid\ngraph TD\\n    React[React App] -->|HTTP/2, WS| FastAPI[FastAPI Backend]\\n    FastAPI -->|SQLite DB| SQLite\\n    SQLite -->|WAL mode| Disk File\\n    FastAPI -->|Prometheus| Prometheus\\n    FastAPI -->|OTel| OpenTelemetry\n```\n\n## 10. Frontend Architecture (State, Routing, Caching)\n\n- **Selected**: React (vlatest)\n- **Rationale**: React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app.\n- **Trade-offs**: React requires manual state management via useState/useReducer; no built-in routing or server communication abstraction., TypeScript adds development time but ensures type safety and reduces runtime errors.\n\n## 11. Backend Architecture & Workflows (Services, Async Pipelines)\n\n- **Selected**: FastAPI (vlatest)\n- **Rationale**: FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations.\n- **API Protocol**: HTTP/2 over WebSocket (for real-time updates)\n\n## 12. Database Architecture & Schemas (ER Diagram, Indexing)\n\n- **Primary Database**: SQLite\n- **Rationale**: SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight.\n\n## 13. API Design & Interface Contracts (Endpoints, Payloads, Errors)\n\n- **Protocol**: HTTP/2 over WebSocket (for real-time updates)\n- **Why**: FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency.\n\n## 14. AI/ML Subsystem Architecture\n\n- **AI Required**: `False`\n- **Problem Type**: `NONE`\n- **Justification**: The task management system involves only CRUD operations (create, read, update, delete) on a simple Task entity with required fields and validation. All requirements can be satisfied using deterministic approaches: regex for input validation, SQL queries for data retrieval/storage, and rule-based logic for ID generation. No AI/ML capabilities are needed to fulfill the functional or non-functional requirements.\n\n## 15. Dataset Strategy & Data Engineering (Pipelines, Validation)\n\nDataset strategy unspecified or non-ML project.\n\n## 16. UX Design & View State Specifications (4 States per screen)\n\n| View Name | Loading State | Empty State | Error State | Success State |\n|---|---|---|---|---|\n| TaskForm | Displaying task creation form with spinner replacing input fields | No tasks saved; list is empty | Error message 'Title and description are required' displayed above inputs | Task created successfully; new task appears in TaskList |\n| TaskList | Loading spinner replaces task list while fetching from backend | No tasks saved; message 'No tasks to display' shown | Error message 'Failed to load tasks. Please try again.' appears at top | List of tasks with Edit and Delete buttons displayed |\n| ValidationMessage | Loading spinner replaces validation messages while checking inputs | No errors; message 'Task created' shown after success | Error message 'Title and description are required' shown above fields | Success message 'Task updated' displayed after edit or delete |\n\n## 17. Security Architecture & Threat Model (STRIDE Catalog)\n\n- **Authentication**: No authentication\n- **Authorization**: Single-user local access; no application roles\n\n| Threat ID | STRIDE | Severity | Impact | Mitigation |\n|---|---|---|---|---|\n| T-001 | Spoofing | HIGH | Potential unauthorized task creation or data corruption. | Validate all incoming payloads on FastAPI server using Pydantic models and reject malformed requests. |\n| T-002 | Tampering | MEDIUM | Inconsistent UI state and potential logic bypass. | Enforce schema validation on FastAPI endpoints; reject unsupported field modifications. |\n| T-003 | Denial of Service | CRITICAL | Application becomes unresponsive to all users, violating SLA. | Implement per-client connection rate limiting and graceful disconnect handling. |\n\n## 18. Verification & QA Test Pyramid (Test Cases, Load Thresholds)\n\n- **Test Pyramid**: {\"unit\": \"80%\", \"integration\": \"15%\", \"e2e\": \"5%\"}\n\n| Test ID | Component | Category | Scenario | Expected Outcome | Req ID |\n|---|---|---|---|---|---|\n| TC-001 | Task Creation API | Unit | Create task with valid title and description | API returns 201 Created with generated ID, task stored in SQLite | REQ-F-001 |\n| TC-002 | Task List API | Integration | Retrieve all tasks after creation | API returns 200 OK with list of tasks including generated ID, title, description | REQ-F-001 |\n| TC-003 | Task Deletion API | e2e | Delete task and verify removal from list | API returns 204 No Content; subsequent retrieval shows task absent | REQ-F-001 |\n\n## 19. Complete Technology Stack Table\n\n| Layer | Technology Tool | Version | Rationale |\n|---|---|---|---|\n| Frontend | React | latest | React with TypeScript provides a component-based architecture ideal for building responsive UIs and managing state efficiently. It is widely used, has strong ecosystem support, and aligns with the requirement of a lightweight single-user app. |\n| Backend | FastAPI | latest | FastAPI provides high-performance, async-first API development with automatic OpenAPI docs. It uses Starlette under the hood, offering low latency suitable for <2s task operations. |\n| Database | SQLite | latest | SQLite provides file-based, zero-configuration persistence ideal for single-user apps. It supports ACID transactions and is lightweight. |\n| API Protocol | HTTP/2 over WebSocket (for real-time updates) | latest | FastAPI supports WebSockets for live task list updates. HTTP/2 reduces latency and improves connection efficiency. |\n| Storage | SQLite with WAL mode enabled | latest | WAL (Write-Ahead Logging) ensures crash safety by allowing safe concurrent reads/writes. SQLite is embedded and file-based. |\n\n## 20. Rejected Technology Alternatives & Trade-Offs Matrix\n\n| Technology Category | Selected | Rejected Alternatives & Reasons |\n|---|---|---|\n| UI Framework | React | Vue.js: Less mature ecosystem for rapid prototyping; not as optimized for TypeScript integration in this context.; Angular: Overkill for simple CRUD operations; adds unnecessary complexity (e.g., RxJS, dependency injection) without benefit. |\n| Web Framework | FastAPI | Django REST Framework: Over-engineered; adds unnecessary layers (ORM, serializers) and synchronous defaults that may not meet performance targets.; Flask: Lacks built-in async support and auto-docs; requires manual configuration for high-performance endpoints. |\n| Persistent Storage | SQLite | PostgreSQL: Overkill; requires server setup, configuration, and maintenance beyond scope of a local app.; MongoDB: Not relational; unnecessary complexity for simple CRUD on a single entity. |\n| Communication Protocol | HTTP/2 over WebSocket (for real-time updates) | REST only with polling: Inefficient; causes unnecessary round trips and higher latency, violating <2s SLA.; gRPC: Overkill; adds complexity without benefit for simple CRUD over a single client. |\n\n## 21. Major Architectural Decisions (ADR Matrix)\n\n| ADR ID | Context | Decision | Consequence |\n|---|---|---|---|\n| ADR-001 | High concurrency & scale | System Pattern: Client-Server with REST API | Scalability bottlenecks: Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison); WebSocket connection limit per instance: ~65k |\n\n## 22. Resolved Cross-Agent Conflicts (Audit trail of arbitrations)\n\nNo cross-agent conflicts detected.\n\n## 23. Technical Risks & Failure Modes\n\n- **Product Risk**: SQLite data loss if application crashes before saving\n- **Product Risk**: React state not syncing with FastAPI backend\n- **Scalability Limit**: Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)\n- **Scalability Limit**: WebSocket connection limit per instance: ~65k\n\n## 24. Known System Limitations\n\n- Single-node PostgreSQL write limit at ~10k TPS (though using SQLite, not PostgreSQL; this is a placeholder for comparison)\n- WebSocket connection limit per instance: ~65k\n\n## 25. Implementation Sequencing & Dependency Roadmap\n\n1. **Phase 1A**: Database schema setup & core API models\n2. **Phase 1B**: Auth service & user session management\n3. **Phase 1C**: Core backend business logic & third-party integrations\n4. **Phase 1D**: Frontend views implementation & state wiring\n5. **Phase 1E**: QA Test suite execution & Security audit verification\n\n## 26. Acceptance Criteria (Testable validation assertions)\n\n- [ ] **TC-001**: Create task with valid title and description => Assert `API returns 201 Created with generated ID, task stored in SQLite`\n- [ ] **TC-002**: Retrieve all tasks after creation => Assert `API returns 200 OK with list of tasks including generated ID, title, description`\n- [ ] **TC-003**: Delete task and verify removal from list => Assert `API returns 204 No Content; subsequent retrieval shows task absent`\n\n## 27. Definition of Done (DoD Checklist)\n\n- [ ] All 27 blueprint sections generated and verified\n- [ ] 100% test coverage for critical unit and integration tests\n- [ ] Zero CRITICAL or HIGH security vulnerability findings in STRIDE catalog\n- [ ] Architecture diagram verified syntactically valid\n- [ ] Traceability matrix fully populated across all intake requirements\n",
+    "build_spec": {
+      "project_id": "PROJ-7F5BD586F492",
+      "project_name": "Personal Task Manager",
+      "project_type": "FULLSTACK_WEB",
+      "status": "COMPILED",
+      "version": 2,
+      "generation_mode": "MODEL",
+      "source_generation_strategy": "DECLARATIVE_CRUD",
+      "acceptance_checks": [
+        {
+          "method": "POST",
+          "path": "/api/tasks",
+          "status": 201,
+          "json": {
+            "title": "Test Task",
+            "description": "Hello World"
+          },
+          "body_contains": {
+            "title": "Test Task",
+            "description": "Hello World"
+          },
+          "requirements": [
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/api/tasks",
+          "status": 200,
+          "json": {},
+          "requirements": [
+            "REQ-F-001",
+            "REQ-E-002"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/api/tasks/1",
+          "status": 200,
+          "json": {
+            "title": "Updated Title",
+            "description": "Updated Description"
+          },
+          "body_contains": {
+            "title": "Updated Title",
+            "description": "Updated Description"
+          },
+          "requirements": [
+            "REQ-F-001",
+            "REQ-E-002",
+            "REQ-E-003"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/tasks/1",
+          "status": 204,
+          "requirements": [
+            "REQ-F-001",
+            "REQ-E-002"
+          ]
+        }
+      ],
+      "browser_checks": [
+        {
+          "name": "Task Creation Flow",
+          "requirements": [
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-F-001",
+            "REQ-F-003"
+          ],
+          "steps": [
+            {
+              "action": "goto",
+              "path": "/"
+            },
+            {
+              "action": "fill",
+              "selector": "#title-input",
+              "value": "Task Title"
+            },
+            {
+              "action": "fill",
+              "selector": "#description-input",
+              "value": "Task Description"
+            },
+            {
+              "action": "click",
+              "selector": ".create-task-btn"
+            },
+            {
+              "action": "visible",
+              "selector": ".task-list .task-item[title='Task Title']"
+            }
+          ]
+        },
+        {
+          "name": "Edit Task Flow",
+          "requirements": [
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-F-003"
+          ],
+          "steps": [
+            {
+              "action": "goto",
+              "path": "/"
+            },
+            {
+              "action": "click",
+              "selector": ".edit-task-btn[aria-label='Edit Task 1']"
+            },
+            {
+              "action": "fill",
+              "selector": "#title-input",
+              "value": "Edited Title"
+            },
+            {
+              "action": "fill",
+              "selector": "#description-input",
+              "value": "Edited Description"
+            },
+            {
+              "action": "click",
+              "selector": ".save-task-btn"
+            },
+            {
+              "action": "visible",
+              "selector": ".task-list .task-item[title='Edited Title']"
+            }
+          ]
+        },
+        {
+          "name": "Delete Task Flow",
+          "requirements": [
+            "REQ-E-001",
+            "REQ-E-002"
+          ],
+          "steps": [
+            {
+              "action": "goto",
+              "path": "/"
+            },
+            {
+              "action": "click",
+              "selector": ".delete-task-btn[aria-label='Delete Task 1']"
+            },
+            {
+              "action": "visible",
+              "selector": ".task-list .task-item[title='Task Title'][description='Hello World']"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "REQ-P-001",
+          "title": "Task Management for Single User",
+          "description": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+          "dimension": "problem",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-P-001"
+          ]
+        },
+        {
+          "id": "REQ-G-001",
+          "title": "Single User Task Management",
+          "description": "Enable creation, viewing, editing, and deletion of tasks with persistent storage.",
+          "dimension": "goal",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-G-001"
+          ]
+        },
+        {
+          "id": "REQ-F-001",
+          "title": "Task Creation",
+          "description": "System generates an integer ID and stores title and description.",
+          "dimension": "functional_requirements",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-F-001"
+          ]
+        },
+        {
+          "id": "REQ-F-002",
+          "title": "Task Persistence",
+          "description": "Tasks remain available after application restart.",
+          "dimension": "functional_requirements",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-F-002"
+          ]
+        },
+        {
+          "id": "REQ-F-003",
+          "title": "Validation",
+          "description": "Blank titles and descriptions are rejected.",
+          "dimension": "functional_requirements",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-F-003"
+          ]
+        },
+        {
+          "id": "REQ-NF-001",
+          "title": "Performance",
+          "description": "Application must respond within 2 seconds for task operations.",
+          "dimension": "non_functional_requirements",
+          "source": "AGENT",
+          "confidence": 0.85,
+          "traceability_path": [
+            "REQ-NF-001"
+          ]
+        },
+        {
+          "id": "REQ-NF-002",
+          "title": "Scalability",
+          "description": "System should handle up to 100 tasks without degradation.",
+          "dimension": "non_functional_requirements",
+          "source": "AGENT",
+          "confidence": 0.8,
+          "traceability_path": [
+            "REQ-NF-002"
+          ]
+        },
+        {
+          "id": "REQ-E-001",
+          "title": "Task Form UI",
+          "description": "A form to input task title and description.",
+          "dimension": "expected_outputs",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-E-001"
+          ]
+        },
+        {
+          "id": "REQ-E-002",
+          "title": "Task List UI",
+          "description": "A list displaying all tasks with Edit and Delete buttons.",
+          "dimension": "expected_outputs",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-E-002"
+          ]
+        },
+        {
+          "id": "REQ-E-003",
+          "title": "Validation Messages",
+          "description": "Clear error messages for blank inputs.",
+          "dimension": "expected_outputs",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-E-003"
+          ]
+        },
+        {
+          "id": "REQ-T-002",
+          "title": "Frontend Framework",
+          "description": "React with TypeScript.",
+          "dimension": "technology_preferences",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-T-002"
+          ]
+        },
+        {
+          "id": "REQ-T-003",
+          "title": "Backend Framework",
+          "description": "FastAPI.",
+          "dimension": "technology_preferences",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-T-003"
+          ]
+        },
+        {
+          "id": "REQ-T-004",
+          "title": "Database",
+          "description": "SQLite.",
+          "dimension": "technology_preferences",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-T-004"
+          ]
+        },
+        {
+          "id": "REQ-NG-001",
+          "title": "No Login System",
+          "description": "User authentication is not implemented.",
+          "dimension": "non_goals",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-NG-001"
+          ]
+        },
+        {
+          "id": "REQ-NG-002",
+          "title": "No AI Features",
+          "description": "Artificial intelligence capabilities are excluded.",
+          "dimension": "non_goals",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-NG-002"
+          ]
+        },
+        {
+          "id": "REQ-NG-003",
+          "title": "No File Uploads",
+          "description": "File upload functionality is omitted.",
+          "dimension": "non_goals",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-NG-003"
+          ]
+        },
+        {
+          "id": "REQ-NG-004",
+          "title": "No Notifications",
+          "description": "Real-time notifications are not included.",
+          "dimension": "non_goals",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-NG-004"
+          ]
+        },
+        {
+          "id": "REQ-NG-005",
+          "title": "No External Services",
+          "description": "The system does not integrate with any third-party APIs.",
+          "dimension": "non_goals",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-NG-005"
+          ]
+        },
+        {
+          "id": "REQ-R-001",
+          "title": "SQLite Data Loss",
+          "description": "Application restart may cause data loss if not properly saved.",
+          "dimension": "risks",
+          "source": "USER",
+          "confidence": 0.95,
+          "traceability_path": [
+            "REQ-R-001"
+          ]
+        },
+        {
+          "id": "REQ-R-002",
+          "title": "Frontend State Management",
+          "description": "React state may not sync correctly with backend.",
+          "dimension": "risks",
+          "source": "AGENT",
+          "confidence": 0.75,
+          "traceability_path": [
+            "REQ-R-002"
+          ]
+        }
+      ],
+      "constraints": [
+        "No user accounts or login functionality.",
+        "Use React with TypeScript for frontend and FastAPI with SQLite for backend."
+      ],
+      "assumptions": [
+        {
+          "id": "REQ-A-001",
+          "title": "SQLite Capacity",
+          "description": "SQLite can store up to 100 tasks without performance issues.",
+          "dimension": "assumptions",
+          "source": "INFERRED",
+          "confidence": 0.8,
+          "traceability_path": [
+            "REQ-A-001"
+          ]
+        },
+        {
+          "id": "REQ-A-002",
+          "title": "FastAPI Latency",
+          "description": "FastAPI will provide sub-second response times.",
+          "dimension": "assumptions",
+          "source": "INFERRED",
+          "confidence": 0.85,
+          "traceability_path": [
+            "REQ-A-002"
+          ]
+        }
+      ],
+      "tech_stack": {
+        "frontend_framework": "React",
+        "frontend_language": "TypeScript",
+        "frontend_styling": "None",
+        "backend_framework": "FastAPI",
+        "backend_language": "Python 3.11",
+        "primary_database": "SQLite",
+        "cache_broker": null,
+        "auth_provider": "None"
+      },
+      "database_entities": [
+        {
+          "entity_name": "Task",
+          "table_name": "tasks",
+          "fields": [
+            {
+              "name": "id",
+              "data_type": "INTEGER",
+              "is_primary_key": true,
+              "is_nullable": false,
+              "is_unique": false,
+              "default_value": null
+            },
+            {
+              "name": "title",
+              "data_type": "TEXT",
+              "is_primary_key": false,
+              "is_nullable": false,
+              "is_unique": false,
+              "default_value": null
+            },
+            {
+              "name": "description",
+              "data_type": "TEXT",
+              "is_primary_key": false,
+              "is_nullable": false,
+              "is_unique": false,
+              "default_value": null
+            }
+          ],
+          "relationships": []
+        }
+      ],
+      "api_endpoints": [
+        {
+          "endpoint_id": "API-TASK-CREATE",
+          "method": "POST",
+          "path": "/api/tasks",
+          "description": "Create a new task with title and description.",
+          "request_body_schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ]
+          },
+          "response_schema": null,
+          "auth_required": false,
+          "traceable_requirements": [
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003"
+          ]
+        },
+        {
+          "endpoint_id": "API-TASK-LIST",
+          "method": "GET",
+          "path": "/api/tasks",
+          "description": "Retrieve all tasks.",
+          "request_body_schema": null,
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "title": "Task",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "auth_required": false,
+          "traceable_requirements": [
+            "REQ-F-001",
+            "REQ-E-002"
+          ]
+        },
+        {
+          "endpoint_id": "API-TASK-EDIT",
+          "method": "PUT",
+          "path": "/api/tasks/{task_id}",
+          "description": "Update task title and description.",
+          "request_body_schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ]
+          },
+          "response_schema": null,
+          "auth_required": false,
+          "traceable_requirements": [
+            "REQ-F-001",
+            "REQ-E-002",
+            "REQ-E-003"
+          ]
+        },
+        {
+          "endpoint_id": "API-TASK-DELETE",
+          "method": "DELETE",
+          "path": "/api/tasks/{task_id}",
+          "description": "Delete a task.",
+          "request_body_schema": null,
+          "response_schema": null,
+          "auth_required": false,
+          "traceable_requirements": [
+            "REQ-F-001",
+            "REQ-E-002"
+          ]
+        }
+      ],
+      "ui_components": [],
+      "environment_variables": {},
+      "dependencies": [
+        {
+          "package_name": "fastapi",
+          "version_spec": "^0.115.0",
+          "target_env": "backend"
+        },
+        {
+          "package_name": "uvicorn",
+          "version_spec": "^0.29.3",
+          "target_env": "backend"
+        },
+        {
+          "package_name": "pydantic",
+          "version_spec": "^2.7.1",
+          "target_env": "backend"
+        },
+        {
+          "package_name": "sqlalchemy",
+          "version_spec": "^2.0.34",
+          "target_env": "backend"
+        },
+        {
+          "package_name": "SQLite",
+          "version_spec": "3.45.1",
+          "target_env": "backend"
+        },
+        {
+          "package_name": "react",
+          "version_spec": "^18.2.0",
+          "target_env": "frontend"
+        },
+        {
+          "package_name": "react-dom",
+          "version_spec": "^18.2.0",
+          "target_env": "frontend"
+        },
+        {
+          "package_name": "@types/react",
+          "version_spec": "^18.2.5",
+          "target_env": "frontend"
+        },
+        {
+          "package_name": "@types/react-dom",
+          "version_spec": "^18.2.0",
+          "target_env": "frontend"
+        },
+        {
+          "package_name": "typescript",
+          "version_spec": "^5.4.5",
+          "target_env": "frontend"
+        },
+        {
+          "package_name": "vite",
+          "version_spec": "^5.3.1",
+          "target_env": "frontend"
+        }
+      ],
+      "files_to_create": [
+        {
+          "file_path": "backend/app/__init__.py",
+          "description": "Backend package marker",
+          "target_module": "backend",
+          "is_test_file": false,
+          "dependencies": [],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "backend/requirements.txt",
+          "description": "Supported backend dependencies",
+          "target_module": "backend",
+          "is_test_file": false,
+          "dependencies": [],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "backend/app/main.py",
+          "description": "FastAPI app, declared API contracts and local persistence",
+          "target_module": "backend",
+          "is_test_file": false,
+          "dependencies": [
+            "backend/app/__init__.py",
+            "backend/requirements.txt"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "backend/tests/test_app.py",
+          "description": "Pytest cases for input validation and declared API workflows using a temporary SQLite database",
+          "target_module": "backend",
+          "is_test_file": false,
+          "dependencies": [
+            "backend/app/main.py"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/package.json",
+          "description": "React/Vite scripts and supported dependencies",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/tsconfig.json",
+          "description": "TypeScript compiler configuration",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/vite.config.ts",
+          "description": "Vite React configuration and local API proxy",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [
+            "frontend/package.json"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/src/App.tsx",
+          "description": "Implement declared user journeys and UI selectors",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [
+            "backend/app/main.py",
+            "frontend/package.json"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/src/main.tsx",
+          "description": "Mount the App component",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [
+            "frontend/src/App.tsx"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "frontend/index.html",
+          "description": "HTML entry pointing to src/main.tsx",
+          "target_module": "frontend",
+          "is_test_file": false,
+          "dependencies": [
+            "frontend/src/main.tsx"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        },
+        {
+          "file_path": "README.md",
+          "description": "Document actual setup, behavior and limitations",
+          "target_module": "README.md",
+          "is_test_file": false,
+          "dependencies": [
+            "backend/app/main.py",
+            "frontend/package.json"
+          ],
+          "traceable_requirements": [
+            "REQ-P-001",
+            "REQ-G-001",
+            "REQ-F-001",
+            "REQ-F-002",
+            "REQ-F-003",
+            "REQ-NF-001",
+            "REQ-NF-002",
+            "REQ-E-001",
+            "REQ-E-002",
+            "REQ-E-003",
+            "REQ-T-002",
+            "REQ-T-003",
+            "REQ-T-004",
+            "REQ-NG-001",
+            "REQ-NG-002",
+            "REQ-NG-003",
+            "REQ-NG-004",
+            "REQ-NG-005",
+            "REQ-R-001",
+            "REQ-R-002"
+          ]
+        }
+      ],
+      "test_requirements": [
+        {
+          "test_id": "TC-001",
+          "test_type": "unit",
+          "target_file": "backend/app/main.py",
+          "scenario": "Create task with valid title and description",
+          "expected_outcome": "API returns 201 Created with generated ID, task stored in SQLite",
+          "traceable_requirements": [
+            "REQ-F-001"
+          ]
+        },
+        {
+          "test_id": "TC-002",
+          "test_type": "unit",
+          "target_file": "backend/app/main.py",
+          "scenario": "Retrieve all tasks after creation",
+          "expected_outcome": "API returns 200 OK with list of tasks including generated ID, title, description",
+          "traceable_requirements": [
+            "REQ-F-001"
+          ]
+        },
+        {
+          "test_id": "TC-003",
+          "test_type": "unit",
+          "target_file": "backend/app/main.py",
+          "scenario": "Delete task and verify removal from list",
+          "expected_outcome": "API returns 204 No Content; subsequent retrieval shows task absent",
+          "traceable_requirements": [
+            "REQ-F-001"
+          ]
+        }
+      ],
+      "security_requirements": [],
+      "deployment_requirements": [
+        "Run FastAPI server with SQLite database",
+        "Serve React frontend via Vite"
+      ],
+      "decisions": [],
+      "overall_confidence": 0.0,
+      "blocked_reasons": null
+    },
+    "execution_state": "REQUIRES_HUMAN",
+    "mode": "AUTONOMOUS",
+    "intake_answers": {},
+    "user_constraints": [],
+    "budget_limit_usd": 200.0,
+    "target_sla_ms": 100.0
+  },
+  "spec": {
+    "project_id": "PROJ-7F5BD586F492",
+    "project_name": "Personal Task Manager",
+    "project_type": "FULLSTACK_WEB",
+    "status": "COMPILED",
+    "version": 2,
+    "generation_mode": "MODEL",
+    "source_generation_strategy": "DECLARATIVE_CRUD",
+    "acceptance_checks": [
+      {
+        "method": "POST",
+        "path": "/api/tasks",
+        "status": 201,
+        "json": {
+          "title": "Test Task",
+          "description": "Hello World"
+        },
+        "body_contains": {
+          "title": "Test Task",
+          "description": "Hello World"
+        },
+        "requirements": [
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003"
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/tasks",
+        "status": 200,
+        "json": {},
+        "requirements": [
+          "REQ-F-001",
+          "REQ-E-002"
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/tasks/1",
+        "status": 200,
+        "json": {
+          "title": "Updated Title",
+          "description": "Updated Description"
+        },
+        "body_contains": {
+          "title": "Updated Title",
+          "description": "Updated Description"
+        },
+        "requirements": [
+          "REQ-F-001",
+          "REQ-E-002",
+          "REQ-E-003"
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/tasks/1",
+        "status": 204,
+        "requirements": [
+          "REQ-F-001",
+          "REQ-E-002"
+        ]
+      }
+    ],
+    "browser_checks": [
+      {
+        "name": "Task Creation Flow",
+        "requirements": [
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-F-001",
+          "REQ-F-003"
+        ],
+        "steps": [
+          {
+            "action": "goto",
+            "path": "/"
+          },
+          {
+            "action": "fill",
+            "selector": "#title-input",
+            "value": "Task Title"
+          },
+          {
+            "action": "fill",
+            "selector": "#description-input",
+            "value": "Task Description"
+          },
+          {
+            "action": "click",
+            "selector": ".create-task-btn"
+          },
+          {
+            "action": "visible",
+            "selector": ".task-list .task-item[title='Task Title']"
+          }
+        ]
+      },
+      {
+        "name": "Edit Task Flow",
+        "requirements": [
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-F-003"
+        ],
+        "steps": [
+          {
+            "action": "goto",
+            "path": "/"
+          },
+          {
+            "action": "click",
+            "selector": ".edit-task-btn[aria-label='Edit Task 1']"
+          },
+          {
+            "action": "fill",
+            "selector": "#title-input",
+            "value": "Edited Title"
+          },
+          {
+            "action": "fill",
+            "selector": "#description-input",
+            "value": "Edited Description"
+          },
+          {
+            "action": "click",
+            "selector": ".save-task-btn"
+          },
+          {
+            "action": "visible",
+            "selector": ".task-list .task-item[title='Edited Title']"
+          }
+        ]
+      },
+      {
+        "name": "Delete Task Flow",
+        "requirements": [
+          "REQ-E-001",
+          "REQ-E-002"
+        ],
+        "steps": [
+          {
+            "action": "goto",
+            "path": "/"
+          },
+          {
+            "action": "click",
+            "selector": ".delete-task-btn[aria-label='Delete Task 1']"
+          },
+          {
+            "action": "visible",
+            "selector": ".task-list .task-item[title='Task Title'][description='Hello World']"
+          }
+        ]
+      }
+    ],
+    "requirements": [
+      {
+        "id": "REQ-P-001",
+        "title": "Task Management for Single User",
+        "description": "User needs a simple way to create, view, edit, and delete tasks with persistent storage.",
+        "dimension": "problem",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-P-001"
+        ]
+      },
+      {
+        "id": "REQ-G-001",
+        "title": "Single User Task Management",
+        "description": "Enable creation, viewing, editing, and deletion of tasks with persistent storage.",
+        "dimension": "goal",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-G-001"
+        ]
+      },
+      {
+        "id": "REQ-F-001",
+        "title": "Task Creation",
+        "description": "System generates an integer ID and stores title and description.",
+        "dimension": "functional_requirements",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-F-001"
+        ]
+      },
+      {
+        "id": "REQ-F-002",
+        "title": "Task Persistence",
+        "description": "Tasks remain available after application restart.",
+        "dimension": "functional_requirements",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-F-002"
+        ]
+      },
+      {
+        "id": "REQ-F-003",
+        "title": "Validation",
+        "description": "Blank titles and descriptions are rejected.",
+        "dimension": "functional_requirements",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-F-003"
+        ]
+      },
+      {
+        "id": "REQ-NF-001",
+        "title": "Performance",
+        "description": "Application must respond within 2 seconds for task operations.",
+        "dimension": "non_functional_requirements",
+        "source": "AGENT",
+        "confidence": 0.85,
+        "traceability_path": [
+          "REQ-NF-001"
+        ]
+      },
+      {
+        "id": "REQ-NF-002",
+        "title": "Scalability",
+        "description": "System should handle up to 100 tasks without degradation.",
+        "dimension": "non_functional_requirements",
+        "source": "AGENT",
+        "confidence": 0.8,
+        "traceability_path": [
+          "REQ-NF-002"
+        ]
+      },
+      {
+        "id": "REQ-E-001",
+        "title": "Task Form UI",
+        "description": "A form to input task title and description.",
+        "dimension": "expected_outputs",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-E-001"
+        ]
+      },
+      {
+        "id": "REQ-E-002",
+        "title": "Task List UI",
+        "description": "A list displaying all tasks with Edit and Delete buttons.",
+        "dimension": "expected_outputs",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-E-002"
+        ]
+      },
+      {
+        "id": "REQ-E-003",
+        "title": "Validation Messages",
+        "description": "Clear error messages for blank inputs.",
+        "dimension": "expected_outputs",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-E-003"
+        ]
+      },
+      {
+        "id": "REQ-T-002",
+        "title": "Frontend Framework",
+        "description": "React with TypeScript.",
+        "dimension": "technology_preferences",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-T-002"
+        ]
+      },
+      {
+        "id": "REQ-T-003",
+        "title": "Backend Framework",
+        "description": "FastAPI.",
+        "dimension": "technology_preferences",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-T-003"
+        ]
+      },
+      {
+        "id": "REQ-T-004",
+        "title": "Database",
+        "description": "SQLite.",
+        "dimension": "technology_preferences",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-T-004"
+        ]
+      },
+      {
+        "id": "REQ-NG-001",
+        "title": "No Login System",
+        "description": "User authentication is not implemented.",
+        "dimension": "non_goals",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-NG-001"
+        ]
+      },
+      {
+        "id": "REQ-NG-002",
+        "title": "No AI Features",
+        "description": "Artificial intelligence capabilities are excluded.",
+        "dimension": "non_goals",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-NG-002"
+        ]
+      },
+      {
+        "id": "REQ-NG-003",
+        "title": "No File Uploads",
+        "description": "File upload functionality is omitted.",
+        "dimension": "non_goals",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-NG-003"
+        ]
+      },
+      {
+        "id": "REQ-NG-004",
+        "title": "No Notifications",
+        "description": "Real-time notifications are not included.",
+        "dimension": "non_goals",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-NG-004"
+        ]
+      },
+      {
+        "id": "REQ-NG-005",
+        "title": "No External Services",
+        "description": "The system does not integrate with any third-party APIs.",
+        "dimension": "non_goals",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-NG-005"
+        ]
+      },
+      {
+        "id": "REQ-R-001",
+        "title": "SQLite Data Loss",
+        "description": "Application restart may cause data loss if not properly saved.",
+        "dimension": "risks",
+        "source": "USER",
+        "confidence": 0.95,
+        "traceability_path": [
+          "REQ-R-001"
+        ]
+      },
+      {
+        "id": "REQ-R-002",
+        "title": "Frontend State Management",
+        "description": "React state may not sync correctly with backend.",
+        "dimension": "risks",
+        "source": "AGENT",
+        "confidence": 0.75,
+        "traceability_path": [
+          "REQ-R-002"
+        ]
+      }
+    ],
+    "constraints": [
+      "No user accounts or login functionality.",
+      "Use React with TypeScript for frontend and FastAPI with SQLite for backend."
+    ],
+    "assumptions": [
+      {
+        "id": "REQ-A-001",
+        "title": "SQLite Capacity",
+        "description": "SQLite can store up to 100 tasks without performance issues.",
+        "dimension": "assumptions",
+        "source": "INFERRED",
+        "confidence": 0.8,
+        "traceability_path": [
+          "REQ-A-001"
+        ]
+      },
+      {
+        "id": "REQ-A-002",
+        "title": "FastAPI Latency",
+        "description": "FastAPI will provide sub-second response times.",
+        "dimension": "assumptions",
+        "source": "INFERRED",
+        "confidence": 0.85,
+        "traceability_path": [
+          "REQ-A-002"
+        ]
+      }
+    ],
+    "tech_stack": {
+      "frontend_framework": "React",
+      "frontend_language": "TypeScript",
+      "frontend_styling": "None",
+      "backend_framework": "FastAPI",
+      "backend_language": "Python 3.11",
+      "primary_database": "SQLite",
+      "cache_broker": null,
+      "auth_provider": "None"
+    },
+    "database_entities": [
+      {
+        "entity_name": "Task",
+        "table_name": "tasks",
+        "fields": [
+          {
+            "name": "id",
+            "data_type": "INTEGER",
+            "is_primary_key": true,
+            "is_nullable": false,
+            "is_unique": false,
+            "default_value": null
+          },
+          {
+            "name": "title",
+            "data_type": "TEXT",
+            "is_primary_key": false,
+            "is_nullable": false,
+            "is_unique": false,
+            "default_value": null
+          },
+          {
+            "name": "description",
+            "data_type": "TEXT",
+            "is_primary_key": false,
+            "is_nullable": false,
+            "is_unique": false,
+            "default_value": null
+          }
+        ],
+        "relationships": []
+      }
+    ],
+    "api_endpoints": [
+      {
+        "endpoint_id": "API-TASK-CREATE",
+        "method": "POST",
+        "path": "/api/tasks",
+        "description": "Create a new task with title and description.",
+        "request_body_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "description"
+          ]
+        },
+        "response_schema": null,
+        "auth_required": false,
+        "traceable_requirements": [
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003"
+        ]
+      },
+      {
+        "endpoint_id": "API-TASK-LIST",
+        "method": "GET",
+        "path": "/api/tasks",
+        "description": "Retrieve all tasks.",
+        "request_body_schema": null,
+        "response_schema": {
+          "type": "array",
+          "items": {
+            "title": "Task",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "auth_required": false,
+        "traceable_requirements": [
+          "REQ-F-001",
+          "REQ-E-002"
+        ]
+      },
+      {
+        "endpoint_id": "API-TASK-EDIT",
+        "method": "PUT",
+        "path": "/api/tasks/{task_id}",
+        "description": "Update task title and description.",
+        "request_body_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "description"
+          ]
+        },
+        "response_schema": null,
+        "auth_required": false,
+        "traceable_requirements": [
+          "REQ-F-001",
+          "REQ-E-002",
+          "REQ-E-003"
+        ]
+      },
+      {
+        "endpoint_id": "API-TASK-DELETE",
+        "method": "DELETE",
+        "path": "/api/tasks/{task_id}",
+        "description": "Delete a task.",
+        "request_body_schema": null,
+        "response_schema": null,
+        "auth_required": false,
+        "traceable_requirements": [
+          "REQ-F-001",
+          "REQ-E-002"
+        ]
+      }
+    ],
+    "ui_components": [],
+    "environment_variables": {},
+    "dependencies": [
+      {
+        "package_name": "fastapi",
+        "version_spec": "^0.115.0",
+        "target_env": "backend"
+      },
+      {
+        "package_name": "uvicorn",
+        "version_spec": "^0.29.3",
+        "target_env": "backend"
+      },
+      {
+        "package_name": "pydantic",
+        "version_spec": "^2.7.1",
+        "target_env": "backend"
+      },
+      {
+        "package_name": "sqlalchemy",
+        "version_spec": "^2.0.34",
+        "target_env": "backend"
+      },
+      {
+        "package_name": "SQLite",
+        "version_spec": "3.45.1",
+        "target_env": "backend"
+      },
+      {
+        "package_name": "react",
+        "version_spec": "^18.2.0",
+        "target_env": "frontend"
+      },
+      {
+        "package_name": "react-dom",
+        "version_spec": "^18.2.0",
+        "target_env": "frontend"
+      },
+      {
+        "package_name": "@types/react",
+        "version_spec": "^18.2.5",
+        "target_env": "frontend"
+      },
+      {
+        "package_name": "@types/react-dom",
+        "version_spec": "^18.2.0",
+        "target_env": "frontend"
+      },
+      {
+        "package_name": "typescript",
+        "version_spec": "^5.4.5",
+        "target_env": "frontend"
+      },
+      {
+        "package_name": "vite",
+        "version_spec": "^5.3.1",
+        "target_env": "frontend"
+      }
+    ],
+    "files_to_create": [
+      {
+        "file_path": "backend/app/__init__.py",
+        "description": "Backend package marker",
+        "target_module": "backend",
+        "is_test_file": false,
+        "dependencies": [],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "backend/requirements.txt",
+        "description": "Supported backend dependencies",
+        "target_module": "backend",
+        "is_test_file": false,
+        "dependencies": [],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "backend/app/main.py",
+        "description": "FastAPI app, declared API contracts and local persistence",
+        "target_module": "backend",
+        "is_test_file": false,
+        "dependencies": [
+          "backend/app/__init__.py",
+          "backend/requirements.txt"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "backend/tests/test_app.py",
+        "description": "Pytest cases for input validation and declared API workflows using a temporary SQLite database",
+        "target_module": "backend",
+        "is_test_file": false,
+        "dependencies": [
+          "backend/app/main.py"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/package.json",
+        "description": "React/Vite scripts and supported dependencies",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/tsconfig.json",
+        "description": "TypeScript compiler configuration",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/vite.config.ts",
+        "description": "Vite React configuration and local API proxy",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [
+          "frontend/package.json"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/src/App.tsx",
+        "description": "Implement declared user journeys and UI selectors",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [
+          "backend/app/main.py",
+          "frontend/package.json"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/src/main.tsx",
+        "description": "Mount the App component",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [
+          "frontend/src/App.tsx"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "frontend/index.html",
+        "description": "HTML entry pointing to src/main.tsx",
+        "target_module": "frontend",
+        "is_test_file": false,
+        "dependencies": [
+          "frontend/src/main.tsx"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      },
+      {
+        "file_path": "README.md",
+        "description": "Document actual setup, behavior and limitations",
+        "target_module": "README.md",
+        "is_test_file": false,
+        "dependencies": [
+          "backend/app/main.py",
+          "frontend/package.json"
+        ],
+        "traceable_requirements": [
+          "REQ-P-001",
+          "REQ-G-001",
+          "REQ-F-001",
+          "REQ-F-002",
+          "REQ-F-003",
+          "REQ-NF-001",
+          "REQ-NF-002",
+          "REQ-E-001",
+          "REQ-E-002",
+          "REQ-E-003",
+          "REQ-T-002",
+          "REQ-T-003",
+          "REQ-T-004",
+          "REQ-NG-001",
+          "REQ-NG-002",
+          "REQ-NG-003",
+          "REQ-NG-004",
+          "REQ-NG-005",
+          "REQ-R-001",
+          "REQ-R-002"
+        ]
+      }
+    ],
+    "test_requirements": [
+      {
+        "test_id": "TC-001",
+        "test_type": "unit",
+        "target_file": "backend/app/main.py",
+        "scenario": "Create task with valid title and description",
+        "expected_outcome": "API returns 201 Created with generated ID, task stored in SQLite",
+        "traceable_requirements": [
+          "REQ-F-001"
+        ]
+      },
+      {
+        "test_id": "TC-002",
+        "test_type": "unit",
+        "target_file": "backend/app/main.py",
+        "scenario": "Retrieve all tasks after creation",
+        "expected_outcome": "API returns 200 OK with list of tasks including generated ID, title, description",
+        "traceable_requirements": [
+          "REQ-F-001"
+        ]
+      },
+      {
+        "test_id": "TC-003",
+        "test_type": "unit",
+        "target_file": "backend/app/main.py",
+        "scenario": "Delete task and verify removal from list",
+        "expected_outcome": "API returns 204 No Content; subsequent retrieval shows task absent",
+        "traceable_requirements": [
+          "REQ-F-001"
+        ]
+      }
+    ],
+    "security_requirements": [],
+    "deployment_requirements": [
+      "Run FastAPI server with SQLite database",
+      "Serve React frontend via Vite"
+    ],
+    "decisions": [],
+    "overall_confidence": 0.0,
+    "blocked_reasons": null
+  }
+}

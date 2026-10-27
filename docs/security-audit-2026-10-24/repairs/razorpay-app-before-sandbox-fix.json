@@ -1,0 +1,35 @@
+{
+  "payment_controls": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 14,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 14,
+    "duration_ms": 24590.79,
+    "failures": [],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 14 items\n\n../../source/.projectforge/test_repair_controls.py::test_unconfigured_live_guard_and_authority PASSED [  7%]\n../../source/.projectforge/test_repair_controls.py::test_signatures_amount_currency_and_capture_authority PASSED [ 14%]\n../../source/.projectforge/test_repair_controls.py::test_lost_order_create_is_reconciled_without_duplicate PASSED [ 21%]\n../../source/.projectforge/test_repair_controls.py::test_webhook_invalid_duplicate_account_and_delayed_ordering PASSED [ 28%]\n../../source/.projectforge/test_repair_controls.py::test_late_capture_never_reclaims_released_stock_and_refund_once[cancel] PASSED [ 35%]\n../../source/.projectforge/test_repair_controls.py::test_late_capture_never_reclaims_released_stock_and_refund_once[expire] PASSED [ 42%]\n../../source/.projectforge/test_repair_controls.py::test_refund_lost_response_stable_key_pending_processed_replay PASSED [ 50%]\n../../source/.projectforge/test_repair_controls.py::test_external_refund_flags_review_without_silent_restock PASSED [ 57%]\n../../source/.projectforge/test_repair_controls.py::test_saved_payment_survives_new_server_process PASSED [ 64%]\n../../source/.projectforge/test_repair_controls.py::test_failed_refund_retry_and_signed_notification PASSED [ 71%]\n../../source/.projectforge/test_repair_controls.py::test_refund_recovery_from_another_admin_session_uses_persisted_key PASSED [ 78%]\n../../source/.projectforge/test_repair_controls.py::test_concurrent_callback_and_webhook_cannot_double_apply PASSED [ 85%]\n../../source/.projectforge/test_repair_controls.py::test_provider_action_rate_limit_persists_across_sessions PASSED [ 92%]\n../../source/.projectforge/test_repair_controls.py::test_phase5_upgrade_preserves_orders_and_rejects_downgrade PASSED [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 14 passed, 1 warning in 22.51s ========================\n",
+    "raw_stderr": ""
+  },
+  "browser_journey": {
+    "command": "pytest",
+    "exit_code": 1,
+    "passed_count": 0,
+    "failed_count": 1,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 17279.17,
+    "failures": [
+      {
+        "test_name": "test_customer_cart_checkout_and_order_history",
+        "file_path": "/source/.projectforge/test_repair_browser.py",
+        "line_number": 15,
+        "error_type": "AssertionError",
+        "message": "/source/.projectforge/test_repair_browser.py:9: AssertionError",
+        "traceback": "def test_customer_cart_checkout_and_order_history():\n        backend=subprocess.Popen(['python','-m','uvicorn','app.main:app','--host','127.0.0.1','--port','8001','--no-proxy-headers'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        frontend=subprocess.Popen(['/opt/frontend/node_modules/.bin/vite','--host','127.0.0.1','--port','3001'],cwd='frontend',stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        password=secrets.token_urlsafe(20);email='browser-'+secrets.token_hex(5)+'@example.com';errors=[]\n        try:\n>           ready(ORIGIN);ready('http://127.0.0.1:8001/api/store')\n            ^^^^^^^^^^^^^\n\n/source/.projectforge/test_repair_browser.py:15: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nurl = 'http://127.0.0.1:3001'\n\n    def ready(url):\n        for _ in range(150):\n            try:urllib.request.urlopen(url,timeout=1).close();return\n            except Exception:time.sleep(.1)\n>       raise AssertionError('Preview failed"
+      }
+    ],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_repair_browser.py::test_customer_cart_checkout_and_order_history FAILED [100%]\n\n=================================== FAILURES ===================================\n________________ test_customer_cart_checkout_and_order_history _________________\n\n    def test_customer_cart_checkout_and_order_history():\n        backend=subprocess.Popen(['python','-m','uvicorn','app.main:app','--host','127.0.0.1','--port','8001','--no-proxy-headers'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        frontend=subprocess.Popen(['/opt/frontend/node_modules/.bin/vite','--host','127.0.0.1','--port','3001'],cwd='frontend',stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        password=secrets.token_urlsafe(20);email='browser-'+secrets.token_hex(5)+'@example.com';errors=[]\n        try:\n>           ready(ORIGIN);ready('http://127.0.0.1:8001/api/store')\n            ^^^^^^^^^^^^^\n\n/source/.projectforge/test_repair_browser.py:15: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nurl = 'http://127.0.0.1:3001'\n\n    def ready(url):\n        for _ in range(150):\n            try:urllib.request.urlopen(url,timeout=1).close();return\n            except Exception:time.sleep(.1)\n>       raise AssertionError('Preview failed to start: '+url)\nE       AssertionError: Preview failed to start: http://127.0.0.1:3001\n\n/source/.projectforge/test_repair_browser.py:9: AssertionError\n=========================== short test summary info ============================\nFAILED ../../source/.projectforge/test_repair_browser.py::test_customer_cart_checkout_and_order_history\n============================== 1 failed in 15.52s ==============================\n",
+    "raw_stderr": ""
+  }
+}

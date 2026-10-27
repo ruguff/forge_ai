@@ -1,0 +1,12 @@
+{
+  "command": "pytest",
+  "exit_code": 0,
+  "passed_count": 1,
+  "failed_count": 0,
+  "error_count": 0,
+  "total_count": 1,
+  "duration_ms": 7669.87,
+  "failures": [],
+  "raw_stdout": "============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_browser.py::test_browser_journeys PASSED [100%]\n\n============================== 1 passed in 6.20s ===============================\n",
+  "raw_stderr": ""
+}

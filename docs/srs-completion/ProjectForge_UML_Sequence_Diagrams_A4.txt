@@ -1,0 +1,100 @@
+=== PAGE 1 ===
+ProjectForge AI UML Sequence Diagram
+Figure 2.4(a) Creation understanding and clarification
+«boundary» «control» «control» «control» «control» «entity»
+Frontend Projects API Understanding Local model Requirement Persistence
+User Engine
+Submit idea
+POST /api/projects
+emit_event: append event + save snapshot
+Persisted project_id + version
+POST /{id}/understand
+execute_understanding(raw_idea)
+generate(prompt)
+aalltt [[vvaalliidd eexxttrraaccttiioonn]]
+Valid model extraction
+[[iinnvvaalliidd // uunnaavvaaiillaabbllee]]
+Invalid result / exception
+generate_heuristic_understanding()
+Structured output + evidence label
+evaluate_requirements(output)
+Questions + readiness
+emit_event: save context and events
+Context + next clarification
+lloooopp [[wwhhiillee ccllaarriiffiiccaattiioonn rreemmaaiinnss]]
+Answer question
+POST /{id}/clarify
+Update requirement/version; find next PENDING
+emit_event: save updated context
+Next question or REQUIREMENTS_VALIDATED
+Clarify updates the pending-question list; it does not re-run RequirementEngine. emit_event persists before responses.
+Filled arrow: call | Open arrow: asynchronous message | Dashed arrow: return | Narrow rectangle: activation
+A4 landscape | Section 2.4 | 1 / 3
+
+=== PAGE 2 ===
+ProjectForge AI UML Sequence Diagram
+Figure 2.4(b) Background planning and failure outcomes
+«boundary» «control» «control» «control» «control» «control» «control» «entity»
+Frontend Projects API Background Specialist Harness Local model Compiler Persistence
+POST /{id}/analyze
+save_project(ANALYZING)
+create_task(background)
+status: started
+lloooopp [[nneexxtt ssppeecciiaalliisstt wwhhiillee pprreecceeddiinngg oouuttppuutt vvaalliidd]]
+analyze(state)
+execute(context)
+generate(prompt)
+JSON / model error
+Schema + lint + bounded retries
+HarnessResult / exception
+Validated output / failure
+[success] save + emit_event
+events_after(project, sequence)
+Stored event rows
+SSE: agent progress
+ConflictResolver; FinalArchitect if no conflicts
+aalltt [[nnoo eexxcceeppttiioonn]] [no conflicts] compile_model(...)
+Generate + validate sections
+Section JSON / error
+Validated BuildSpec
+Save; BUILD_SPEC_COMPILED + PIPELINE_COMPLETED
+[[ffaaiilluurree // ccoonnfflliiccttss]]
+Persist stop status + failure event
+SSE: completion / stop events
+API /stream reads events_after() and emits SSE; emit_event appends events, signals waiters and saves snapshots.
+Filled arrow: call | Open arrow: asynchronous message | Dashed arrow: return | Narrow rectangle: activation
+A4 landscape | Section 2.4 | 2 / 3
+
+=== PAGE 3 ===
+ProjectForge AI UML Sequence Diagram
+Figure 2.4(c) Awaited build worker and persisted outcomes
+«boundary» «control» «control» «control» «control» «control» «control» «entity»
+Frontend Projects API Orchestrator Code / repo TestRunner Safe executor Docker Persistence
+POST /{id}/build
+Check current spec + guided approval
+save_project(BUILDING)
+to_thread(execute_build)
+initialize_project(); write memory metadata
+lloooopp [[rreeaaddyy ttaasskkss;; bboouunnddeedd ffiillee ggeenneerraattiioonn]]
+execute_task(task, spec, tools)
+Scoped AgentToolContext -> repository write
+Task result / source failure
+oopptt [[aallll ssoouurrccee ttaasskkss ccoommpplleettee]]
+create_checkpoint(code_complete)
+preflight()
+Runtime available / reason
+oopptt [[rruunnttiimmee aavvaaiillaabbllee]]
+Run backend, frontend, API and browser checks
+execute(command_str)
+docker run: read-only, network none
+Exit code + stdout/stderr
+ExecutionResult
+All declared check results
+aalltt [[aallll rreeqquuiirreedd cchheecckkss ppaassss]] VERIFIED report
+[[eellssee]]
+BLOCKED / FAILED / REQUIRES_HUMAN
+save_project(final state + report)
+HTTP response with build report
+API awaits shield(worker). Graph/scheduler are local. Orchestrator invokes SelfHealingLoop only after backend test failure.
+Filled arrow: call | Open arrow: asynchronous message | Dashed arrow: return | Narrow rectangle: activation
+A4 landscape | Section 2.4 | 3 / 3

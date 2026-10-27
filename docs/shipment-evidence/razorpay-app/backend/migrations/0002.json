@@ -1,0 +1,17 @@
+{
+  "revision": "0002",
+  "parent": "0001",
+  "module": "identity-v1",
+  "schema_version": 1,
+  "tables": [
+    "users",
+    "sessions",
+    "password_resets",
+    "addresses",
+    "rate_limits",
+    "audit_records"
+  ],
+  "catalogue_additions": [
+    "products.version:integer:not-null:default-1"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "backend\\app\\api\\endpoints.py": "9867dfa29272758d063f389d582ee483fd573e2600604bd8215b6e6661b1f9cb",
+  "backend\\app\\api\\persistence.py": "5ab7480f55f4faa8f79e0ce2035cada5e3018d6cac8c73cb09ebce441f9478cd",
+  "backend\\app\\agents\\model_client.py": "70bdd8155bdbaae329abc3844c1e6d25b19dbf56468adc38fd3fc91f56b4547a",
+  "backend\\app\\agents\\pipeline.py": "21ab20cfdb921052a168703b7c1096a58b79f18d394420c17699e82602286119",
+  "backend\\app\\models\\schemas.py": "b1d5c4d6bb9b7b650ba448686961eccb8d7c06e9690eb29a2eb28f98324a3f92",
+  "backend\\app\\execution\\orchestrator\\coding_orchestrator.py": "c712717d25c9c03708e640b982615b968208612ccb1463e89b4a6bd65423230f"
+}

@@ -1,0 +1,43 @@
+{
+  "report": {
+    "project_id": "PROJ-FCC520C200D2",
+    "project_name": "Student Notes Local Demo",
+    "workspace_path": "D:\\capstone_project\\backend\\generated_projects\\PROJ-FCC520C200D2\\offline-reliability-v2",
+    "status": "VERIFIED",
+    "tasks_executed": 11,
+    "files_created_count": 11,
+    "tests_passed": true,
+    "self_healing_invoked": false,
+    "repair_report": null,
+    "final_test_result": {
+      "command": "pytest",
+      "exit_code": 0,
+      "passed_count": 1,
+      "failed_count": 0,
+      "error_count": 0,
+      "total_count": 1,
+      "duration_ms": 2440.67,
+      "failures": [],
+      "raw_stdout": "============================= test session starts ==============================\ncollecting ... collected 1 item\n\nbackend/tests/test_app.py::test_invalid_create_has_no_side_effect PASSED [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 0.70s =========================\n",
+      "raw_stderr": ""
+    },
+    "verification_checks": {
+      "backend_tests": "PASSED",
+      "frontend_build": "PASSED",
+      "requirement_acceptance": "PASSED",
+      "browser_journeys": "PASSED"
+    },
+    "limitations": [
+      "Verification covers declared acceptance cases; load and security scans remain unverified."
+    ],
+    "source_digest": "19ad27f463a122481305c38ec85f9a08fc477dc1d33dec096b8198a19861d9e1"
+  },
+  "model_usage": {
+    "provider": "lmstudio",
+    "model": "nvidia/nemotron-3-nano-4b",
+    "calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "confidence_calibrated": false
+  }
+}

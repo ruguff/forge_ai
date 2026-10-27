@@ -1,0 +1,522 @@
+=== PAGE 1 ===
+1 ABOUT THE SYSTEM
+1.1 Problem Definition (Identification of Needs)
+1.1.1 Introduction
+Software development traditionally requires developers to manually perform several
+activities such as understanding requirements, selecting technologies, designing system
+architecture, creating database structures, developing frontend and backend components,
+testing the application, identifying errors, and modifying the source code.
+For small projects, these activities can be performed manually by a developer or development
+team. However, as the complexity of a software project increases, maintaining consistency
+between requirements, architecture, implementation, testing, and documentation becomes
+more difficult.
+PROJECTFORGE AI is proposed as an autonomous multi-agent software engineering
+platform that transforms a natural-language software idea into a structured and executable
+software project. The system uses multiple specialized Artificial Intelligence agents to
+analyze different aspects of software development before generating and executing the
+implementation.
+The system is designed to support the complete software-development lifecycle, beginning
+with project understanding and requirement analysis and continuing through architecture
+design, code generation, execution, testing, debugging, and final verification.
+1.1.2 Existing Problem
+In a conventional software-development workflow, different activities are generally handled
+separately. A developer may use one tool for requirement documentation, another for
+architecture design, an IDE for coding, a terminal for execution, and separate testing tools for
+verification.
+This creates several challenges:
+1. Requirement interpretation: A natural-language project idea may not contain all the
+technical information required to begin implementation.
+2. Requirement ambiguity: Developers may need to repeatedly clarify important
+project decisions before development can begin.
+0
+
+=== PAGE 2 ===
+3. Architecture planning: Selecting an appropriate frontend, backend, database, API
+structure, security model, and testing strategy requires technical analysis.
+4. Coordination between development activities: Changes in one part of a system can
+affect other components such as APIs, databases, frontend interfaces, and tests.
+5. Manual code development: A developer has to manually convert the planned
+architecture into source-code files.
+6. Testing and debugging: Generated or manually written software must be executed
+and tested, and errors must be identified and corrected.
+7. Traceability: It can be difficult to determine whether every original requirement has
+been implemented and verified.
+8. Repeated development effort: Similar planning, coding, testing, and debugging
+activities are repeatedly performed for different projects.
+1.1.3 Proposed Solution
+PROJECTFORGE AI addresses these challenges through a multi-agent software engineering
+architecture.
+The system accepts a software idea from the user and performs structured project
+understanding. An adaptive requirement engine identifies important unknowns and asks
+clarification questions only when necessary.
+After requirements are established, specialized AI agents independently analyze the project
+from different perspectives. The Product Agent analyzes users and product requirements, the
+AI/ML Agent evaluates artificial intelligence requirements, the Engineering Agent designs
+the technical architecture, the UX Agent analyzes the user experience, the Security Agent
+identifies security requirements and threats, and the QA Agent prepares the testing strategy.
+The outputs of these agents are then reviewed for contradictions. When different agents
+provide conflicting recommendations, the Conflict Arbiter evaluates the alternatives and
+records an Architectural Decision Record.
+The Final Architect subsequently combines the requirements, agent outputs, and architectural
+decisions into a Master Project Blueprint.
+The extended PROJECTFORGE architecture then converts the blueprint into a
+machine-readable Build Specification and implementation task graph. Coding agents use
+these tasks to generate actual source-code files. The generated project is executed in a
+controlled environment, tested, and monitored. When an implementation error is detected, a
+debugging and repair process analyzes the failure and allows the affected code to be corrected
+and tested again.
+1
+
+=== PAGE 3 ===
+After successful verification, the generated project can be opened in Visual Studio Code for
+further development.
+1.1.4 Aim of the System
+The primary aim of PROJECTFORGE AI is to develop an autonomous AI-assisted software
+engineering platform capable of transforming a high-level software idea into a structured,
+implemented, tested, and verifiable software project.
+1.1.5 Objectives
+The major objectives of the proposed system are:
+● To understand software ideas provided in natural language.
+● To identify explicit requirements and distinguish them from inferred requirements.
+● To reduce unnecessary clarification questions through adaptive requirement analysis.
+● To use specialized AI agents for different software engineering domains.
+● To identify and resolve conflicts between different architectural recommendations.
+● To generate a comprehensive project blueprint.
+● To convert the blueprint into a machine-readable Build Specification.
+● To decompose the project into implementation tasks and dependencies.
+● To generate actual source-code files.
+● To execute the generated project using a controlled execution environment.
+● To automatically perform software testing.
+● To detect, diagnose, and repair implementation errors.
+● To maintain traceability between requirements, tasks, code, and tests.
+● To provide a visual interface for monitoring the activities of the AI agents.
+● To open the successfully generated project in Visual Studio Code.
+1.2 Requirement Specifications (Product/System Tasks)
+The requirements of PROJECTFORGE AI are divided into functional and non-functional
+requirements.
+1.2.1 Functional Requirements
+Table 1.1: Functional Requirements Specification
+2
+
+=== PAGE 4 ===
+Requirement ID Requirement Name Description
+FR-001 Project Idea Input The system shall allow the
+user to provide a software
+development idea using
+natural language.
+FR-002 Project Understanding The system shall analyze
+the submitted project idea
+and identify the major
+project dimensions,
+requirements, objectives,
+users, constraints, and
+assumptions.
+FR-003 Requirement Classification The system shall
+distinguish between
+requirements explicitly
+provided by the user and
+requirements inferred by
+the system.
+FR-004 Adaptive Requirement The system shall identify
+Clarification critical unknown
+information and ask the
+user for clarification when
+the missing information
+can materially affect the
+project architecture or
+implementation.
+FR-005 Requirement Context The system shall maintain
+Management the project context and
+update it when the user
+provides additional
+information or changes an
+earlier decision.
+FR-006 Product Analysis The Product Agent shall
+analyze the project from
+the product and user
+3
+
+=== PAGE 5 ===
+Requirement ID Requirement Name Description
+perspective, including user
+personas, workflows,
+scope, and product
+requirements.
+FR-007 AI/ML Analysis The AI/ML Agent shall
+identify artificial
+intelligence or
+machine-learning
+requirements where
+applicable and recommend
+appropriate approaches.
+FR-008 Engineering Analysis The Engineering Agent
+shall analyze the technical
+architecture, application
+components, APIs, data
+structures, databases, and
+implementation
+technologies.
+FR-009 UX Analysis The UX Agent shall
+analyze user journeys,
+interface requirements,
+screen states,
+responsiveness, and user
+interaction requirements.
+FR-010 Security Analysis The Security Agent shall
+identify security
+requirements,
+authentication and
+authorization mechanisms,
+threats, and possible
+mitigations.
+FR-011 QA Analysis The QA Agent shall define
+testing requirements, test
+scenarios, quality criteria,
+4
+
+=== PAGE 6 ===
+Requirement ID Requirement Name Description
+and verification
+requirements.
+FR-012 Agent Output Review The system shall collect
+and compare the outputs
+generated by the specialist
+agents.
+FR-013 Conflict Detection The system shall identify
+contradictory or
+incompatible
+recommendations between
+agents.
+FR-014 Conflict Arbitration The Conflict Arbiter shall
+evaluate identified conflicts
+and produce an
+architectural decision based
+on defined criteria.
+FR-015 Architectural Decision The system shall record
+Records significant architectural
+decisions and their
+associated reasoning.
+FR-016 Master Blueprint The Final Architect shall
+Generation generate a comprehensive
+Master Project Blueprint
+based on the requirements,
+specialist analysis, and
+resolved architectural
+decisions.
+FR-017 Build Specification The system shall convert
+Generation the Master Blueprint into a
+structured
+machine-readable Build
+Specification.
+5
+
+=== PAGE 7 ===
+Requirement ID Requirement Name Description
+FR-018 Development Task The system shall
+Generation decompose the Build
+Specification into
+implementation tasks with
+dependencies,
+requirements, affected
+files, expected outputs, and
+associated tests.
+FR-019 Source Code Generation The coding subsystem shall
+generate source-code files
+according to the approved
+Build Specification and
+implementation tasks.
+FR-020 Repository Management The system shall create and
+manage the generated
+project's directory structure
+and source files.
+FR-021 Command Execution The system shall execute
+approved development
+commands required for
+dependency installation,
+building, testing, and
+application execution.
+FR-022 Application Execution The system shall start and
+monitor the generated
+application's development
+processes.
+FR-023 Automated Testing The system shall execute
+appropriate unit,
+integration, build, and
+runtime tests.
+FR-024 Error Detection The system shall collect
+execution and testing errors
+6
+
+=== PAGE 8 ===
+Requirement ID Requirement Name Description
+from generated
+applications.
+FR-025 Error Diagnosis The debugging subsystem
+shall analyze detected
+failures and identify the
+probable affected
+component and root cause.
+FR-026 Automated Code Repair The system shall allow the
+coding subsystem to
+modify affected source
+files according to the
+debugging analysis.
+FR-027 Retesting The system shall execute
+the relevant tests again
+after a repair operation.
+FR-028 Verification The system shall verify the
+generated software against
+defined requirements and
+acceptance criteria.
+FR-029 Development Monitoring The system shall display
+the progress of planning,
+coding, execution, testing,
+debugging, and verification
+through the
+PROJECTFORGE
+interface.
+FR-030 VS Code Integration After successful
+verification, the system
+shall provide functionality
+to open the generated
+project in Visual Studio
+Code.
+7
+
+=== PAGE 9 ===
+1.2.2 Non-Functional Requirements
+Table 1.2: Non-Functional Requirements Specification
+Requirement ID Specification Category Description
+NFR-001 Performance The system should provide
+responsive interaction
+during project analysis and
+display real-time progress
+of long-running agent
+operations.
+NFR-002 Reliability The system should
+maintain the project state
+and prevent loss of
+requirements, architectural
+decisions, task information,
+and execution results.
+NFR-003 Scalability The architecture should
+allow additional specialist
+agents, coding agents,
+tools, and technology
+stacks to be integrated
+without redesigning the
+complete system.
+NFR-004 Security The system shall restrict
+execution of potentially
+dangerous commands and
+should not provide
+unrestricted
+operating-system access to
+AI agents.
+NFR-005 Maintainability The system shall use
+modular components and
+structured contracts
+between agents and
+services.
+8
+
+=== PAGE 10 ===
+Requirement ID Specification Category Description
+NFR-006 Traceability Requirements, architectural
+decisions, implementation
+tasks, code modifications,
+and test results should be
+traceable.
+NFR-007 Fault Handling The system shall handle
+failed tasks and application
+errors using controlled
+retry and repair
+mechanisms.
+NFR-008 Controlled Automation The autonomous repair
+mechanism shall use a
+bounded number of repair
+attempts and should
+transfer unresolved
+problems to human review
+rather than continuing
+indefinitely.
+NFR-009 Extensibility The system should support
+the addition of new AI
+agents, programming
+languages, frameworks,
+databases, testing tools,
+and development
+workflows.
+NFR-010 Usability The user interface should
+clearly communicate the
+current
+project-development stage,
+agent activity, task status,
+errors, and verification
+results.
+9
+
+=== PAGE 11 ===
+1.3 Tools and Technology Used
+Table 1.3: Overview of Tools and Technologies Used
+Primary Purpose &
+Layer / Category Technology / Tool
+Description
+Backend Technologies Python, FastAPI, Pydantic, Core framework for
+SQLAlchemy multi-agent orchestration,
+REST API endpoints, data
+validation contracts, and
+database ORM mapping.
+Database SQLite Persistent project state
+storage for requirements,
+agent logs, system tasks,
+and execution outputs.
+Front-End Stack React, TypeScript, Vite, Web client and Virtual
+Tailwind CSS, Framer Office UI featuring type
+Motion safety, modern utility-first
+styling, and animated agent
+monitoring elements.
+Real-Time Server-Sent Events (SSE) Event streaming protocol
+Communication for updating frontend UI
+with dynamic real-time
+agent execution statuses.
+AI Agent Architecture Specialist & Orchestration Modular agent architecture
+Subsystems (Product, AI/ML,
+Engineering, UX, Security,
+QA) combined with
+workflow resolvers and
+repair units.
+Testing Tools Pytest Automated test suite
+execution framework for
+backend verification.
+Development Visual Studio Code Primary IDE for
+Environment development and final
+10
+
+=== PAGE 12 ===
+Primary Purpose &
+Layer / Category Technology / Tool
+Description
+target workspace for
+generated output projects.
+1.3.1 Backend Technologies
+● Python: Python is used as the primary backend programming language because the
+project contains multiple AI-agent, orchestration, automation, and
+software-engineering components.
+● FastAPI: FastAPI is used to implement the backend API layer and provide
+communication between the frontend and the PROJECTFORGE backend services.
+● Pydantic: Pydantic is used to define structured contracts and validate data exchanged
+between the different agents and backend components.
+● SQLAlchemy: SQLAlchemy is used for database interaction and management of
+persistent project information.
+1.3.2 Database
+● SQLite: SQLite is currently used for project-state and backend data storage during
+the development of PROJECTFORGE AI. The database can store information
+associated with projects, requirements, agent execution, decisions, and other
+persistent application state.
+1.3.3 Front-End Technologies
+● React: React is used to develop the PROJECTFORGE user interface and interactive
+Virtual Office.
+● TypeScript: TypeScript is used to provide type-safe frontend development.
+● Vite: Vite is used as the frontend development and build tool.
+● Tailwind CSS: Tailwind CSS is used for styling and responsive interface
+development.
+● Framer Motion: Framer Motion is used to implement animations and interactive
+visual elements in the Virtual Office.
+1.3.4 Real-Time Communication
+● Server-Sent Events (SSE): SSE is used to stream real-time project and agent-status
+information from the backend to the frontend. This allows the interface to display
+activities such as:
+○ Agent started
+11
+
+=== PAGE 13 ===
+○ Agent completed
+○ Agent waiting
+○ Code generation
+○ Test execution
+○ Debugging
+○ Repair
+○ Verification
+1.3.5 AI Agent Architecture
+PROJECTFORGE uses multiple specialized AI agents. The current specialist-agent
+architecture includes:
+1. Product Lead
+2. AI/ML Architect
+3. Engineering Lead
+4. UX Designer
+5. Security Auditor
+6. QA Strategist
+Additional orchestration components include:
+● Requirement Engine
+● Conflict Arbiter
+● Final Architect
+● Build Planner
+● Coding Agent
+● Debugger/Repair subsystem
+1.3.6 Testing Tools
+● Pytest: Pytest is used for automated backend testing and verification of
+PROJECTFORGE components. The current project contains an automated backend
+test suite used to validate existing functionality.
+1.3.7 Development Environment
+The system is developed using a modern software-development environment and is intended
+to generate projects that can subsequently be opened and continued in Visual Studio Code.
+12
+
+=== PAGE 14 ===
+2 SYSTEM DESIGN USING UML
+This chapter presents the architectural and behavioural design of PROJECTFORGE AI using
+Unified Modeling Language (UML) diagrams and structured data flow representations. The
+designs detail the interaction between user inputs, specialized AI agents, orchestration
+subsystems, data persistence layers, and execution environments.
+2.1 Data Flow Diagram
+Data Flow Diagrams (DFDs) map the flow of information through PROJECTFORGE AI,
+highlighting inputs, processing stages, multi-agent transformations, and data stores.
+2.1.1 Level 0 DFD (Context Diagram)
+The Level 0 DFD illustrates the overall system boundaries. The user provides high-level
+natural language project ideas and clarification answers to PROJECTFORGE AI, receiving
+structured blueprints, generated source code, execution/test reports, and status updates.
+13
+
+=== PAGE 15 ===
+2.1.2 Level 1 DFD
+The Level 1 DFD decomposes the system into main functional blocks: Requirement
+Analysis, Multi-Agent Specialist Evaluation, Architectural Conflict Resolution, Master
+Blueprint & Build Spec Generation, Code Generation & Execution, and Automated Testing
+& Repair.
+14
+
+=== PAGE 16 ===
+2.1.3 Level 2 DFD
+The Level 2 DFD further expands specific sub-processes, detailed as follows:
+● Process 2.1 (Specialist Agent Analysis): Parallel routing of requirements to Product,
+AI/ML, Engineering, UX, Security, and QA agents to collect specialized architectural
+recommendations.
+● Process 3.1 (Conflict Detection & Arbitration): Identification of cross-agent
+recommendations contradictions, evaluated by the Conflict Arbiter to output
+Architectural Decision Records (ADRs).
+● Process 5.1 (Build & Repair Loop): Transformation of tasks into code files,
+execution in a sandbox environment, capturing runtime/test failures, and routing
+diagnostics back to the repair engine.
+15
+
+=== PAGE 17 ===
+2.2 Use Case Diagram
+The Use Case Diagram portrays the interaction between actors (User, Autonomous AI
+Agents, System Administrator) and core system functionality, encompassing requirement
+submission, clarifying details, reviewing generated blueprints, monitoring build progress, and
+launching projects in VS Code.
+16
+
+=== PAGE 18 ===
+2.2.1 Use Case Descriptions
+Key use cases and actor interactions include:
+● UC-01 Submit Project Idea: Primary actor is User. Allows entering high-level
+project description in natural language.
+● UC-02 Answer Clarifications: User responds to adaptive questions posed by the
+Requirement Engine to resolve critical missing information.
+● UC-03 Monitor Agent Workflow: User monitors real-time SSE stream displaying
+multi-agent planning, code generation, testing, and debugging state.
+● UC-04 Open in VS Code: User launches the finalized and verified codebase directly
+into Visual Studio Code.
+17

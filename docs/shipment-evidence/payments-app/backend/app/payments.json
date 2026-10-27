@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "mode": "offline_simulator",
+  "refunds": "admin_full_only"
+}

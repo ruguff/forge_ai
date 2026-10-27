@@ -1,0 +1,5 @@
+{
+    "signature":  "Valid",
+    "publisher":  "CN=Docker Inc, O=Docker Inc, L=Palo Alto, S=California, C=US, SERIALNUMBER=4817464, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+    "sha256":  "73431DB38491F770543880366228A23C993F84D1E8E045F56D83B8A98940CF76"
+}

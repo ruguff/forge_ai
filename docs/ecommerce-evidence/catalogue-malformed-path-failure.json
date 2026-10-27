@@ -1,0 +1,88 @@
+{
+  "contract_version": 1,
+  "build": {
+    "project_id": "PROJ-CATALOGUE-DEMO",
+    "project_name": "Fieldwork catalogue",
+    "workspace_path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-app",
+    "status": "VERIFIED",
+    "tasks_executed": 27,
+    "files_created_count": 27,
+    "tests_passed": true,
+    "self_healing_invoked": false,
+    "repair_report": null,
+    "final_test_result": {
+      "command": "pytest",
+      "exit_code": 0,
+      "passed_count": 1,
+      "failed_count": 0,
+      "error_count": 0,
+      "total_count": 1,
+      "duration_ms": 6314.0,
+      "failures": [],
+      "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\nbackend/tests/test_app.py::test_public_read_contract PASSED              [100%]\n\n=============================== warnings summary ===============================\n../../opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1\n  /opt/python/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n========================= 1 passed, 1 warning in 3.12s =========================\n",
+      "raw_stderr": ""
+    },
+    "verification_checks": {
+      "backend_tests": "PASSED",
+      "frontend_build": "PASSED",
+      "requirement_acceptance": "PASSED",
+      "browser_journeys": "PASSED"
+    },
+    "limitations": [
+      "Verification covers declared acceptance cases; load and security scans remain unverified."
+    ],
+    "source_digest": "c8f1a1817f78eaa651ab510ae1c37804976d03c542f2cd46c1a27d8ea00933bb"
+  },
+  "functional": "FAILED",
+  "security": "UNVERIFIED",
+  "accessibility": "FAILED",
+  "performance": "UNVERIFIED",
+  "provider_integration": "NOT_IMPLEMENTED",
+  "screenshots": [
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-desktop-catalogue.png",
+      "sha256": "b04f14b64e60894f99e1197f06e4d672d712bea57968e82c9fcdbe7d54cb531a"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-mobile-catalogue.png",
+      "sha256": "1afa1f3d546ab0a70023ade6e180f24d8cdfaed618935f2ecb8e14f83aee5b48"
+    },
+    {
+      "path": "D:\\capstone_project\\docs\\ecommerce-evidence\\catalogue-mobile-detail.png",
+      "sha256": "91bc703492dc40186053b1b25a4842f5cc5de83bb32af6c9a04c65356b9d39a9"
+    }
+  ],
+  "postgresql": {
+    "command": "pytest",
+    "exit_code": 0,
+    "passed_count": 1,
+    "failed_count": 0,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 5544.31,
+    "failures": [],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\n../../source/.projectforge/test_catalogue_postgresql.py::test_catalogue_postgresql_constraints_visibility_and_restart INFO:     127.0.0.1:36146 - \"GET /api/store HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:36150 - \"GET /api/products/daily-pack HTTP/1.1\" 404 Not Found\nINFO:     127.0.0.1:36150 - \"GET /api/products/woven-throw HTTP/1.1\" 404 Not Found\nINFO:     127.0.0.1:36150 - \"GET /api/products?category=home HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:36150 - \"POST /api/products HTTP/1.1\" 405 Method Not Allowed\nINFO:     127.0.0.1:36198 - \"GET /api/store HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:36210 - \"GET /api/products/trail-pack HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:36210 - \"GET /api/products HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:36210 - \"GET /api/products/daily-pack HTTP/1.1\" 404 Not Found\nPASSED\n\n============================== 1 passed in 3.01s ===============================",
+    "raw_stderr": "INFO:     Started server process [35]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)\nINFO:     Shutting down\nINFO:     Waiting for application shutdown.\nINFO:     Application shutdown complete.\nINFO:     Finished server process [35]\nINFO:     Started server process [39]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)\nINFO:     Shutting down\nINFO:     Waiting for application shutdown.\nINFO:     Application shutdown complete.\nINFO:     Finished server process [39]\n"
+  },
+  "rendered": {
+    "command": "pytest",
+    "exit_code": 1,
+    "passed_count": 0,
+    "failed_count": 1,
+    "error_count": 0,
+    "total_count": 1,
+    "duration_ms": 17582.78,
+    "failures": [
+      {
+        "test_name": "test_desktop_mobile_keyboard_and_states",
+        "file_path": "/source/.projectforge/test_catalogue_rendered.py",
+        "line_number": 109,
+        "error_type": "AssertionError",
+        "message": "/source/.projectforge/test_catalogue_rendered.py:109: AssertionError",
+        "traceback": "def test_desktop_mobile_keyboard_and_states():\n        backend=subprocess.Popen(['python','-m','uvicorn','app.main:app','--host','127.0.0.1','--port','8001'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        frontend=subprocess.Popen(['/opt/frontend/node_modules/.bin/vite','--host','127.0.0.1','--port','3001'],cwd='frontend',stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        try:\n            ready('http://127.0.0.1:8001/api/store');ready('http://127.0.0.1:3001')\n            with sync_playwright() as p:\n                browser=p.chromium.launch(headless=True)\n                errors=[]\n                page=browser.new_page(viewport={'width':1440,'height':1000},reduced_motion='reduce')\n                page.on('pageerror',lambda e:errors.append(str(e)))\n                page.goto('http://127.0.0.1:3001')\n                expect(locator(page,'product')).to_have_count(6)\n                expect(locator(page,'results')).to_contain_text('8 essentials')\n                page.wa"
+      }
+    ],
+    "raw_stdout": "waiting for server to start.... done\nserver started\n============================= test session starts ==============================\ncollecting ... collected 1 item\n\nFAILED\n\n=================================== FAILURES ===================================\n___________________ test_desktop_mobile_keyboard_and_states ____________________\n\n    def test_desktop_mobile_keyboard_and_states():\n        backend=subprocess.Popen(['python','-m','uvicorn','app.main:app','--host','127.0.0.1','--port','8001'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        frontend=subprocess.Popen(['/opt/frontend/node_modules/.bin/vite','--host','127.0.0.1','--port','3001'],cwd='frontend',stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n        try:\n            ready('http://127.0.0.1:8001/api/store');ready('http://127.0.0.1:3001')\n            with sync_playwright() as p:\n                browser=p.chromium.launch(headless=True)\n                errors=[]\n                page=browser.new_page(viewport={'width':1440,'height':1000},reduced_motion='reduce')\n                page.on('pageerror',lambda e:errors.append(str(e)))\n                page.goto('http://127.0.0.1:3001')\n                expect(locator(page,'product')).to_have_count(6)\n                expect(locator(page,'results')).to_contain_text('8 essentials')\n                page.wait_for_function('Array.from(document.images).every(i => i.complete)')\n                no_overflow(page)\n                assert page.locator('main').count()==1 and page.locator('h1').count()==1\n                assert page.locator('.skip-link').evaluate(\"e => getComputedStyle(e).clipPath\")!='none'\n                page.keyboard.press('Tab');expect(page.get_by_text('Skip to main content')).to_be_focused()\n                assert page.locator('.skip-link').evaluate(\"e => getComputedStyle(e).clipPath\")=='none'\n                page.keyboard.press('Enter');expect(page.locator('#main')).to_be_focused()\n                assert page.locator('.skip-link').evaluate(\"e => getComputedStyle(e).clipPath\")!='none'\n                snapshot(page,'desktop-catalogue')\n                pending=[]\n                page.route('**/api/products?**',lambda route:pending.append(route))\n                locator(page,'search').fill('bottle');locator(page,'search').press('Enter')\n                for _ in range(200):\n                    if pending:break\n                    page.wait_for_timeout(10)\n                assert pending,'Expected an actual intercepted product request'\n                expect(locator(page,'loading')).to_be_visible()\n                for route in pending:route.continue_()\n                page.unroute('**/api/products?**')\n                expect(locator(page,'product')).to_have_count(2)\n                locator(page,'search').fill('trail');locator(page,'search').press('Enter')\n                expect(locator(page,'product')).to_have_count(1)\n                expect(locator(page,'product')).to_contain_text('The trail pack')\n                locator(page,'search').fill('no-such-product');locator(page,'search').press('Enter')\n                expect(locator(page,'empty')).to_be_visible()\n                expect(locator(page,'product')).to_have_count(0)\n                page.get_by_role('button',name='Clear search and filters').click()\n                expect(locator(page,'product')).to_have_count(6)\n                locator(page,'sort').select_option('price-asc')\n                expect(locator(page,'product').first).to_contain_text('The market tote')\n                locator(page,'clear').click()\n                locator(page,'next').click()\n                expect(locator(page,'product')).to_have_count(2)\n                expect(locator(page,'product').first).to_contain_text('The daily pack')\n                locator(page,'previous').click();expect(locator(page,'product')).to_have_count(6)\n                # Failure and loading states use intercepted transport, never fake API success.\n                page.route('**/api/products?**',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))\n                locator(page,'search').fill('fail');locator(page,'search').press('Enter')\n                expect(locator(page,'error')).to_be_visible()\n                page.unroute('**/api/products?**')\n                locator(page,'retry').click();expect(locator(page,'empty')).to_be_visible()\n                locator(page,'clear').click();expect(locator(page,'product')).to_have_count(6)\n                for width,height in ((1024,768),(390,844),(320,740)):\n                    page.set_viewport_size({'width':width,'height':height})\n                    no_overflow(page)\n                    if width==390:\n                        snapshot(page,'mobile-catalogue')\n                page.set_viewport_size({'width':390,'height':844})\n                page.get_by_role('button',name='Filters',exact=True).click()\n                locator(page,'category').select_option('camp')\n                locator(page,'stock').check();locator(page,'apply').click()\n                expect(locator(page,'product')).to_have_count(1)\n                expect(locator(page,'product')).to_contain_text('The folding stool')\n                locator(page,'min-price').fill('30');locator(page,'max-price').fill('10');locator(page,'apply').click()\n                expect(locator(page,'error')).to_contain_text('valid price range')\n                page.get_by_role('button',name='Reset',exact=True).click()\n                expect(locator(page,'product')).to_have_count(6)\n                locator(page,'product').filter(has=page.get_by_role('heading',name='The trail pack')).get_by_role('link').click()\n                expect(locator(page,'sku')).to_have_text('PACK-OLIVE-18')\n                locator(page,'variant').focus();locator(page,'variant').press('ArrowDown');locator(page,'variant').press('Enter')\n                expect(locator(page,'sku')).to_have_text('PACK-SAND-18')\n                expect(locator(page,'availability')).to_have_text('Out of stock')\n                expect(locator(page,'price')).to_contain_text('2,599')\n                page.get_by_role('button',name='View image 2').click()\n                expect(page.get_by_role('button',name='View image 2')).to_have_attribute('aria-pressed','true')\n                no_overflow(page);snapshot(page,'mobile-detail')\n                assert page.locator('img:not([alt])').count()==0\n                page.route('**/assets/pack-detail.svg',lambda route:route.fulfill(status=404,body=''))\n                page.reload()\n                expect(locator(page,'sku')).to_have_text('PACK-OLIVE-18')\n                page.get_by_role('button',name='View image 2').click()\n                expect(page.locator('.detail-image').get_by_role('img',name='Product image unavailable')).to_be_visible()\n                page.unroute('**/assets/pack-detail.svg')\n                page.goto('http://127.0.0.1:3001/products/%ZZ')\n>               expect(locator(page,'error')).to_contain_text('not available')\nE               AssertionError: Locator expected to contain text 'not available'\nE               Actual value: None\nE               Error: element(s) not found \nE               Call log:\nE                 - Expect \"to_contain_text\" get_by_test_id(\"catalogue-error\") with timeout 5000ms\nE                 - waiting for get_by_test_id(\"catalogue-error\")\nE               \nE               Aria snapshot:\nE               - text: URI malformed at decodeURI (<anonymous>) at viteTransformMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:62024:13) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at viteServePublicMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51663:14) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at viteHMRPingMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:63369:7) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41286:14) at viteProxyMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:61863:5) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at viteCachedTransformMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:62011:5) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at viteHostCheckMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:59324:12) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at cors (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41836:7) at file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41872:17 at originCallback (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41862:15) at file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41867:13 at optionsCallback (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41847:9) at corsMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41852:7) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at viteRejectInvalidRequestMiddleware (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:63007:12) at call (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at Function.handle (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41311:3) at Server.app (file:///opt/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41176:37 Click outside, press Esc key, or fix the code to dismiss. You can also disable this overlay by setting\nE               - code: server.hmr.overlay\nE               - text: to\nE               - code: \"false\"\nE               - text: in\nE               - code: vite.config.ts\nE               - text: .\n\n/source/.projectforge/test_catalogue_rendered.py:109: AssertionError\n=========================== short test summary info ============================\nFAILED ../../source/.projectforge/test_catalogue_rendered.py::test_desktop_mobile_keyboard_and_states\n============================== 1 failed in 15.19s ==============================",
+    "raw_stderr": ""
+  }
+}

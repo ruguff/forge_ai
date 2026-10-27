@@ -1,0 +1,70 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 14
+skinparam shadowing false
+title Figure 2.4(c)  Awaited build worker and persisted outcomes
+hide footbox
+participant "Frontend" as P0
+participant "Projects API" as P1
+participant "Orchestrator" as P2
+participant "Code / repo" as P3
+participant "TestRunner" as P4
+participant "Safe executor" as P5
+participant "Docker" as P6
+participant "Persistence" as P7
+activate P1
+P0 -> P1 : POST /{id}/build
+P1 -> P1 : Check current spec + guided approval
+activate P7
+P1 -> P7 : save_project(BUILDING)
+deactivate P7
+activate P2
+P1 ->> P2 : to_thread(execute_build)
+activate P3
+P2 -> P3 : initialize_project(); write memory metadata
+deactivate P3
+loop [ready tasks; bounded file generation]
+activate P3
+P2 -> P3 : execute_task(task, spec, tools)
+P3 -> P3 : Scoped AgentToolContext -> repository write
+P3 -->> P2 : Task result / source failure
+deactivate P3
+end
+opt [all source tasks complete]
+P2 -> P3 : create_checkpoint(code_complete)
+activate P5
+P2 -> P5 : preflight()
+P5 -->> P2 : Runtime available / reason
+deactivate P5
+opt [runtime available]
+activate P4
+P2 -> P4 : Run backend, frontend, API and browser checks
+activate P5
+P4 -> P5 : execute(command_str)
+activate P6
+P5 -> P6 : docker run: read-only, network none
+P6 -->> P5 : Exit code + stdout/stderr
+deactivate P6
+P5 -->> P4 : ExecutionResult
+deactivate P5
+P4 -->> P2 : All declared check results
+deactivate P4
+end
+end
+alt [all required checks pass]
+P2 -->> P1 : VERIFIED report
+else [else]
+P2 -->> P1 : BLOCKED / FAILED / REQUIRES_HUMAN
+end
+deactivate P2
+activate P7
+P1 -> P7 : save_project(final state + report)
+deactivate P7
+P1 -->> P0 : HTTP response with build report
+deactivate P1
+note over P0,P7
+API awaits shield(worker). Graph/scheduler are local. Orchestrator invokes SelfHealingLoop only after backend test failure.
+end note
+@enduml

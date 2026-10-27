@@ -1,0 +1,115 @@
+=== PAGE 1 ===
+ProjectForge AI UML Class Diagram
+Figure 2.3(a) Project data and specification classes
+ProjectPersistence BaseModel BuildSpecCompiler
++ path: Path
+Pydantic framework superclass + compile_model(context, state,
++ save(project_id, state, context,
+llm_client): BuildSpec
+spec=None)
++ compile(context=None, state=None,
++ load_all(): list
+override_project_type=None)
++ append_event(project_id, payload)
+«create»
+ProjectState ProjectContext BuildSpec
++ project_id: str + project_id: str + project_id: str
++ revision: int + version: int + version: int
++ status: ProjectStatus + execution_state: str + status: BuildSpecStatus
++ raw_idea: str + build_spec: Optional[dict] + files_to_create: List[TargetFileDef]
++ requirements: List + requirements: List
++ model_post_init(__context): None
+0..*
+ExtractedRequirementItem BuildRequirementItem TargetFileDef
++ id: str 0..* + id: str 0..* + file_path: str
++ description: str + description: str + dependencies: List[str]
++ source: RequirementSource + source: RequirementSourceType
+build_spec is an optional serialized dict, not a stored BuildSpec instance. No object association is asserted.
+Persistence serializes state/context/spec. Nested lists use associations; exclusive lifecycle ownership is not enforced.
+UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance.
+A4 landscape | Selected implementation classes | 1 / 3
+
+=== PAGE 2 ===
+ProjectForge AI UML Class Diagram
+Figure 2.3(b) Specialist harnesses and provider selection
+ProductAgent Settings
+- _harness: AgentExecutionHarness + LLM_PROVIDER: str
+LocalModelClient
++ analyze(project_state): HarnessResult
++ settings: Settings
++ calls: int
+AIMLAgent
++ generate(prompt, *,
+- _harness: AgentExecutionHarness
+output_tokens=None): str
++ analyze(project_state): HarnessResult + generate_sync(prompt, *,
+output_tokens=None): str
+EngineeringAgent
+1 AgentExecutionHarness<T>
+- _harness: AgentExecutionHarness 1
++ target_schema: Type[T]
++ analyze(project_state): HarnessResult 1 + llm_client: Callable
++ lint_rules: List[LintRule]
+«create»
+1
+UXAgent
++ execute(context_data,
+1
+- _harness: AgentExecutionHarness max_retries=2): HarnessResult
+1
++ analyze(project_state): HarnessResult
+GeminiModelClient
+SecurityAgent
++ settings: Settings
+- _harness: AgentExecutionHarness + client: genai.Client
++ analyze(project_state): HarnessResult + __new__(cls)
++ generate(prompt: str): str
+QAAgent + generate_sync(prompt: str): str
+- _harness: AgentExecutionHarness
++ analyze(project_state): HarnessResult
+__new__(): lmstudio -> LocalModelClient(); gemini -> Gemini instance; other providers raise ModelUnavailableError.
+Each agent creates its own harness. Harness callbacks bind the selected provider generate(); there is no provider inheritance.
+UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance.
+A4 landscape | Selected implementation classes | 2 / 3
+
+=== PAGE 3 ===
+ProjectForge AI UML Class Diagram
+Figure 2.3(c) Build ownership and execution collaborators
+TaskGraph CodingOrchestrator CodingAgent
++ tasks: Dict + workspace_root: Path + agent_name: str
++ adj_list: Dict + coding_agent: CodingAgent + model_client: object
+«create» 1
++ in_degree: Dict + test_runner: TestRunner
++ execute_task(task, spec, tools,
++ repo: RepositoryManager
++ build_from_spec(spec): None focused_context=None):
++ validate_dag(): List[str] + execute_build(spec): TaskImplementationResult
+ExecutionPipelineReport
+1
+«create»
+1
+TaskScheduler TestRunner AgentToolContext
++ graph: TaskGraph + workspace_root: Path + repo: RepositoryManager
++ executor: SafeCommandExecutor + allowed_files: List[str]
++ get_ready_tasks(): List
++ mark_completed(task_id, + run_backend_tests(test_path) + read_file(relative_path): str
+output_summary=None): List + run_frontend_build() + write_file(relative_path, content): str
++ mark_failed(task_id, error_message, + run_acceptance(checks)
+retryable=True): None + run_browser_checks(journeys)
+1
+1
+SafeCommandExecutor
+RepositoryManager
+ImplementationTask
++ image: str
++ workspace_root: Path
+0..* + task_id: str
++ preflight(): tuple
++ dependencies: List[str] + write_task_file(...): Path
++ execute(command_str, ...):
++ status: TaskStatus + create_checkpoint(...): bool
+ExecutionResult
+TaskGraph and TaskScheduler are local variables in execute_build(), not permanent CodingOrchestrator attributes.
+Associations denote references, not whole-part ownership. Ellipses abbreviate selected method parameters.
+UML: filled diamond = composition; hollow diamond = aggregation; dashed arrow = dependency; hollow triangle = inheritance.
+A4 landscape | Selected implementation classes | 3 / 3

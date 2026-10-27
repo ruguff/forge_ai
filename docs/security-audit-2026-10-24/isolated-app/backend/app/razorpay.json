@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "mode": "razorpay_test",
+  "currency": "INR",
+  "refunds": "admin_full_only"
+}

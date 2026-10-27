@@ -1,0 +1,9 @@
+{
+  "command": "npm --prefix frontend run build",
+  "exit_code": 2,
+  "stdout": "waiting for server to start.... done\nserver started\n\n> generated-local-crud@1.0.0 build\n> tsc --noEmit && vite build\n\nvite.config.ts(7,14): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\nvite.config.ts(7,67): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\nvite.config.ts(7,87): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\nvite.config.ts(11,14): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\nvite.config.ts(11,67): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\nvite.config.ts(11,87): error TS2339: Property 'url' does not exist on type 'IncomingMessage'.\n",
+  "stderr": "",
+  "duration_ms": 7393.0,
+  "timed_out": false,
+  "safety_level": "ALLOWED"
+}

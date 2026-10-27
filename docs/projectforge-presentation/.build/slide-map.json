@@ -1,0 +1,137 @@
+[
+  {
+    "slide": 1,
+    "section": "B.TECH SEMESTER VII PROJECT REVIEW",
+    "title": ""
+  },
+  {
+    "slide": 2,
+    "section": "1.1 ABOUT THE SYSTEM",
+    "title": "Problem definition"
+  },
+  {
+    "slide": 3,
+    "section": "1.1 AIM AND OBJECTIVES",
+    "title": "Proposed system and current scope"
+  },
+  {
+    "slide": 4,
+    "section": "1.2 FUNCTIONAL REQUIREMENTS",
+    "title": "Understanding and specialist inputs"
+  },
+  {
+    "slide": 5,
+    "section": "1.2 FUNCTIONAL REQUIREMENTS",
+    "title": "Review and architectural planning"
+  },
+  {
+    "slide": 6,
+    "section": "1.2 FUNCTIONAL REQUIREMENTS",
+    "title": "Implementation and testing"
+  },
+  {
+    "slide": 7,
+    "section": "1.2 FUNCTIONAL REQUIREMENTS",
+    "title": "Errors, repair and verification"
+  },
+  {
+    "slide": 8,
+    "section": "1.2 NON-FUNCTIONAL REQUIREMENTS",
+    "title": "Quality requirements"
+  },
+  {
+    "slide": 9,
+    "section": "1.2 NON-FUNCTIONAL REQUIREMENTS",
+    "title": "Traceability and controlled automation"
+  },
+  {
+    "slide": 10,
+    "section": "1.3 IMPLEMENTATION STACK",
+    "title": "Tools and technologies"
+  },
+  {
+    "slide": 11,
+    "section": "1.3 AGENT ARCHITECTURE",
+    "title": "Six specialist roles"
+  },
+  {
+    "slide": 12,
+    "section": "2.1 SYSTEM CONTEXT",
+    "title": "Level 0 data flow diagram"
+  },
+  {
+    "slide": 13,
+    "section": "2.1 MAIN PROCESSES",
+    "title": "Level 1 data flow diagram"
+  },
+  {
+    "slide": 14,
+    "section": "2.1 PROCESS DECOMPOSITION",
+    "title": "Level 2 data flow: specialist planning"
+  },
+  {
+    "slide": 15,
+    "section": "2.1 PROCESS DECOMPOSITION",
+    "title": "Level 2 data flow: generation and repair"
+  },
+  {
+    "slide": 16,
+    "section": "2.2 USER INTERACTION",
+    "title": "Use case diagram"
+  },
+  {
+    "slide": 17,
+    "section": "2.2 USE CASE DESCRIPTIONS",
+    "title": "Primary use cases"
+  },
+  {
+    "slide": 18,
+    "section": "2.3 CLASS DIAGRAM A",
+    "title": "Project data and specification classes"
+  },
+  {
+    "slide": 19,
+    "section": "2.3 CLASS DIAGRAM B",
+    "title": "Specialists and model-provider selection"
+  },
+  {
+    "slide": 20,
+    "section": "2.3 CLASS DIAGRAM C",
+    "title": "Build and verification collaborators"
+  },
+  {
+    "slide": 21,
+    "section": "2.4 SEQUENCE DIAGRAM A",
+    "title": "Project creation and clarification"
+  },
+  {
+    "slide": 22,
+    "section": "2.4 SEQUENCE DIAGRAM B",
+    "title": "Background specialist planning"
+  },
+  {
+    "slide": 23,
+    "section": "2.4 SEQUENCE DIAGRAM C",
+    "title": "Build execution and final report"
+  },
+  {
+    "slide": 24,
+    "section": "3.1 DATABASE TABLES",
+    "title": "ProjectForge snapshots"
+  },
+  {
+    "slide": 25,
+    "section": "3.1 DATABASE TABLES",
+    "title": "ProjectForge history and events"
+  },
+  {
+    "slide": 26,
+    "section": "3.1 GENERATED APPLICATION DATABASE",
+    "title": "Generated NoteKeeper notes"
+  },
+  {
+    "slide": 27,
+    "section": "3.1 INTEGRITY AND STORAGE",
+    "title": "Database indexes and relationships"
+  }
+]
